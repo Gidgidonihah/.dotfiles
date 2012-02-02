@@ -45,7 +45,7 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Text expansion
 ab dbpr /* jwTODO: Remove this dbpr block */echo("<pre style='border: 1px solid blue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>i\n");exit();/* */<esc>v3k<kwwv3l
 ab smdb {* jwTODO: Remove this dbpr block *}<pre style='border: 1px solid blue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
-ab fakecss {* jwTODO: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jweirx.dev.doba.com/style/tmp/uncompiled_tmp.css" type="text/css">
+ab fakecss {* jwTODO: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/uncompiled_tmp.css" type="text/css">
 ab elog /* jwTODO: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwTODO: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
 ab sn {$site_name}
