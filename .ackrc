@@ -1,0 +1,20 @@
+# case insensitive and recursive by default
+-ri
+
+# follow symlinks
+# --follow
+
+# Set pager to more (much better than piping)
+--pager=less
+
+# handle smarty templates as PHP files
+--type-add=php=.tpl
+
+# Ignore smarty compile directory
+--ignore-dir=template_c
+
+# Handle .less files
+--type-add=css=.less
+
+# Handle include files
+--type-add=php=.inc

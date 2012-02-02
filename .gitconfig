@@ -1,0 +1,68 @@
+[user]
+	name = Jason Weir
+	email = jweir@dropship.com
+[color]
+	branch = auto
+	diff = auto
+	interactive = auto
+	status = auto
+    ui = auto
+[color "branch"]
+    current = green bold
+    local = green
+    remote = red bold
+[color "diff"]
+    meta = yellow bold
+    frag = magenta bold
+    old = red bold
+    new = green bold
+[color "status"]
+    added = green bold
+    changed = yellow bold
+    untracked = red
+[merge]
+	tool = vimdiff
+[push]
+    default = current
+[branch]
+    autosetuprebase = always
+[color "sh"]
+    branch = yellow
+[diff]
+    renames = copies
+    mnemonicprefix = true
+[svn]
+    r
+[alias]
+	st = status
+	ci = commit
+	br = branch
+	co = checkout
+	df = diff
+	lg = log -p
+	dfs = diff --staged
+
+    # 'add all' stages all new+changed+deleted files
+    aa = !git ls-files -d | xargs -r git rm && git ls-files -m -o --exclude-standard | xargs -r git add
+    #
+    aup = "!sh -c 'git ls-files -m | grep $1 | xargs -r git add' -"
+    # 'add grep' stages all new+changed that match $1
+    ag = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add' -"
+    #
+    agp = "!sh -c 'git ls-files -m -o --exclude-standard | grep $1 | xargs -r git add -p' -"
+    # 'checkout grep' checkouts any files that match $1
+    cg = "!sh -c 'git ls-files -m | grep $1 | xargs -r git checkout' -"
+    # 'diff grep' diffs any files that match $1
+    dg = "!sh -c 'git ls-files -m | grep $1 | xargs -r git diff' -"
+    # 'patch grep' diff --cached any files that match $1
+    pg = "!sh -c 'git ls-files -m | grep $1 | xargs -r git diff --cached' -"
+    # 'remove grep' remove any files that match $1
+    rmg = "!sh -c 'git ls-files -d | grep $1 | xargs -r git rm' -"
+    # 'reset grep' reset any files that match $1
+    rsg = "!sh -c 'git ls-files -c | grep $1 | xargs -r git reset' -"
+    # nice log output
+    lg = log --graph --pretty=oneline --abbrev-commit --decorate
+    # rerun svn show-ignore -> exclude
+    si = !git svn show-ignore > .git/info/exclude
+    # start git-sh
+    sh = !git-sh
