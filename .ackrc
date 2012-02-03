@@ -5,7 +5,7 @@
 # --follow
 
 # Set pager to more (much better than piping)
---pager=less
+--pager=$PAGER
 
 # handle smarty templates as PHP files
 --type-add=php=.tpl
