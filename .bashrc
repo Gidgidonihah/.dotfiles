@@ -11,10 +11,11 @@ alias cls="clear; ls"
 alias elog="tail -f /var/log/apache2/error_log"
 alias findebug="grep -rni "{debug}" *"
 alias mongo="mongo -uroot -pp2mfun DropshipCommon"
+alias ping="ping -c4"
 
 PS1="\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\] #\[\033[0;27m\] "
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
-PAGER='less -FXRS -x2'
+PAGER='less -SFXR -x2'
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then

@@ -25,7 +25,7 @@
 [push]
     default = current
 [branch]
-    autosetuprebase = always
+    #autosetuprebase = always
 [color "sh"]
     branch = yellow
 [diff]
@@ -39,6 +39,7 @@
 	br = branch
 	co = checkout
 	df = diff
+	dfw = diff --color-words
 	lg = log -p
 	dfs = diff --staged
 
@@ -66,3 +67,5 @@
     si = !git svn show-ignore > .git/info/exclude
     # start git-sh
     sh = !git-sh
+[core]
+	excludesfile = /root/.gitignore_global
