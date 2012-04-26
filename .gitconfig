@@ -43,6 +43,9 @@
 	lg = log -p
 	dfs = diff --staged
 
+	# pull/push
+	pp = "!git pull && git push"
+
     # 'add all' stages all new+changed+deleted files
     aa = !git ls-files -d | xargs -r git rm && git ls-files -m -o --exclude-standard | xargs -r git add
     #
