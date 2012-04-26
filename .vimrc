@@ -49,9 +49,9 @@ ab fakecss {* jwTODO: Remove this fakecss dbpr block *}<link rel="stylesheet" h
 ab elog /* jwTODO: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwTODO: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
 ab sn {$site_name}
-ab debug {*jwTODO: Remove this*}{debug}{* *}
+ab smdebug {*jwTODO: Remove this*}{debug}{* *}
 ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki	
-ab trycatch try{	EngineName::callNameHere();}catch(Exception $e){	$this->objMessaging->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+ab trycatch try{	EngineName::methodName();}catch(Exception $e){	$this->objMessaging->addError($e->getMessage());}<esc>v<v2k<k6wvwh
 
 " Quick regex to add quotes around HTML attributes
 cabbrev quotize %s/\([^&^?]\)\(\<[[:alnum:]-]\{-}\)=\([[:alnum:]-#%]\+\)/\1\2="\3"/g
