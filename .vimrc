@@ -71,7 +71,7 @@ endfunction
 noremap <BS> :noh<CR>
 noremap <leader>T :CommandTBuffer<CR>
 noremap <leader><BS> :CommandTFlush<CR>
-noremap gd !open http://php.net/<cword><CR>
+noremap doc :!open http://php.net/<cword><CR>
 
 " CD into /Volumes/build by default
 if isdirectory('/Volumes/build/dropship.com')

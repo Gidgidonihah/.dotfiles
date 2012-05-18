@@ -13,6 +13,7 @@ alias findebug="grep -rni "{debug}" *"
 alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
 alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
 alias ping="ping -c4"
+alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 
 PS1="\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\] #\[\033[0;27m\] "
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
