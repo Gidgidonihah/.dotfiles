@@ -43,6 +43,9 @@
 	lg = log -p
 	dfs = diff --staged
 
+	# unstash files
+	unstash = stash apply --index
+
 	# pull/push
 	pp = "!git pull && git push"
 
@@ -72,3 +75,5 @@
     sh = !git-sh
 [core]
 	excludesfile = /root/.gitignore_global
+[init]
+	templatedir = ~/.git_template

@@ -1,0 +1,47 @@
+#!/bin/sh
+#
+# An example hook script to verify what is about to be committed.
+# Called by "git commit" with no arguments.  The hook should
+# exit with non-zero status after issuing an appropriate message if
+# it wants to stop the commit.
+
+# Allows us to read user input below, assigns stdin to keyboard
+exec < /dev/tty
+
+# Functions for running different hooks go here.
+	# test for occurance of jwtodo
+	jwtodoCheck (){
+		output=$(git diff --staged --color -G jwtodo --exit-code)
+		result=$?
+
+		if [ $result == 1 ]; then 
+			while true; do
+				echo -ne '\033[38;5;57mThe current commit contains "jwtodo". Continue? [y,n,r,?]\033[39m'; read
+				case $REPLY in
+				[Yy])
+					exit 0
+					;;
+				[NnQq])
+					echo -e '\033[38;5;49mGit Commit aborted.\033[39m'
+					exit 1
+					;;
+				[Rr])
+					echo
+					echo "$output"
+					echo
+					;;
+				'?')
+					echo -e '\033[38;5;196m'
+					echo -e 'y - Continue with the commit.'
+					echo -e 'n - Stop the commit.'
+					echo -e 'r - Review the matching diff.'
+					echo -e '? - Show this help.'
+					echo -e '\033[39m'
+					;;
+				esac
+			done
+		fi
+	}
+
+# Call our hook functions
+	jwtodoCheck

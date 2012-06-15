@@ -43,15 +43,13 @@ set guioptions-=T
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Text expansion
-ab dbpr /* jwTODO: Remove this dbpr block */echo("<pre style='border: 1px solid blue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
-ab smdb {* jwTODO: Remove this dbpr block *}<pre style='border: 1px solid blue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
-ab fakecss {* jwTODO: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/uncompiled_tmp.css" type="text/css">
+ab dbpr /* jwTODO: Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
+ab smdb {* jwTODO: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* jwTODO: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwTODO: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
-ab sn {$site_name}
-ab smdebug {*jwTODO: Remove this*}{debug}{* *}
 ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki	
-ab trycatch try{	EngineName::methodName();}catch(Exception $e){	$this->objMessaging->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
 
 " Quick regex to add quotes around HTML attributes
 cabbrev quotize %s/\([^&^?]\)\(\<[[:alnum:]-]\{-}\)=\([[:alnum:]-#%]\+\)/\1\2="\3"/g
@@ -71,7 +69,7 @@ endfunction
 noremap <BS> :noh<CR>
 noremap <leader>T :CommandTBuffer<CR>
 noremap <leader><BS> :CommandTFlush<CR>
-noremap doc :!open http://php.net/<cword><CR>
+noremap <silent> gd :!open http://php.net/<cword><CR>
 
 " CD into /Volumes/build by default
 if isdirectory('/Volumes/build/dropship.com')
