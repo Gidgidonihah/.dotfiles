@@ -74,6 +74,6 @@
     # start git-sh
     sh = !git-sh
 [core]
-	excludesfile = /root/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [init]
 	templatedir = ~/.git_template

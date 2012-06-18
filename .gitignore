@@ -1,3 +1,7 @@
+# Include ONLY my dotfiles
+/*
+!/.*
+
 # Don't want everyone seeing my private keys, now do I?
 .ssh
 
@@ -11,10 +15,13 @@
 *info
 
 # or any of this stuff
-bin
-boxbuilder
-.gnupg
-.kbd
-.pearrc
-inst-sys
 *.espressostorage
+/.MacOSX/
+/.Trash/
+/.cups/
+/.dropbox/
+/.gnupg
+/.kbd
+/.pearrc
+/.rnd
+/.shsh/

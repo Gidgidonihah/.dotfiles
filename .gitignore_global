@@ -39,6 +39,8 @@ Thumbs.db
 ######################
 *ignore*
 
-# Espress Projects #
-####################
+# MetaData files #
+##################
 *.esproj
+.*.swp
+*~

@@ -69,9 +69,15 @@ endfunction
 noremap <BS> :noh<CR>
 noremap <leader>T :CommandTBuffer<CR>
 noremap <leader><BS> :CommandTFlush<CR>
-noremap <silent> gd :!open http://php.net/<cword><CR>
+
+" View Documentation
+"noremap <silent> gd :!lynx http://php.net/<cword><CR>
+noremap <silent> gd :!open dash://<cword><CR>
 
 " CD into /Volumes/build by default
 if isdirectory('/Volumes/build/dropship.com')
 	cd /Volumes/build/dropship.com
 endif
+
+" Point the taglist plugin to the ctags executable
+let Tlist_Ctags_Cmd = '/usr/bin/ctags'
