@@ -14,6 +14,9 @@
 *shell
 *info
 
+# Compiled python files for vim plugin
+editorconfig/*.pyc
+
 # or any of this stuff
 *.espressostorage
 /.MacOSX/
