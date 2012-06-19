@@ -10,7 +10,6 @@ export LSCOLORS=ExFxCxDxBxegedabagacad
 
 alias ping="ping -c 4"
 alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
-export PS1='\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\]# \[\033[0;27m\]'
 
 # Source local bashrc
 if [ -f ~/.bashrc ]; then

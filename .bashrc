@@ -1,4 +1,7 @@
 # .bashrc
+if [ -f /etc/bashrc ]; then
+    . /etc/bashrc
+fi
 
 # User specific aliases and functions
 alias rm='rm -i'
@@ -15,14 +18,11 @@ alias ping="ping -c4"
 alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 alias phpunit="phpunit --colors"
 
-PS1="\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\] #\[\033[0;27m\] "
+PS1='\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\] #\[\033[0;27m\] '
 PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
 PAGER='less -SFXR -x2'
 
 # Source global definitions
-if [ -f /etc/bashrc ]; then
-    . /etc/bashrc
-fi
 if [ -n "${SSH_CLIENT}" ]; then
     cd /home/build/dropship.com/;
 fi
