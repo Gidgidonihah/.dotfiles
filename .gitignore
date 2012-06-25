@@ -20,6 +20,8 @@
 
 # Compiled python files for vim plugin
 editorconfig/*.pyc
+# previous line not working on work box
+.vim/*/*/*/*.pyc
 
 # or any of this stuff
 *.espressostorage
