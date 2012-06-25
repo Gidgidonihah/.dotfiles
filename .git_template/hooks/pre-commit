@@ -27,7 +27,7 @@ exec < /dev/tty
 					;;
 				[Rr])
 					echo
-					echo "$output"
+					echo "$(git dfs | grep -i jwtodo -n3)"
 					echo
 					;;
 				'?')

@@ -3,30 +3,42 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
+# ls options differ between my mac an unix boxes.
+if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
+	#mac
+	alias ls='ls -G'
+
+	alias sshs='ssh root@jason.dev.dropship.com'
+	alias cleanup="chflags -R nouchg ."
+	alias cup="cleanup"
+	alias dcup="dot_clean -mv /Volumes/build/"
+	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
+else
+	#linux
+	alias ls='ls --color'
+
+	alias sshs='echo "You are already on the dev server, dummy."'
+	alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
+	alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
+	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
+
+	if [ -d /home/build/dropship.com -a -n "${SSH_CLIENT}" ]; then
+		cd /home/build/dropship.com/;
+	fi
+fi
+
 # User specific aliases and functions
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
 alias vi='vim'
-alias ls='ls --color'
 alias ll='ls -al'
 alias lh="ls -alh"
+alias ping="ping -c4"
+alias cls="clear; ls"
+alias phpunit="phpunit --colors"
 alias cls="clear; ls"
 alias elog="tail -f /var/log/apache2/error_log"
-alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
-alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
-alias ping="ping -c4"
-alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
-alias phpunit="phpunit --colors"
-
-PS1='\[\033[1;34m\]\t\[\033[0;36m\]|\h\[\033[0;36m\]:\[\033[1;36m\]\w\[\033[0;36m\] #\[\033[0;27m\] '
-PROMPT_COMMAND='echo -ne "\033]0;${USER}@${HOSTNAME%%.*}:${PWD/#$HOME/~}\007"'
-PAGER='less -SFXR -x2'
-
-# Source global definitions
-if [ -n "${SSH_CLIENT}" ]; then
-    cd /home/build/dropship.com/;
-fi
 
 function vack(){
 	SEARCH=$1;
