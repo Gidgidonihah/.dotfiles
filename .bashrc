@@ -61,3 +61,32 @@ function sandr(){ # takes 2 inputs: search, replace
 	echo '------------------------------------------------------------------------';
 	eval $CMD;
 }
+function releaseCode(){
+	SERVERS=$1
+	if [ -z "$SERVERS" ]; then
+		SERVERS="01 02 03 04 05 06 07"
+	else
+		if [ $SERVERS -lt 10 ]; then
+			SERVERS='0'$SERVERS
+		fi
+	fi
+	for SERVER in $SERVERS
+	do
+		ssh root@dsapp$SERVER 'cd /home/build/dropship.com/ && git pull && git branch'
+	echo '------------------------------------------------------------------------';
+	done
+}
+function releaseJobs(){
+	SERVERS=$1
+	if [ -z "$SERVERS" ]; then
+		SERVERS="01 02 03 04 05 06 07"
+	else
+		if [ $SERVERS -lt 10 ]; then
+			SERVERS='0'$SERVERS
+		fi
+	fi
+	for SERVER in $SERVERS
+	do
+		ssh root@dsapp$SERVER 'cd /home/build/jobs && git pull && git branch'
+	done
+}

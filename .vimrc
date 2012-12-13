@@ -33,6 +33,10 @@ autocmd FileType html,text,txt,smarty set spell
 au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.txt set filetype=text
 
+" For CodeKit
+au BufNewFile,BufRead *.less set noswapfile
+au BufNewFile,BufRead *.js set noswapfile
+
 " Seriously, filetype is unix...
 autocmd BufRead * silent! set ff=unix
 
@@ -47,9 +51,10 @@ ab dbpr /* jwtodo: Remove this dbpr block */echo("<pre style='border: 1px solid
 ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
-ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki	
+ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
 ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
 ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
+ab todo todo && jwtodo: <esc>I// <esc>A
 
 " Quick regex to add quotes around HTML attributes
 cabbrev quotize %s/\([^&^?]\)\(\<[[:alnum:]-]\{-}\)=\([[:alnum:]-#%]\+\)/\1\2="\3"/g
@@ -67,6 +72,7 @@ endfunction
 
 "Backspace disables highlighting
 noremap <BS> :noh<CR>
+noremap ff $zf%<CR>
 noremap <leader>T :CommandTBuffer<CR>
 noremap <leader><BS> :CommandTFlush<CR>
 
