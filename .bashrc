@@ -13,6 +13,7 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias cup="cleanup"
 	alias dcup="dot_clean -mv /Volumes/build/"
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
+	alias find="find . -iname"
 else
 	#linux
 	alias ls='ls --color'
