@@ -6,7 +6,7 @@ fi
 # ls options differ between my mac an unix boxes.
 if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	#mac
-	alias ls='ls -G'
+	alias ls='ls -aG'
 
 	alias sshs='ssh root@jason.dev.dropship.com'
 	alias cleanup="chflags -R nouchg ."
@@ -15,7 +15,7 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 else
 	#linux
-	alias ls='ls --color'
+	alias ls='ls --color -a'
 
 	alias sshs='echo "You are already on the dev server, dummy."'
 	alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
@@ -39,6 +39,12 @@ alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
 alias elog="tail -f /var/log/apache2/error_log"
+
+function ssh-id-copy(){
+	SERVER=$1;
+	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
+	eval $CMD;
+}
 
 function vack(){
 	SEARCH=$1;
