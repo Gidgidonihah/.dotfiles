@@ -9,6 +9,7 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias ls='ls -aG'
 
 	alias sshs='ssh root@jason.dev.dropship.com'
+	alias sshm='ssh 192.168.11.2'
 	alias cleanup="chflags -R nouchg ."
 	alias cup="cleanup"
 	alias dcup="dot_clean -mv /Volumes/build/"

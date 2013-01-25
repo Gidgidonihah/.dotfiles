@@ -25,8 +25,11 @@ editorconfig/*.pyc
 
 # or any of this stuff
 *.espressostorage
+/.CFUserTextEncoding
+/.DS_Store
 /.MacOSX/
 /.Trash/
+/.cache/
 /.cups/
 /.dropbox/
 /.gnupg
