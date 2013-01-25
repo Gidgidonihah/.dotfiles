@@ -34,6 +34,10 @@ au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.txt set filetype=text
 
 " For CodeKit
+au BufNewFile,BufRead *.less set nobackup
+au BufNewFile,BufRead *.js set nobackup
+au BufNewFile,BufRead *.less set nowritebackup
+au BufNewFile,BufRead *.js set nowritebackup
 au BufNewFile,BufRead *.less set noswapfile
 au BufNewFile,BufRead *.js set noswapfile
 
@@ -73,8 +77,11 @@ endfunction
 "Backspace disables highlighting
 noremap <BS> :noh<CR>
 noremap ff $zf%<CR>
-noremap <leader>T :CommandTBuffer<CR>
-noremap <leader><BS> :CommandTFlush<CR>
+
+"Remapping CtrlP to my muscle memory
+noremap <leader>t :CtrlP<CR>
+noremap <leader>T :CtrlPBuffer<CR>
+noremap <leader><BS> :CtrlPClearCache<CR>
 
 " View Documentation
 "noremap <silent> gd :!lynx http://php.net/<cword><CR>
