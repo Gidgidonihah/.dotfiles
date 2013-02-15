@@ -47,6 +47,9 @@ function ssh-id-copy(){
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
 	eval $CMD;
 }
+function screenSaver(){
+	a=1;x=1;y=1;xd=1;yd=1;while true;do if [[ $x == $LINES || $x == 0 ]]; then xd=$(( $xd *-1 )) ; fi ; if [[ $y == $COLUMNS || $y == 0 ]]; then yd=$(( $yd * -1 )) ; fi ; x=$(( $x + $xd )); y=$(( $y + $yd )); printf "\33[%s;%sH\33[48;5;%sm \33[0m" $x $y $(($a%199+16)) ;a=$(( $a + 1 )) ; sleep 0.001 ;done
+}
 
 function vack(){
 	SEARCH=$1;
@@ -95,6 +98,11 @@ function releaseJobs(){
 	fi
 	for SERVER in $SERVERS
 	do
-		ssh root@dsapp$SERVER 'cd /home/build/jobs && git pull && git branch'
+
+		CMD="ssh root@dsapp$SERVER 'cd /home/build/jobs && git pull && git branch'";
+		echo $CMD;
+		echo '------------------------------------------------------------------------';
+		eval $CMD;
+
 	done
 }

@@ -10,6 +10,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 # General UI/UX                                                               #
 ###############################################################################
 
+# Add custom tones to the system sounds
+ln -s ~/.aiff_tones/ ~/Library/Sounds/Custom\ Tones
+
 # Set computer name (as done via System Preferences → Sharing)
 #sudo scutil --set ComputerName "MathBook Pro"
 #sudo scutil --set HostName "MathBook Pro"
