@@ -203,9 +203,7 @@ nnoremap <leader>a :!gg<Space><c-r><c-W>
 " Conflict markers {{{
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" shortcut to jump to next conflict marker
-nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR> " shortcut to jump to next conflict marker
 " }}}
 
 " Pulse ------------------------------------------------------------------- {{{
