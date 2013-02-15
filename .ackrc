@@ -1,20 +1,25 @@
-# case insensitive and recursive by default
--ri
-
+# recursive by default
+-r
 # follow symlinks
 # --follow
+
+# Smart Case
+--smart-case
 
 # Set pager to more (much better than piping)
 --pager=$PAGER
 
 # handle smarty templates as PHP files
---type-add=php=.tpl
-
-# Ignore smarty compile directory
---ignore-dir=template_c
+#--type-add=php=.tpl
+--type-set=smarty=.tpl
 
 # Handle .less files
---type-add=css=.less
+--type-set=less=.less
+--nocss
 
 # Handle include files
 --type-add=php=.inc
+
+# ignore clover files
+--type-set=clover=.grf,.ctl2
+--noclover

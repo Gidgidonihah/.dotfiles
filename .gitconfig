@@ -73,8 +73,12 @@
     si = !git svn show-ignore > .git/info/exclude
     # start git-sh
     sh = !git-sh
+	# Grep like ack
+	ack = grep --ignore-case --break --heading --line-number
 [core]
 	excludesfile = ~/.gitignore_global
 	quotepath = false
 [init]
 	templatedir = ~/.git_template
+[grep]
+	lineNumber = true

@@ -27,7 +27,7 @@ exec < /dev/tty
 					;;
 				[Rr])
 					echo
-					echo "$(git dfs | grep -i jwtodo -n3)"
+					echo -e "$(git dfs | grep -i --color=always jwtodo -3 | grep -i --color=always ^+ -3)"
 					echo
 					;;
 				'?')
