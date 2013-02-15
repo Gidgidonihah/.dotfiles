@@ -34,6 +34,8 @@ editorconfig/*.pyc
 /.dropbox/
 /.gnupg
 /.kbd
+/.npm
 /.pearrc
 /.rnd
 /.shsh/
+/.subversion

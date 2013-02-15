@@ -16,6 +16,9 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 	alias find="find . -iname"
 else
+	if [ -f ~/.sh/bash-ps1.sh ]; then
+		. ~/.sh/bash-ps1.sh
+	fi
 	#linux
 	alias ls='ls -a --color'
 
