@@ -84,7 +84,7 @@ fi
 #This is WITH time
 #PS1="$sq_color\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[$White\]\342\234\227$sq_color]\342\224\200\")[\[$White\]\@$sq_color]\342\224\200[\[$White\]\h$sq_color]-[\[$Green$(__git_ps1 "%s")$sq_color]-[$Yellow\W$sq_color]\n\342\224\224\342\224\200\342\224\200>> \[$White\]$sq_color\[$White\]\\[\\033[0m\\]"
 #And WITHOUT time
-PS1="$sq_color\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[$White\]\342\234\227$sq_color]\342\224\200\")[\[$White\]\h$sq_color]-[\[$Green\$(__git_ps1 "%s")$sq_color]-[$Yellow\W$sq_color]\n\342\224\224\342\224\200\342\224\200>> \[$White\]$sq_color\[$White\]\\[\\033[0m\\]"
+PS1="$sq_color\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[$White\]\342\234\227$sq_color]\342\224\200\")[\[$White\]\h$sq_color]-[\[$Green\$(__git_ps1 "%s")$sq_color]-[$Yellow\w$sq_color]\n\342\224\224\342\224\200\342\224\200>> \[$White\]$sq_color\[$White\]\\[\\033[0m\\]"
 
 # See https://gist.github.com/dwelch2344/3179443 for spacing the git command off to the right
 
