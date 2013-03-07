@@ -74,7 +74,7 @@
     # start git-sh
     sh = !git-sh
 	# Grep like ack
-	ack = grep --ignore-case --break --heading --line-number
+	ack = grep --ignore-case --break --heading --line-number --color=always
 [core]
 	excludesfile = ~/.gitignore_global
 	quotepath = false
