@@ -7,6 +7,7 @@ set ai " Auto Indent
 
 " Highlight my todos *NOT WORKING* why?
 syn match myTodo "\<\l\{2\}TODO\>"
+syn match myTodo "\<\l\{2\}todo\>"
 hi def link myTodo Todo
 
 " Searching
@@ -72,11 +73,11 @@ ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skybl
 ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
 ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
-ab tmpcss {* jwTODO: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/tmp.css" type="text/css">
+ab tmpcss {* jwtodo: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/tmp.css" type="text/css">
 ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
 ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
-ab todo todo && jwtodo: <esc>I// <esc>A
-ab ufc Lib_Utility_Functions::log_error(3, SITE_NAME . ' '.$this->view->section, 'Unhandled Fault Code: WHATAREWEDOING.', 'File: ' . __FILE__ . ' \|\| Line: ' . __LINE__);<esc>
+ab todojw todo && jwtodo: <esc>I// <esc>A
+ab ufc Lib_Utility_Functions::log_error(3, SITE_NAME . ' '.$this->view->section, 'Unhandled Fault Code: WHATAREWEDOING. ' . 'File: ' . __FILE__ . ' \|\| Line: ' . __LINE__);<esc>
 
 " Quick regex to add quotes around HTML attributes
 cabbrev quotize %s/\([^&^?]\)\(\<[[:alnum:]-]\{-}\)=\([[:alnum:]-#%]\+\)/\1\2="\3"/g
@@ -130,6 +131,7 @@ let g:ctrlp_custom_ignore = {
 
 " Show trailing whitespace, but don't be annoying about it
 highlight ExtraWhitespace ctermbg=red guibg=red
+autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
 match ExtraWhitespace /\s\+$/
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
@@ -137,11 +139,12 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Hilight debugger blocks
-highlight jwtodo ctermbg=red guibg=red
-match jwtodo /jwtodo/
-autocmd BufWinEnter * match jwtodo /jwtodo/
-autocmd InsertEnter * match jwtodo /jwtodo/
-autocmd InsertLeave * match jwtodo /jwtodo/
+highlight jwtodo ctermfg=168 guifg=#d33682
+autocmd ColorScheme * highlight jwtodo ctermfg=168 guifg=#d33682
+2match jwtodo /jwtodo/
+autocmd BufWinEnter * 2match jwtodo /jwtodo/
+autocmd InsertEnter * 2match jwtodo /jwtodo/
+autocmd InsertLeave * 2match jwtodo /jwtodo/
 autocmd BufWinLeave * call clearmatches()
 
 " Remap j and k to act as expected when used on long, wrapped, lines
@@ -203,9 +206,7 @@ nnoremap <leader>a :!gg<Space><c-r><c-W>
 " Conflict markers {{{
 " highlight conflict markers
 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
-
-" shortcut to jump to next conflict marker
-nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR>
+nnoremap <silent> <leader>c /^\(<\\|=\\|>\)\{7\}\([^=].\+\)\?$<CR> " shortcut to jump to next conflict marker
 " }}}
 
 " Pulse ------------------------------------------------------------------- {{{
