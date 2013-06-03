@@ -15,6 +15,8 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias dcup="dot_clean -mv /Volumes/build/"
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 	alias find="find . -iname"
+	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.
+	alias ipv6="ifconfig en0 | grep inet[^6] | awk  -F\"[ \t]+\" '{print $3}'" # Get your IPv6 IP address from ifconfig. This is the Mac version.
 else
 	if [ -f ~/.sh/bash-ps1.sh ]; then
 		. ~/.sh/bash-ps1.sh
@@ -27,6 +29,8 @@ else
 	alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
 	alias mongoc="mongo -uroot -pp2mfun Catalog"
 	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
+	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
+	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
 
 	if [ -d /home/build/dropship.com -a -n "${SSH_CLIENT}" ]; then
 		cd /home/build/dropship.com/;
@@ -110,4 +114,45 @@ function releaseJobs(){
 		eval $CMD;
 
 	done
+}
+function browserStack(){
+	DOMAIN=$1
+	SSH=$2
+	PORT=$3
+	SSHPORT=$4
+	BSKEY=`cat ~/.ssh/browserstack.key`
+
+	if [ -z "$DOMAIN" ]
+	then
+	   DOMAIN='jason.dev.dropship.com'
+	fi
+
+	if [ -z "$PORT" ]
+	then
+	   PORT="80"
+	fi
+
+	if [ -z "$SSH" ]
+	then
+	   SSH="1"
+	fi
+
+	if [ -z "$SSHPORT" ]
+	then
+	   SSHPORT="443"
+	fi
+
+	if [ -z "$BSKEY" ]
+	then
+	   echo 'Please store your BrowserStack CLI local testing key in "~/.ssh/browserstack.key"'
+	   return;
+	fi
+
+	CMD="java -jar /usr/local/lib/BrowserStackTunnel.jar $BSKEY $DOMAIN,$PORT,0"
+	if [ 1 == $SSH ]
+	then
+		CMD=$CMD",$DOMAIN,$SSHPORT,$SSH"
+	fi
+
+	eval $CMD
 }

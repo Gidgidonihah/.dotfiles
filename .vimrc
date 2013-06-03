@@ -41,6 +41,14 @@ setlocal spell spelllang=en_us
 set nospell
 autocmd FileType html,text,txt,smarty set spell
 
+" jj to throw you into normal mode from insert mode
+inoremap jj <esc>
+" jk to throw you into normal mode from insert mode
+inoremap jk <esc>
+
+" Underscores denote words
+set iskeyword-=_
+
 " Set Filetypes
 au BufNewFile,BufRead *.less set filetype=css
 au BufNewFile,BufRead *.txt set filetype=text
@@ -50,6 +58,17 @@ set nobackup
 set nowritebackup
 set noswapfile
 set directory=~/.vim/.tmp,~/tmp,/tmp " store swap files in one of these directories (in case swapfile is ever turned on)
+
+" Interactions
+
+" Start scrolling slightly before the cursor reaches an edge
+set scrolloff=3
+set sidescrolloff=5
+" Scroll sideways a character at a time, rather than a screen at a time
+set sidescroll=1
+"Allow motions and back-spacing over line-endings etc
+set backspace=indent,eol,start
+set whichwrap=h,l,b,<,>,~,[,]
 
 "au BufNewFile,BufRead *.less set nobackup
 "au BufNewFile,BufRead *.js set nobackup
@@ -69,6 +88,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Text expansion
 ab dbpr /* jwtodo: Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
+ab kl /* */ jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
+ab vkl /* */ var_jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
