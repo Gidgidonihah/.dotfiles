@@ -38,6 +38,7 @@ else
 fi
 
 # User specific aliases and functions
+alias gi='git'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -49,8 +50,10 @@ alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
 alias elog="tail -f /var/log/apache2/error_log"
-alias gg="git ack"
 
+function gg(){
+	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
+}
 function ssh-id-copy(){
 	SERVER=$1;
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"

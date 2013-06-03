@@ -42,6 +42,13 @@
 	dfw = diff --color-words
 	lg = log -p
 	dfs = diff --staged
+	cherry-pick = cherry-pick -no-commit
+
+	# create branch on remote
+	cob = "!f() { git co -b $1 && git push && branch=$(git rev-parse --abbrev-ref HEAD) && git branch --set-upstream $branch origin/$branch; }; f"
+
+	# forget this --set-upstream business.
+	track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"
 
 	# unstash files
 	unstash = stash apply --index
@@ -74,7 +81,7 @@
     # start git-sh
     sh = !git-sh
 	# Grep like ack
-	ack = grep --ignore-case --break --heading --line-number
+	ack = grep --ignore-case --break --heading --line-number --color=always
 [core]
 	excludesfile = ~/.gitignore_global
 	quotepath = false
