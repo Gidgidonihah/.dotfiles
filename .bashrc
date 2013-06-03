@@ -34,6 +34,7 @@ else
 fi
 
 # User specific aliases and functions
+alias gi='git'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
