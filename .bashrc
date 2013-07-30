@@ -24,6 +24,7 @@ else
 	#linux
 	alias ls='ls -a --color'
 
+	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
 	alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
 	alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
@@ -49,7 +50,7 @@ alias ping="ping -c4"
 alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
-alias elog="tail -f /var/log/apache2/error_log"
+alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 
 function gg(){
 	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
