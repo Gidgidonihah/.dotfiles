@@ -8,7 +8,7 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	#mac
 	alias ls='ls -aG'
 
-	alias sshs='ssh root@jason.dev.dropship.com'
+	alias sshs='ssh root@lance.dev.doba.com'
 	alias sshm='ssh 192.168.11.2'
 	alias cleanup="chflags -R nouchg ."
 	alias cup="cleanup"
@@ -26,15 +26,13 @@ else
 
 	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
-	alias mongoa="mongo -uroot -pp2mfun DropshipCommon"
-	alias mongob="mongo -uroot -pp2mfun DropshipCatalog"
-	alias mongoc="mongo -uroot -pp2mfun Catalog"
+	alias mysql='mysql --auto-rehash -uroot -pQu@ntum'
 	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
 
-	if [ -d /home/build/dropship.com -a -n "${SSH_CLIENT}" ]; then
-		cd /home/build/dropship.com/;
+	if [ -d /home/build/doba.com -a -n "${SSH_CLIENT}" ]; then
+		cd /home/build/doba.com/;
 	fi
 fi
 
@@ -86,40 +84,6 @@ function sandr(){ # takes 2 inputs: search, replace
 	echo '------------------------------------------------------------------------';
 	eval $CMD;
 }
-function releaseCode(){
-	SERVERS=$1
-	if [ -z "$SERVERS" ]; then
-		SERVERS="01 02 03 04 05 06 07"
-	else
-		if [ $SERVERS -lt 10 ]; then
-			SERVERS='0'$SERVERS
-		fi
-	fi
-	for SERVER in $SERVERS
-	do
-		ssh root@dsapp$SERVER 'cd /home/build/dropship.com/ && git pull && git branch'
-	echo '------------------------------------------------------------------------';
-	done
-}
-function releaseJobs(){
-	SERVERS=$1
-	if [ -z "$SERVERS" ]; then
-		SERVERS="01 02 03 04 05 06 07"
-	else
-		if [ $SERVERS -lt 10 ]; then
-			SERVERS='0'$SERVERS
-		fi
-	fi
-	for SERVER in $SERVERS
-	do
-
-		CMD="ssh root@dsapp$SERVER 'cd /home/build/jobs && git pull && git branch'";
-		echo $CMD;
-		echo '------------------------------------------------------------------------';
-		eval $CMD;
-
-	done
-}
 function browserStack(){
 	DOMAIN=$1
 	SSH=$2
@@ -129,7 +93,7 @@ function browserStack(){
 
 	if [ -z "$DOMAIN" ]
 	then
-	   DOMAIN='jason.dev.dropship.com'
+	   DOMAIN='lance.dev.doba.com'
 	fi
 
 	if [ -z "$PORT" ]

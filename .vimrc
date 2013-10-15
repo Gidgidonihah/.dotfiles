@@ -33,8 +33,8 @@ set pastetoggle=<F2> " Toggle pasting
 filetype plugin on
 
 " PHP Code folding
-let php_folding=1
-au FileType php set foldmethod=syntax
+"let php_folding=1
+"au FileType php set foldmethod=syntax
 
 " Turn On Spell Checking for specific filetypes
 setlocal spell spelllang=en_us
@@ -88,15 +88,17 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Text expansion
 ab dbpr /* jwtodo: Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
+ab sn {$site_name}
 ab kl /* */ jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab vkl /* */ var_jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
+ab elt error_log(__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // jwtodo: remove this debug trace<esc>
 ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
-ab tmpcss {* jwtodo: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/tmp.css" type="text/css">
-ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
+ab tmpcss {* jwtodo: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.lance.dev.dropship.com/style/tmp.css" type="text/css">
+ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
 ab todojw todo && jwtodo: <esc>I// <esc>A
 ab ufc Lib_Utility_Functions::log_error(3, SITE_NAME . ' '.$this->view->section, 'Unhandled Fault Code: WHATAREWEDOING. ' . 'File: ' . __FILE__ . ' \|\| Line: ' . __LINE__);<esc>
 

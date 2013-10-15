@@ -48,7 +48,7 @@
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
 		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com[:/]\\(.*\\)\\.git.*/\\1/g' ); \
 		url=https://github.com/$repo/pull/new/$branch; echo $url; \
-		open $url; \
+		xdg-open $url > /dev/null 2>&1; \
 	}; f"
 
 	# Commit with branch name appended
