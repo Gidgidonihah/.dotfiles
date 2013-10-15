@@ -52,6 +52,7 @@ alias phpunit="phpunit --colors"
 alias cls="clear; ls"
 alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 
+alias ggg="~/.sh/git-search.sh"
 function gg(){
 	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
