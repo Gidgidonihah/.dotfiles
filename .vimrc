@@ -145,10 +145,10 @@ augroup END
 :au! BufWritePost $MYVIMRC source $MYVIMRC
 
 " Sane Ignore For ctrlp
-let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
-  \ 'file': '\.exe$\|\.so$\|\.dat$'
-  \ }
+"let g:ctrlp_custom_ignore = {
+"\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
+"\ 'file': '\.exe$\|\.so$\|\.dat$'
+"\ }
 
 " Show trailing whitespace, but don't be annoying about it
 highlight ExtraWhitespace ctermbg=red guibg=red
