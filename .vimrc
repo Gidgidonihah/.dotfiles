@@ -33,6 +33,7 @@ if exists('+colorcolumn')
 endif
 
 set pastetoggle=<F2> " Toggle pasting
+autocmd FileType python map <buffer> <F3> :call Flake8()<CR> " Run flake8
 
 " Use filetype plugins, e.g. for PHP
 filetype plugin on
