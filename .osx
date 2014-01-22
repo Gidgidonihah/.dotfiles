@@ -14,10 +14,10 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ln -s ~/.aiff_tones/ ~/Library/Sounds/Custom\ Tones
 
 # Set computer name (as done via System Preferences → Sharing)
-#sudo scutil --set ComputerName "MathBook Pro"
-#sudo scutil --set HostName "MathBook Pro"
-#sudo scutil --set LocalHostName "MathBook-Pro"
-#sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "MathBook-Pro"
+sudo scutil --set ComputerName "Jason MBP"
+sudo scutil --set HostName "Jason MBP"
+sudo scutil --set LocalHostName "Jason-MBP"
+sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.server NetBIOSName -string "Jason-MBP"
 
 # Menu bar: disable transparency
 #defaults write NSGlobalDomain AppleEnableMenuBarTransparency -bool false
@@ -362,7 +362,7 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 #defaults write com.apple.Safari ShowFavoritesBar -bool false
 
 # Disable Safari’s thumbnail cache for History and Top Sites
-defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
+#defaults write com.apple.Safari DebugSnapshotsUpdatePolicy -int 2
 
 # Enable Safari’s debug menu
 defaults write com.apple.Safari IncludeInternalDebugMenu -bool true

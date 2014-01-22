@@ -5,10 +5,10 @@ set background=dark "Dark background, please.
 set nowrap " Don't wrap by default. That's icky.
 set ai " Auto Indent
 
-" Highlight my todos *NOT WORKING* why?
-syn match myTodo "\<\l\{2\}TODO\>"
-syn match myTodo "\<\l\{2\}todo\>"
-hi def link myTodo Todo
+"" Highlight my todos *NOT WORKING* why?
+"syn match myTodo "\<\l\{2\}TODO\>"
+"syn match myTodo "\<\l\{2\}todo\>"
+"hi def link myTodo Todo
 
 " Searching
 set hlsearch " Hilight the found searches
@@ -23,9 +23,12 @@ set number " show line numbers
 set tabstop=4 " tabs are 4 spaces
 set noexpandtab " tabs are tabs
 set shiftwidth=4	" shifting moves 4 spaces
+set softtabstop=4	" treat spaces like tabs
 set hidden			" hide buffers instead of closing them when you switch
 set showmatch		" Show matching parens
 set title			" change the terminal's title
+
+set colorcolumn=161 " Lines should be 80 chars
 
 set pastetoggle=<F2> " Toggle pasting
 
@@ -35,6 +38,8 @@ filetype plugin on
 " PHP Code folding
 let php_folding=1
 au FileType php set foldmethod=syntax
+
+au FileType py set expandtab
 
 " Turn On Spell Checking for specific filetypes
 setlocal spell spelllang=en_us
@@ -47,7 +52,7 @@ inoremap jj <esc>
 inoremap jk <esc>
 
 " Underscores denote words
-set iskeyword-=_
+"set iskeyword-=_
 
 " Set Filetypes
 au BufNewFile,BufRead *.less set filetype=css
@@ -93,7 +98,7 @@ ab vkl /* */ var_jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
-ab scss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
+ab xcss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
 ab tmpcss {* jwtodo: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/tmp.css" type="text/css">
 ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
 ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
@@ -128,8 +133,8 @@ noremap <leader><BS> :CtrlPClearCache<CR>
 noremap <silent> gd :!open dash://<cword><CR>
 
 " CD into /Volumes/build by default
-if isdirectory('/Volumes/build/dropship.com')
-	cd /Volumes/build/dropship.com
+if isdirectory('/Volumes/build/new.doba.com')
+	cd /Volumes/build/new.doba.com
 endif
 
 " Point the taglist plugin to the ctags executable

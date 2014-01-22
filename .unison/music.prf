@@ -1,7 +1,8 @@
 # Unison preferences file
 # Roots of the synchronization
 root = /Users/jason/Music
-root = ssh://jason@gidgidonihah.com//Volumes/Drobo/Music/ 
+root = ssh://jason@gidgidonihah.com//Volumes/Drobo/Music/
+#root = ssh://jason@MediaPete.local//Volumes/Drobo/Music/
 
 # Paths to synchronize
 #path = current
