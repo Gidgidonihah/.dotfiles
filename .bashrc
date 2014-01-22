@@ -30,9 +30,11 @@ else
 	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
+	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8080"
+	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8080 >> /tmp/runserver & 2>&1"
 
-	if [ -d /home/build/doba.com -a -n "${SSH_CLIENT}" ]; then
-		cd /home/build/doba.com/;
+	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
+		cd /home/build/new.doba.com/;
 	fi
 fi
 

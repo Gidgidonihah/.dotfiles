@@ -1,0 +1,21 @@
+#!/usr/bin/python
+import sys
+from flake8.run import git_hook
+from ConfigParser import SafeConfigParser
+
+IGNORE = 'E302'
+COMPLEXITY = 12
+STRICT = True
+
+if __name__ == '__main__':
+
+    parser = SafeConfigParser()
+    parser.read(['tox.ini', 'config.cfg'])
+
+    if parser.has_section('flake8') and parser.has_option('flake8', 'ignore'):
+        IGNORE = parser.get('flake8', 'ignore')
+
+    result = git_hook(complexity=COMPLEXITY, strict=STRICT, ignore=IGNORE)
+    if result != 0:
+        print '\033[31;5;49mFlake8 test failed. Git Commit aborted.\033[39m'
+    sys.exit(result)
