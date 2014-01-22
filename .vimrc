@@ -28,7 +28,9 @@ set hidden			" hide buffers instead of closing them when you switch
 set showmatch		" Show matching parens
 set title			" change the terminal's title
 
-set colorcolumn=161 " Lines should be 80 chars
+if exists('+colorcolumn')
+  set colorcolumn=161 " Lines should be 80 chars
+endif
 
 set pastetoggle=<F2> " Toggle pasting
 
