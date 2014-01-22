@@ -1,68 +1,27 @@
-#!/bin/sh
+#!/bin/bash
+
+# Runs all executable pre-commit-* hooks and exits after,
+# if any of them was not successful.
 #
-# An example hook script to verify what is about to be committed.
-# Called by "git commit" with no arguments.  The hook should
-# exit with non-zero status after issuing an appropriate message if
-# it wants to stop the commit.
+# Based on
+# http://osdir.com/ml/git/2009-01/msg00308.html
 
-# Allows us to read user input below, assigns stdin to keyboard
-exec < /dev/tty
+data=$(cat)
+exitcodes=()
+hookname=`basename $0`
 
-# Functions for running different hooks go here.
-	# test for occurance of jwtodo
-	jwtodoCheck (){
-		output=$(git diff --staged --color -G jwtodo --exit-code)
-		result=$?
+# Run each hook, passing through STDIN and storing the exit code.
+# We don't want to bail at the first failure, as the user might
+# then bypass the hooks without knowing about additional issues.
 
-		if [ $result == 1 ]; then 
-			while true; do
-				echo -ne '\033[38;5;57mThe current commit contains "jwtodo". Continue? [y,n,r,?]\033[39m'; read
-				case $REPLY in
-				[Yy])
-					exit 0
-					;;
-				[NnQq])
-					echo -e '\033[38;5;49mGit Commit aborted.\033[39m'
-					exit 1
-					;;
-				[Rr])
-					echo
-					echo -e "$(git dfs | grep -i --color=always jwtodo -3 | grep -i --color=always ^+ -3)"
-					echo
-					;;
-				'?')
-					echo -e '\033[38;5;196m'
-					echo -e 'y - Continue with the commit.'
-					echo -e 'n - Stop the commit.'
-					echo -e 'r - Review the matching diff.'
-					echo -e '? - Show this help.'
-					echo -e '\033[39m'
-					;;
-				esac
-			done
-		fi
-	}
+for hook in $GIT_DIR/hooks/$hookname-*; do
+  test -x "$hook" || continue
+  echo "$data" | "$hook"
+  exitcodes+=($?)
+done
 
-	#make sure we want to commit to the release branch if that's where we are.
-	checkRelease (){
-		BRANCH="$(git symbolic-ref HEAD 2>/dev/null)" || BRANCH="(unnamed branch)"
-		BRANCH=${BRANCH##refs/heads/}
-		if [ $BRANCH = 'release' ]; then
-			while true; do
-				echo -ne '\033[38;5;57mAre you sure you wish to commit to the release branch? [y,n]\033[39m'; read
-				case $REPLY in
-				[Yy])
-					exit 0
-					;;
-				[NnQq])
-					echo -e '\033[38;5;49mGit Commit aborted.\033[39m'
-					exit 1
-					;;
-				esac
-			done
-		fi
-	}
+# If any exit code isn't 0, bail.
 
-# Call our hook functions
-	jwtodoCheck
-	checkRelease
+for i in "${exitcodes[@]}"; do
+  [ "$i" == 0 ] || exit $i
+done
