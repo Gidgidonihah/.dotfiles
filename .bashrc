@@ -25,13 +25,17 @@ else
 	#linux
 	alias ls='ls -a --color'
 
+	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
+	alias mysql='mysql --auto-rehash -uroot -pQu@ntum'
 	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
+	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8080"
+	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8080 >> /tmp/runserver & 2>&1"
 
-	if [ -d /home/build/doba.com -a -n "${SSH_CLIENT}" ]; then
-		cd /home/build/doba.com/;
+	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
+		cd /home/build/new.doba.com/;
 	fi
 fi
 
@@ -47,8 +51,9 @@ alias ping="ping -c4"
 alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
-alias elog="tail -f /var/log/apache2/error_log"
+alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 
+alias ggg="~/.sh/git-search.sh"
 function gg(){
 	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }

@@ -47,4 +47,5 @@ Thumbs.db
 
 # Dev files #
 #############
-*.jason.dev.*
+*.lance.dev.*
+*tmp*

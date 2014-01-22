@@ -36,8 +36,8 @@ set pastetoggle=<F2> " Toggle pasting
 filetype plugin on
 
 " PHP Code folding
-let php_folding=1
-au FileType php set foldmethod=syntax
+"let php_folding=1
+"au FileType php set foldmethod=syntax
 
 au FileType py set expandtab
 
@@ -56,6 +56,8 @@ inoremap jk <esc>
 
 " Set Filetypes
 au BufNewFile,BufRead *.less set filetype=css
+au BufNewFile,BufRead *.scss set filetype=css
+au BufNewFile,BufRead *.sass set filetype=css
 au BufNewFile,BufRead *.txt set filetype=text
 
 " For CodeKit
@@ -92,17 +94,19 @@ set guioptions-=T
 autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Text expansion
-ab dbpr /* jwtodo: Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
-ab kl /* */ jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
-ab vkl /* */ var_jwtodo_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
-ab smdb {* jwtodo: Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
-ab elog /* jwtodo: Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
-ab dbel /* jwtodo: Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
+ab sn {$site_name}
+ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
+ab kl /* TODO: @jweir_kill */ jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
+ab vkl /* TODO: @jweir_kill */ var_jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
+ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
+ab elog /* TODO: @jweir Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
+ab dbel /* TODO: @jweir Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
+ab elt error_log(__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
 ab xcss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
-ab tmpcss {* jwtodo: Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.jason.dev.dropship.com/style/tmp.css" type="text/css">
-ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-ab addmsg Site_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
-ab todojw todo && jwtodo: <esc>I// <esc>A
+ab tmpcss {* TODO: @jweir Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.lance.dev.dropship.com/style/tmp.css" type="text/css">
+ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
+ab todojw # TODO: @jweir <esc>I// <esc>A
 ab ufc Lib_Utility_Functions::log_error(3, SITE_NAME . ' '.$this->view->section, 'Unhandled Fault Code: WHATAREWEDOING. ' . 'File: ' . __FILE__ . ' \|\| Line: ' . __LINE__);<esc>
 
 " Quick regex to add quotes around HTML attributes
@@ -151,9 +155,9 @@ augroup END
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-  \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
-  \ 'file': '\.exe$\|\.so$\|\.dat$'
-  \ }
+\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
+\ 'file': '\.pyc\.exe$\|\.so$\|\.dat$'
+\ }
 
 " Show trailing whitespace, but don't be annoying about it
 highlight ExtraWhitespace ctermbg=red guibg=red
@@ -165,12 +169,12 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
 
 " Hilight debugger blocks
-highlight jwtodo ctermfg=168 guifg=#d33682
-autocmd ColorScheme * highlight jwtodo ctermfg=168 guifg=#d33682
-2match jwtodo /jwtodo/
-autocmd BufWinEnter * 2match jwtodo /jwtodo/
-autocmd InsertEnter * 2match jwtodo /jwtodo/
-autocmd InsertLeave * 2match jwtodo /jwtodo/
+highlight jweir ctermfg=168 guifg=#d33682
+autocmd ColorScheme * highlight jweir ctermfg=168 guifg=#d33682
+2match jweir /@\?jweir/
+autocmd BufWinEnter * 2match jweir /@\?jweir/
+autocmd InsertEnter * 2match jweir /@\?jweir/
+autocmd InsertLeave * 2match jweir /@\?jweir/
 autocmd BufWinLeave * call clearmatches()
 
 " Remap j and k to act as expected when used on long, wrapped, lines

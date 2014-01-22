@@ -9,6 +9,7 @@
 *history
 *hist
 *hst
+*.pyc
 
 # or info files
 *shell
@@ -36,6 +37,7 @@ editorconfig/*.pyc
 /.kbd
 /.npm
 /.pearrc
+/.pylint.d/
 /.rnd
 /.shsh/
 /.subversion

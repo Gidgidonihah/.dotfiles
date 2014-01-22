@@ -1,15 +1,15 @@
 " Copyright (c) 2011-2012 EditorConfig Team
 " All rights reserved.
-" 
+"
 " Redistribution and use in source and binary forms, with or without
 " modification, are permitted provided that the following conditions are met:
-" 
+"
 " 1. Redistributions of source code must retain the above copyright notice,
 "    this list of conditions and the following disclaimer.
 " 2. Redistributions in binary form must reproduce the above copyright notice,
 "    this list of conditions and the following disclaimer in the documentation
 "    and/or other materials provided with the distribution.
-" 
+"
 " THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
 " AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
 " IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
@@ -116,7 +116,7 @@ function! s:FindPythonFiles() " {{{1
     let l:python_core_files_dir = substitute(
                 \ fnamemodify(l:python_core_files_dir, ':p'), '/$', '', '')
 
-    set noshellslash
+    let &shellslash = l:old_shellslash
 
     return l:python_core_files_dir
 endfunction
@@ -190,7 +190,7 @@ function! s:InitializePythonExternal() " {{{2
         return 2
     endif
 
-    " Find python interp 
+    " Find python interp
     if !exists('g:editorconfig_python_interp') ||
                 \ empty('g:editorconfig_python_interp')
         let s:editorconfig_python_interp = s:FindPythonInterp()
@@ -244,7 +244,7 @@ try:
 except:
     vim.command('let l:ret = 3')
 
-del sys.path[0] 
+del sys.path[0]
 
 ec_data = {}  # used in order to keep clean Python namespace
 
@@ -259,7 +259,7 @@ endfunction
 
 " Do some initalization for the case that the user has specified core mode {{{1
 if !empty(s:editorconfig_core_mode)
- 
+
     if s:editorconfig_core_mode == 'external_command'
         if s:InitializeExternalCommand()
             echo 'EditorConfig: Failed to initialize external_command mode'
@@ -352,12 +352,19 @@ autocmd! editorconfig
 autocmd editorconfig BufNewFile,BufReadPost * call s:UseConfigFiles()
 autocmd editorconfig BufNewFile,BufRead .editorconfig set filetype=dosini
 
+augroup END
+
 " UseConfigFiles function for different mode {{{1
 function! s:UseConfigFiles_Python_Builtin() " {{{2
 " Use built-in python to run the python EditorConfig core
 
     let l:config = {}
     let l:ret = 0
+
+    " ignore buffers that do not have a file path associated
+    if empty(expand('%:p'))
+        return 0
+    endif
 
     python << EEOOFF
 
@@ -366,7 +373,7 @@ ec_data['conf_file'] = ".editorconfig"
 
 try:
     ec_data['options'] = editorconfig.get_properties(ec_data['filename'])
-except editorconfig_except.EditorConfigError as e:
+except editorconfig_except.EditorConfigError, e:
     if int(vim.eval('g:EditorConfig_verbose')) != 0:
         print >> sys.stderr, str(e)
     vim.command('let l:ret = 1')
@@ -378,7 +385,8 @@ EEOOFF
 
     python << EEOOFF
 for key, value in ec_data['options'].items():
-    vim.command('let l:config[' + repr(key) + '] = ' + repr(value))
+    vim.command("let l:config['" + key.replace("'", "''") + "'] = " +
+        "'" + value.replace("'", "''") + "'")
 
 EEOOFF
 
@@ -409,18 +417,34 @@ function! s:SpawnExternalParser(cmd) " {{{2
 
     let l:cmd = a:cmd
 
+    " ignore buffers that do not have a file path associated
+    if empty(expand("%:p"))
+        return
+    endif
+
     " if editorconfig is present, we use this as our parser
     if !empty(l:cmd)
         let l:config = {}
 
+        " In Windows, 'shellslash' also changes the behavior of 'shellescape'.
+        " It makes 'shellescape' behave like in UNIX environment. So ':setl
+        " noshellslash' before evaluating 'shellescape' and restore the
+        " settings afterwards.
+        let l:old_shellslash = &l:shellslash
+        setlocal noshellslash
         let l:cmd = l:cmd . ' ' . shellescape(expand('%:p'))
+        let &l:shellslash = l:old_shellslash
         let l:parsing_result = split(system(l:cmd), '\n')
 
         " if editorconfig core's exit code is not zero, give out an error
         " message
         if v:shell_error != 0
             echohl ErrorMsg
-            echo 'Failed to execute "' . l:cmd . '"'
+            echo 'Failed to execute "' . l:cmd . '". Exit code: ' .
+                        \ v:shell_error
+            echo ''
+            echo 'Message:'
+            echo l:parsing_result
             echohl None
             return
         endif
@@ -477,13 +501,55 @@ function! s:ApplyConfig(config) " {{{1
 
     endif
 
-    if has_key(a:config, "end_of_line")
+    if has_key(a:config, "end_of_line") && &l:modifiable
         if a:config["end_of_line"] == "lf"
             setl fileformat=unix
         elseif a:config["end_of_line"] == "crlf"
             setl fileformat=dos
         elseif a:config["end_of_line"] == "cr"
             setl fileformat=mac
+        endif
+    endif
+
+    if has_key(a:config, "charset") && &l:modifiable
+        if a:config["charset"] == "utf-8"
+            setl fileencoding=utf-8
+            setl nobomb
+        elseif a:config["charset"] == "utf-8-bom"
+            setl fileencoding=utf-8
+            setl bomb
+        elseif a:config["charset"] == "latin1"
+            setl fileencoding=latin1
+            setl nobomb
+        elseif a:config["charset"] == "utf-16be"
+            setl fileencoding=utf-16be
+            setl bomb
+        elseif a:config["charset"] == "utf-16le"
+            setl fileencoding=utf-16le
+            setl bomb
+        endif
+    endif
+
+    if has_key(a:config, "trim_trailing_whitespace")
+        augroup editorconfig_trim_trailing_whitespace
+        autocmd! editorconfig_trim_trailing_whitespace
+        if a:config["trim_trailing_whitespace"] == "true"
+            autocmd editorconfig_trim_trailing_whitespace BufWritePre <buffer> :%s/\s\+$//e
+        endif
+
+        augroup END " editorconfig_trim_trailing_whitespace group
+    endif
+
+    if has_key(a:config, 'max_line_length')
+        let l:max_line_length = str2nr(a:config['max_line_length'])
+
+        if l:max_line_length > 0
+            let &l:textwidth = l:max_line_length
+
+            " highlight the column
+            if exists('+colorcolumn')
+                let &l:colorcolumn = l:max_line_length
+            endif
         endif
     endif
 
