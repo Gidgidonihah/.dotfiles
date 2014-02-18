@@ -1,6 +1,6 @@
 <?php
 
-function jwtodo_kill(){
+function jweir_kill(){
 	$args = func_get_args();
 	foreach($args as $arg){
 		if($arg === 'die') exit();
@@ -11,7 +11,7 @@ function jwtodo_kill(){
 	}
 }
 
-function var_jwtodo_kill(){
+function var_jweir_kill(){
 	$args = func_get_args();
 	foreach($args as $arg){
 		if($arg === 'die') exit();

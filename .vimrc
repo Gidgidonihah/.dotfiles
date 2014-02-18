@@ -1,6 +1,6 @@
 syntax enable " Syntax highlighting is the shiz
-"colorscheme desert " Give me a nice color scheme.
 colorscheme solarized " Give me a nice color scheme.
+"colorscheme desert " Give me a nice color scheme.
 set background=dark "Dark background, please.
 set nowrap " Don't wrap by default. That's icky.
 set ai " Auto Indent
@@ -50,7 +50,7 @@ set nospell
 autocmd FileType html,text,txt,smarty set spell
 
 " jj to throw you into normal mode from insert mode
-inoremap jj <esc>
+inoremap jj <esc>jj
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
 
@@ -158,7 +158,7 @@ augroup END
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|log\|tmp$',
+\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$',
 \ 'file': '\.pyc\.exe$\|\.so$\|\.dat$'
 \ }
 
