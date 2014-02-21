@@ -1,6 +1,6 @@
 [user]
 	name = Jason Weir
-	email = jweir@dropship.com
+	email = jweir@doba.com
 [color]
 	branch = auto
 	diff = auto
@@ -46,7 +46,7 @@
 
 	# Github Pull Request
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com[:/]\\(.*\\)\\.git.*/\\1/g' ); \
+		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com[:/]\\/\\?\\(.*\\)\\.git.*/\\1/g' ); \
 		url=https://github.com/$repo/pull/new/$branch; echo $url; \
 		xdg-open $url > /dev/null 2>&1; \
 	}; f"
