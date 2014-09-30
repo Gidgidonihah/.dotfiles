@@ -30,6 +30,7 @@ editorconfig/*.pyc
 /.DS_Store
 /.MacOSX/
 /.Trash/
+/.aws/
 /.cache/
 /.cups/
 /.dropbox/
