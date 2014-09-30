@@ -40,7 +40,7 @@ for i in $DIRS; do
 		echo "Searching $i for \"$SEARCHTERM\"" | tee -a $TMPFILE
 		echo '------' | tee -a $TMPFILE
 		echo '' | tee -a $TMPFILE
-		( cd $i && git --no-pager grep $SEARCHTERM | tee -a $TMPFILE )
+		( cd $i && git --no-pager grep --ignore-case $SEARCHTERM | tee -a $TMPFILE )
 	fi
 done;
 

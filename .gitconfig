@@ -36,6 +36,7 @@
 [alias]
 	st = status
 	ci = commit
+	civ = commit --no-verify
 	br = branch
 	co = checkout
 	df = diff
@@ -46,7 +47,7 @@
 
 	# Github Pull Request
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com[:/]\\/\\?\\(.*\\)\\.git.*/\\1/g' ); \
+		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:[/]\\?\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
 		url=https://github.com/$repo/pull/new/$branch; echo $url; \
 		xdg-open $url > /dev/null 2>&1; \
 	}; f"
@@ -55,7 +56,7 @@
 	cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
 
 	# create branch on remote
-	cob = "!f() { git co -b $1 && git push && branch=$(git rev-parse --abbrev-ref HEAD) && git branch --set-upstream $branch origin/$branch && git pr; }; f"
+	cob = "!f() { git pull && git co -b $1 && git push && branch=$(git rev-parse --abbrev-ref HEAD) && git branch --set-upstream $branch origin/$branch && git pr; }; f"
 
 	# forget this --set-upstream business.
 	track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"

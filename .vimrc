@@ -35,14 +35,14 @@ endif
 set pastetoggle=<F2> " Toggle pasting
 autocmd FileType python map <buffer> <F3> :call Flake8()<CR> " Run flake8
 
-" Use filetype plugins, e.g. for PHP
+" Use filetype plugins, e.g. for PHP/Python
 filetype plugin on
 
 " PHP Code folding
 "let php_folding=1
 "au FileType php set foldmethod=syntax
 
-au FileType py set expandtab
+"au FileType py set expandtab
 
 " Turn On Spell Checking for specific filetypes
 setlocal spell spelllang=en_us
@@ -102,9 +102,9 @@ ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px 
 ab kl /* TODO: @jweir_kill */ jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab vkl /* TODO: @jweir_kill */ var_jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
-ab elog /* TODO: @jweir Remove this elog block */error_log(__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
-ab dbel /* TODO: @jweir Remove this dbel block */error_log(	var_export($this, true));/* */<esc>vk<k3wvwh
-ab elt error_log(__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
+ab elog /* TODO: @jweir Remove this elog block */error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
+ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.	var_export($this, true));/* */<esc>vk<k3wvwh
+ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
 ab xcss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
 ab tmpcss {* TODO: @jweir Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.lance.dev.dropship.com/style/tmp.css" type="text/css">
 ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
