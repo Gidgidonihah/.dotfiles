@@ -34,6 +34,8 @@ else
 	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
 	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8000 >> /tmp/runserver & 2>&1"
 
+	source /etc/bash_completion.d/*
+
 	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
 		cd /home/build/new.doba.com/;
 	fi
