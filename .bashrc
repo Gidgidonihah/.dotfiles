@@ -39,6 +39,8 @@ else
 	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
 		cd /home/build/new.doba.com/;
 	fi
+
+	export EDITOR='vim'
 fi
 
 # User specific aliases and functions
