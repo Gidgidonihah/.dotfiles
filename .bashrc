@@ -40,6 +40,9 @@ else
 		cd /home/build/new.doba.com/;
 	fi
 
+	alias pip="pip2.7"
+	alias python="python2.7"
+
 	export EDITOR='vim'
 fi
 
