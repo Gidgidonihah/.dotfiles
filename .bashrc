@@ -17,7 +17,7 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias find="find . -iname"
 	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.
 	alias ipv6="ifconfig en0 | grep inet[^6] | awk  -F\"[ \t]+\" '{print $3}'" # Get your IPv6 IP address from ifconfig. This is the Mac version.
-	alias xdg-open="open"
+	alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 else
 	if [ -f ~/.sh/bash-ps1.sh ]; then
 		. ~/.sh/bash-ps1.sh
@@ -33,6 +33,7 @@ else
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
 	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
 	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8000 >> /tmp/runserver & 2>&1"
+	alias elog="tail -f /var/log/httpd/error_log | sed 's/\\\\n/\\n/g'"
 
 	source /etc/bash_completion.d/*
 
@@ -58,7 +59,6 @@ alias ping="ping -c4"
 alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
-alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 
 alias ggg="~/.sh/git-search.sh"
 function gg(){
