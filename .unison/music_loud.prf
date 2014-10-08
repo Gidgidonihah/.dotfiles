@@ -1,8 +1,8 @@
 # Unison preferences file
 # Roots of the synchronization
-root = /Users/jason/Music
-#root = ssh://jason@gidgidonihah.com//Volumes/Drobo/Music/
-root = ssh://jason@192.168.11.2//Volumes/Drobo/Music/
+root = /Volumes/iMedia/Music
+root = ssh://jason@gidgidonihah.com//Volumes/Drobo/Music/
+#root = ssh://jason@MediaPete.local//Volumes/Drobo/Music/
 
 # Paths to synchronize
 #path = current
@@ -21,6 +21,7 @@ root = ssh://jason@192.168.11.2//Volumes/Drobo/Music/
 ui=text
 
 # Set the logfile
+log=true
 logfile = /Users/jason/.unison/music_status.txt
 
 #          When set to true, this flag causes the user interface to skip
@@ -35,6 +36,12 @@ logfile = /Users/jason/.unison/music_status.txt
 #          questions at all. Non-conflicting changes will be propagated;
 #          conflicts will be skipped.
 #batch=true
+
+#          When this is set to true, it will cause Unison to check, after
+#          it finishes detecting updates, that something actually exists
+#          at the path foo on both replicas; if it does not, the Unison
+#          run will abort.
+mountpoint=iTunes
 
 #          !When this is set to true, Unison will request an extra
 #          confirmation if it appears that the entire replica has been
@@ -89,7 +96,7 @@ prefer=newer
 #          will print nothing at all, except in the case of errors.
 #          Setting silent to true automatically sets the batch preference
 #          to true.
-#silent=true
+silent=true
 
 #          When this flag is set to true, file modification times (but not
 #          directory modtimes) are propagated.

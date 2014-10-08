@@ -140,8 +140,8 @@ noremap <leader><BS> :CtrlPClearCache<CR>
 noremap <silent> gd :!open dash://<cword><CR>
 
 " CD into /Volumes/build by default
-if isdirectory('/Volumes/build/new.doba.com')
-	cd /Volumes/build/new.doba.com
+if isdirectory('/Volumes/users/build/new.doba.com')
+	cd /Volumes/users/build/new.doba.com
 endif
 
 " Point the taglist plugin to the ctags executable
@@ -158,7 +158,7 @@ augroup END
 
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
-\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$',
+\ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules$',
 \ 'file': '\.pyc\.exe$\|\.so$\|\.dat$'
 \ }
 
@@ -187,6 +187,9 @@ nnoremap k gk
 " No holding shift for vim commands. WooHoo!
 nnoremap ; :
 nnoremap <leader>; ;
+
+" Format json using python
+map =j !python -m json.tool
 
 " Easy window navigation
 map <C-h> <C-w>h

@@ -8,8 +8,8 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	#mac
 	alias ls='ls -aG'
 
-	alias sshs='ssh root@lance.dev.doba.com'
-	alias sshm='ssh 192.168.11.2'
+	alias sshs='ssh root@jweir.dev.doba.com'
+	alias sshm='ssh 192.168.1.2'
 	alias cleanup="chflags -R nouchg ."
 	alias cup="cleanup"
 	alias dcup="dot_clean -mv /Volumes/build/"
@@ -18,6 +18,10 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.
 	alias ipv6="ifconfig en0 | grep inet[^6] | awk  -F\"[ \t]+\" '{print $3}'" # Get your IPv6 IP address from ifconfig. This is the Mac version.
 	alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
+	alias xdg-open="open"
+
+	# get image dimensions
+	alias imgdim='sips -g pixelHeight -g pixelWidth $1'
 else
 	if [ -f ~/.sh/bash-ps1.sh ]; then
 		. ~/.sh/bash-ps1.sh
@@ -59,6 +63,16 @@ alias ping="ping -c4"
 alias cls="clear; ls"
 alias phpunit="phpunit --colors"
 alias cls="clear; ls"
+alias bing="cd ~/Sites;python bingsearcher.py"
+
+function retailcomic(){
+	cd ~/Sites;
+	python retailcomic.py $1 > retailcomic.html;
+	echo $1 > 'last-retail-comic-date.txt';
+	open retailcomic.html;
+	sleep 1;
+	rm -f retailcomic.html
+}
 
 alias ggg="~/.sh/git-search.sh"
 function gg(){
@@ -103,7 +117,7 @@ function browserStack(){
 
 	if [ -z "$DOMAIN" ]
 	then
-	   DOMAIN='lance.dev.doba.com'
+	   DOMAIN='jweir.dev.doba.com'
 	fi
 
 	if [ -z "$PORT" ]
