@@ -54,6 +54,9 @@ inoremap jj <esc>jj
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
 
+" sort python imports according to pep8
+command! -range=% Isort :<line1>,<line2>! isort --force_single_line_imports --lines 160 -
+
 " Underscores denote words
 "set iskeyword-=_
 
