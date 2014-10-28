@@ -1,6 +1,6 @@
 # Unison preferences file
 # Roots of the synchronization
-root = /Users/jason/Music
+root = /Volumes/iMedia/Music
 root = ssh://jason@gidgidonihah.com//Volumes/Drobo/Music/
 #root = ssh://jason@MediaPete.local//Volumes/Drobo/Music/
 
@@ -36,6 +36,12 @@ auto=true
 #          questions at all. Non-conflicting changes will be propagated;
 #          conflicts will be skipped.
 batch=true
+
+#          When this is set to true, it will cause Unison to check, after
+#          it finishes detecting updates, that something actually exists
+#          at the path foo on both replicas; if it does not, the Unison
+#          run will abort.
+mountpoint=iTunes
 
 #          !When this is set to true, Unison will request an extra
 #          confirmation if it appears that the entire replica has been

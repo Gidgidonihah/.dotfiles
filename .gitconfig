@@ -1,6 +1,6 @@
 [user]
 	name = Jason Weir
-	email = jweir@doba.com
+	email = jason@rata.com
 [color]
 	branch = auto
 	diff = auto
@@ -22,14 +22,15 @@
     untracked = red
 [merge]
 	tool = vimdiff
+	stat = true
 [push]
-    default = current
+	default = tracking
 [branch]
     #autosetuprebase = always
 [color "sh"]
     branch = yellow
 [diff]
-    renames = copies
+	renames = copies
     mnemonicprefix = true
 [svn]
     r
@@ -96,7 +97,10 @@
 [core]
 	excludesfile = ~/.gitignore_global
 	quotepath = false
+	whitespace = trailing-space,space-before-tab
 [init]
 	templatedir = ~/.git_template
 [grep]
 	lineNumber = true
+[branch]
+	autosetupmerge = true
