@@ -57,7 +57,7 @@
 	cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
 
 	# create branch on remote
-	cob = "!f() { git pull && git co -b $1 && git push && branch=$(git rev-parse --abbrev-ref HEAD) && git branch --set-upstream $branch origin/$branch && git pr; }; f"
+	cob = "!f() { git pull && git co -b $1 && branch=$(git rev-parse --abbrev-ref HEAD) && git push --set-upstream origin $branch && git pr; }; f"
 
 	# forget this --set-upstream business.
 	track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"
