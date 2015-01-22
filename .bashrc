@@ -3,8 +3,8 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 # Searchers
-if [ -f ~/Sites/searcher/.searchrc ]; then
-    . ~/Sites/searcher/.searchrc
+if [ -f ~/Dropbox/Sites/searcher/.searchrc ]; then
+    . ~/Dropbox/Sites/searcher/.searchrc
 fi
 
 # ls options differ between my mac an unix boxes.
