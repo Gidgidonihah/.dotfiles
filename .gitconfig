@@ -48,7 +48,7 @@
 
 	# Github Pull Request
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:[/]\\?\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
 		url=https://github.com/$repo/pull/new/$branch; echo $url; \
 		open $url > /dev/null 2>&1; \
 	}; f"
