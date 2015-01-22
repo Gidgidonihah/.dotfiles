@@ -86,6 +86,9 @@ alias ggg="~/.sh/git-search.sh"
 function gg(){
 	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
+function vig(){
+	vi `git grep -l "$@" | tr "\n" " "`
+}
 function ssh-id-copy(){
 	SERVER=$1;
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
