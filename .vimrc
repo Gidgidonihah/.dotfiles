@@ -39,8 +39,15 @@ autocmd FileType python map <buffer> <F3> :call Flake8()<CR> " Run flake8
 filetype plugin on
 
 " PHP Code folding
-"let php_folding=1
+let php_folding=1
 "au FileType php set foldmethod=syntax
+au FileType tpl set foldmethod=syntax
+au Syntax c,cpp,vim,xml,html,xhtml,perl,php setlocal foldmethod=syntax
+au Syntax c,cpp,vim,xml,html,xhtml,perl,php normal zR " Open all folds to start
+"set foldlevelstart=1 " Open 1 fold to start
+" Easier fold managing
+noremap <leader>f :set foldmethod=manual<CR>zR<CR> " Open all folds
+noremap <leader>F :set foldmethod=syntax<CR>zM<CR> " Close all folds
 
 "au FileType py set expandtab
 
@@ -162,7 +169,7 @@ augroup END
 " Sane Ignore For ctrlp
 let g:ctrlp_custom_ignore = {
 \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules$',
-\ 'file': '\.pyc\.exe$\|\.so$\|\.dat$'
+\ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
 \ }
 
 " Show trailing whitespace, but don't be annoying about it
