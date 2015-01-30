@@ -58,6 +58,8 @@ autocmd FileType html,text,txt,smarty set spell
 
 " jj to throw you into normal mode from insert mode
 inoremap jj <esc>jj
+" kk to throw you into normal mode from insert mode
+inoremap kk <esc>kk
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
 
@@ -108,17 +110,45 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 
 " Text expansion
 ab sn {$site_name}
-ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
-ab kl /* TODO: @jweir_kill */ jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
-ab vkl /* TODO: @jweir_kill */ var_jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
-ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
-ab elog /* TODO: @jweir Remove this elog block */error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
-ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.	var_export($this, true));/* */<esc>vk<k3wvwh
+ab dbpr /* TODO: @jweir Remove this dbpr block */
+echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");
+print_r(
+	$this
+);
+echo("</pre>\n");
+exit();
+/* */<esc>v3k<kwwv3l
+ab kl /* TODO: @jweir_kill */ jweir_kill(
+	$this,
+	'die'
+); /* */<esc><<vk<kwv3l
+ab vkl /* TODO: @jweir_kill */ var_jweir_kill(
+	$this,
+	'die'
+); /* */<esc><<vk<kwv3l
+ab smdb {* TODO: @jweir Remove this dbpr block *}
+<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>
+{$thingy\|@print_r}
+</pre>
+{* *}<esc>2kbvwh
+ab elog /* TODO: @jweir Remove this elog block */
+error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
+ab dbel /* TODO: @jweir Remove this dbel block */
+error_log('jweir: '.
+	var_export($this, true)
+);
+/* */<esc>vk<k3wvwh
 ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
 ab xcss {literal}<style><cr>#asdf{<cr><cr>}<cr></style>{/literal}<esc>kki
-ab tmpcss {* TODO: @jweir Remove this fakecss dbpr block *}<link rel="stylesheet" href="http://static.lance.dev.dropship.com/style/tmp.css" type="text/css">
-ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>k5wvwh
+ab tmpcss {* TODO: @jweir Remove this fakecss dbpr block *}
+<link rel="stylesheet" href="http://static.lance.dev.dropship.com/style/tmp.css" type="text/css">
+ab trycatch try{
+	EngineName::methodName();
+}catch(Exception $e){
+	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());
+}<esc>v<v2k<k6wvwh
+ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());
+}<esc>k5wvwh
 ab todojw # TODO: @jweir <esc>I// <esc>A
 ab ufc Lib_Utility_Functions::log_error(3, SITE_NAME . ' '.$this->view->section, 'Unhandled Fault Code: WHATAREWEDOING. ' . 'File: ' . __FILE__ . ' \|\| Line: ' . __LINE__);<esc>
 
