@@ -39,11 +39,11 @@ autocmd FileType python map <buffer> <F3> :call Flake8()<CR> " Run flake8
 filetype plugin on
 
 " PHP Code folding
-let php_folding=1
+"let php_folding=1
 "au FileType php set foldmethod=syntax
-au FileType tpl set foldmethod=syntax
-au Syntax c,cpp,vim,xml,html,xhtml,perl,php setlocal foldmethod=syntax
-au Syntax c,cpp,vim,xml,html,xhtml,perl,php normal zR " Open all folds to start
+"u FileType tpl set foldmethod=syntax
+"u Syntax c,cpp,vim,xml,html,xhtml,perl,php setlocal foldmethod=syntax
+"u Syntax c,cpp,vim,xml,html,xhtml,perl,php normal zR " Open all folds to start
 "set foldlevelstart=1 " Open 1 fold to start
 " Easier fold managing
 noremap <leader>f :set foldmethod=manual<CR>zR<CR> " Open all folds
@@ -56,10 +56,15 @@ setlocal spell spelllang=en_us
 set nospell
 autocmd FileType html,text,txt,smarty set spell
 
+" kk to throw you into normal mode from insert mode
+inoremap kk <esc>kk
 " jj to throw you into normal mode from insert mode
 inoremap jj <esc>jj
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
+" ;w and :w save the file when in insert mode
+inoremap :w <esc>:w
+inoremap ;w <esc>:w
 
 " sort python imports according to pep8
 command! -range=% Isort :<line1>,<line2>! isort --force_single_line_imports --lines 160 -
@@ -109,8 +114,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Text expansion
 ab sn {$site_name}
 ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
-ab kl /* TODO: @jweir_kill */ jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
-ab vkl /* TODO: @jweir_kill */ var_jweir_kill(	$this,	'die'); /* */<esc><<vk<kwv3l
+ab kl /* */ jweir_kill( // TODO: @jweir_kill	$this,	'die'); /* */<esc><<vk<kwv3l
+ab vkl /* */ var_jweir_kill( // TODO: @jweir_kill	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* TODO: @jweir Remove this elog block */error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
 ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.	var_export($this, true));/* */<esc>vk<k3wvwh
