@@ -60,6 +60,8 @@ autocmd FileType html,text,txt,smarty set spell
 inoremap kk <esc>kk
 " jj to throw you into normal mode from insert mode
 inoremap jj <esc>jj
+" kk to throw you into normal mode from insert mode
+inoremap kk <esc>kk
 " jk to throw you into normal mode from insert mode
 inoremap jk <esc>
 " ;w and :w save the file when in insert mode
