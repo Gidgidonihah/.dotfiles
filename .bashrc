@@ -2,6 +2,8 @@
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
+# Fuzzy finder
+[ -f ~/.fzf.bash ] && source ~/.fzf.bash
 # Searchers
 if [ -f ~/Dropbox/Sites/searcher/.searchrc ]; then
     . ~/Dropbox/Sites/searcher/.searchrc
