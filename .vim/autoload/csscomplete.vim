@@ -3,7 +3,7 @@
 " Maintainer:	Mikolaj Machowski ( mikmach AT wp DOT pl )
 " Last Change:	2007 May 5
 
-	let s:values = split("azimuth background background-attachment background-color background-image background-position background-repeat border bottom border-collapse border-color border-spacing border-style border-top border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color  border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width border-bottom-width border-left-width border-width caption-side clear clip color content counter-increment counter-reset cue cue-after cue-before cursor display direction elevation empty-cells float font font-family font-size font-style font-variant font-weight height left letter-spacing line-height list-style list-style-image list-style-position list-style-type margin margin-right margin-left margin-top margin-bottom max-height max-width min-height min-width orphans outline outline-color outline-style outline-width overflow padding padding-top padding-right padding-bottom padding-left page-break-after page-break-before page-break-inside pause pause-after pause-before pitch pitch-range play-during pointer-events position quotes right richness speak speak-header speak-numeral speak-punctuation speech-rate stress table-layout text-align text-decoration text-indent text-transform top unicode-bidi vertical-align visibility voice-family volume white-space width widows word-spacing z-index")
+	let s:values = split("align-content align-items align-self azimuth background background-attachment background-color background-image background-position background-repeat border bottom border-collapse border-color border-spacing border-style border-top border-right border-bottom border-left border-top-color border-right-color border-bottom-color border-left-color  border-top-style border-right-style border-bottom-style border-left-style border-top-width border-right-width border-bottom-width border-left-width border-width border-radius caption-side clear clip color content counter-increment counter-reset cue cue-after cue-before cursor display direction elevation empty-cells flex flex-basis flex-direction flex-flow flex-grow flex-shrink flex-wrap float font font-family font-size font-style font-variant font-weight height justify-content left letter-spacing line-height list-style list-style-image list-style-position list-style-type margin margin-right margin-left margin-top margin-bottom max-height max-width min-height min-width order orphans outline outline-color outline-style outline-width overflow padding padding-top padding-right padding-bottom padding-left page-break-after page-break-before page-break-inside pause pause-after pause-before pitch pitch-range play-during pointer-events position quotes right richness speak speak-header speak-numeral speak-punctuation speech-rate stress table-layout text-align text-decoration text-indent text-transform top unicode-bidi vertical-align visibility voice-family volume white-space width widows word-spacing z-index")
 	let s:colors = split("aliceblue antiquewhite aqua aquamarine azure beige bisque black blanchedalmond blue blueviolet brown burlywood cadetblue chartreuse chocolate coral cornflowerblue cornsilk crimson cyan darkblue darkcyan darkgoldki darkmagenta darkolivegreen darkorange darkorchid darkred darksalmon darkseagreen darkslateblue darkslategray darkturquoise darkviolet deeppink deepskyblue dimgray dodgerblue firebrick floralwhite forestgreen fuchsia gainsboro ghostwhite gold goldenrod gray green greenyellow honeydew hotpink indianred indigo ivory khaki lavender lavenderblush lawngreen lemonchiffon lightblue lightcoral lightcyan lightgoldenrodyellow lightgray lightgreen lightpink lightsalmon lightseagreen lightskyblue lightslategray lightsteelblue lightyellow lime limegreen linen magenta maroon mediumaquamarine mediumblue mediumorchid mediumpurple mediumseagreen mediumslateblue mediumspringgreen mediumturquoise mediumvioletred midnightblue mintcream mistyrose moccasin navajowhite navy oldlace olive olivedrab orange orangered orchid palegoldenrod palegreen paleturquoise palevioletred papayawhip peachpuff peru pink plum powderblue purple rebeccapurple red rosybrown royalblue saddlebrown salmon sandybrown seagreen seashell sienna silver skyblue slateblue slategray snow springgreen steelblue tan teal thistle tomato turquoise violet wheat white whitesmoke yellow yellowgreen")
 
 function! csscomplete#CompleteCSS(findstart, base)
@@ -104,7 +104,13 @@ elseif borders[max(keys(borders))] == 'colon'
 	" Get name of property
 	let prop = tolower(matchstr(line, '\zs[a-zA-Z-]*\ze\s*:[^:]\{-}$'))
 
-	if prop == 'azimuth'
+    if prop == 'align-content'
+        let values = ["flex-start", "flex-end", "center", "space-between", "space-around", "stretch"]
+    elseif prop == 'align-items'
+        let values = ["flex-start", "flex-end", "center", "baseline", "stretch"]
+    elseif prop == 'align-self'
+        let values = ["auto", "flex-start", "flex-end", "center", "baseline", "stretch"]
+	elseif prop == 'azimuth'
 		let values = ["left-side", "far-left", "left", "center-left", "center", "center-right", "right", "far-right", "right-side", "behind", "leftwards", "rightwards"]
 	elseif prop == 'background-attachment'
 		let values = ["scroll", "fixed"]
@@ -152,6 +158,8 @@ elseif borders[max(keys(borders))] == 'colon'
 		let values = ["thin", "thick", "medium"]
 	elseif prop == 'border-width'
 		let values = ["thin", "thick", "medium"]
+	elseif prop == 'border-radius'
+		let values = ["1em", "none"]
 	elseif prop == 'border'
 		let vals = matchstr(line, '.*:\s*\zs.*')
 		if vals =~ '^\%([a-zA-Z0-9.]\+\)\?$'
@@ -184,11 +192,25 @@ elseif borders[max(keys(borders))] == 'colon'
 	elseif prop == 'direction'
 		let values = ["ltr", "rtl"]
 	elseif prop == 'display'
-		let values = ["inline", "block", "list-item", "run-in", "inline-block", "table", "inline-table", "table-row-group", "table-header-group", "table-footer-group", "table-row", "table-column-group", "table-column", "table-cell", "table-caption", "none"]
+		let values = ["inline", "block", "flex", "list-item", "run-in", "inline-block", "table", "inline-table", "table-row-group", "table-header-group", "table-footer-group", "table-row", "table-column-group", "table-column", "table-cell", "table-caption", "none"]
 	elseif prop == 'elevation'
 		let values = ["below", "level", "above", "higher", "lower"]
 	elseif prop == 'empty-cells'
 		let values = ["show", "hide"]
+    elseif prop == 'flex-basis'
+        let values = ["auto", "1"]
+    elseif prop == 'flex-direction'
+        let values = ["row", "row-reverse", "column", "column-reverse"]
+    elseif prop == 'flex-flow'
+        let values = ["row", "row-reverse", "column", "column-reverse", "nowrap", "wrap", "wrap-reverse"]
+    elseif prop == 'flex-grow'
+        return []
+    elseif prop == 'flex-shrink'
+		return []
+    elseif prop == 'flex-wrap'
+        let values = ["nowrap", "wrap", "wrap-reverse"]
+    elseif prop == 'flex'
+        let values = ["auto", "1"]
 	elseif prop == 'float'
 		let values = ["left", "right", "none"]
 	elseif prop == 'font-family'
@@ -207,6 +229,8 @@ elseif borders[max(keys(borders))] == 'colon'
 		let values = ["auto"]
 	elseif prop =~ '^\%(left\|rigth\)$'
 		let values = ["auto"]
+    elseif prop = 'justify-content'
+        let values = ["flex-start", "flex-end", "center", "space-between", "space-around"]
 	elseif prop == 'letter-spacing'
 		let values = ["normal"]
 	elseif prop == 'line-height'
@@ -231,6 +255,8 @@ elseif borders[max(keys(borders))] == 'colon'
 		let values = ["none"]
 	elseif prop == 'min-width'
 		let values = ["none"]
+	elseif prop == 'order'
+		return []
 	elseif prop == 'orphans'
 		return []
 	elseif prop == 'outline-color'

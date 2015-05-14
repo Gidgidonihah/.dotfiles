@@ -21,7 +21,7 @@ set wildmode=list:longest " Autocomplete like you would expect
 set ruler " show the ruler
 set number " show line numbers
 set tabstop=4 " tabs are 4 spaces
-set noexpandtab " tabs are tabs
+set expandtab " tabs are spaces
 set shiftwidth=4	" shifting moves 4 spaces
 set softtabstop=4	" treat spaces like tabs
 set hidden			" hide buffers instead of closing them when you switch
