@@ -229,7 +229,7 @@ elseif borders[max(keys(borders))] == 'colon'
 		let values = ["auto"]
 	elseif prop =~ '^\%(left\|rigth\)$'
 		let values = ["auto"]
-    elseif prop = 'justify-content'
+    elseif prop == 'justify-content'
         let values = ["flex-start", "flex-end", "center", "space-between", "space-around"]
 	elseif prop == 'letter-spacing'
 		let values = ["normal"]
