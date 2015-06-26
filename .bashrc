@@ -75,10 +75,7 @@ alias cls="clear; ls"
 
 function retailcomic(){
 	cd ~/Sites;
-	echo 'previous date-range:'
-	tail -n 1 last-retail-comic-date.txt;
-	python retailcomic.py $1 > retailcomic.html;
-	echo $1 >> 'last-retail-comic-date.txt';
+	python retailcomic.py
 	open retailcomic.html;
 	sleep 1;
 	rm -f retailcomic.html
