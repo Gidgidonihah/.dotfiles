@@ -38,7 +38,7 @@ Thumbs.db
 # Explicitly Ignored #
 ######################
 *ignore*
-media/
+#media/
 
 # MetaData files #
 ##################
