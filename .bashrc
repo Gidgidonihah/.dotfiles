@@ -57,6 +57,11 @@ else
 	alias pip="pip2.7"
 	alias python="python2.7"
 
+    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
+    export WORKON_HOME=/home/build/virtualenvs
+    export PROJECT_HOME=/home/build/new.doba.com
+    source `which virtualenvwrapper.sh`
+
 	export EDITOR='vim'
 fi
 
