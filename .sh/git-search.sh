@@ -2,7 +2,7 @@
 
 DIRS=$(find `pwd` -maxdepth 1 -type d);
 TMPFILE='/tmp/searchfile'
-CMD='vi'
+CMD=$EDITOR
 
 while getopts ":pq:" optname; do
 	case "$optname" in
@@ -37,7 +37,7 @@ for i in $DIRS; do
 		echo '' | tee -a $TMPFILE
 		echo '' | tee -a $TMPFILE
 		echo '------' | tee -a $TMPFILE
-		echo "Searching $i for \"$SEARCHTERM\"" | tee -a $TMPFILE
+		echo "Searching $i" | tee -a $TMPFILE
 		echo '------' | tee -a $TMPFILE
 		echo '' | tee -a $TMPFILE
 		( cd $i && git --no-pager grep --ignore-case $SEARCHTERM | tee -a $TMPFILE )

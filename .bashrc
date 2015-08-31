@@ -62,8 +62,9 @@ else
     export PROJECT_HOME=/home/build/new.doba.com
     source `which virtualenvwrapper.sh`
 
-	export EDITOR='vim'
 fi
+
+export EDITOR='/usr/bin/vim'
 
 # User specific aliases and functions
 alias gi='git'
