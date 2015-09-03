@@ -40,7 +40,7 @@ else
 
 	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
-	alias mysql='mysql --auto-rehash -uroot -pQu@ntum Doba'
+	alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
 	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
