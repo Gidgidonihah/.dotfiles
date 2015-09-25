@@ -47,6 +47,7 @@ else
 	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
 	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8000 >> /tmp/runserver & 2>&1"
 	alias elog="tail -f /var/log/httpd/error_log | sed 's/\\\\n/\\n/g'"
+    alias trs="tr \"\n\" ' '"
 
 	source /etc/bash_completion.d/*
 
