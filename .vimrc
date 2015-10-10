@@ -116,7 +116,8 @@ autocmd FileType php set omnifunc=phpcomplete#CompletePHP
 " Text expansion
 ab sn {$site_name}
 ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
-ab kl /* */ jweir_kill( // TODO: @jweir_kill	$this,	'die'); /* */<esc><<vk<kwv3l
+ab kl /* */ Lib_Script::debug(array( // TODO: @jweir remove this  $this,), true, false); /* */<esc>kbv3l
+ab jwkl /* */ jweir_kill( // TODO: @jweir_kill	$this,	'die'); /* */<esc><<vk<kwv3l
 ab vkl /* */ var_jweir_kill( // TODO: @jweir_kill	$this,	'die'); /* */<esc><<vk<kwv3l
 ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvwh
 ab elog /* TODO: @jweir Remove this elog block */error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
