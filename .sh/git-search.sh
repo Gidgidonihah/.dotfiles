@@ -1,9 +1,8 @@
 #!/bin/bash
 
-DIRS=$(find `pwd` -maxdepth 1 -type d);
 TMPFILE='/tmp/searchfile'
 CMD=$EDITOR
-CWD=`pwd`
+DIRS=$(find /home/build/ -maxdepth 1 -type d);
 
 while getopts ":pq:" optname; do
 	case "$optname" in
@@ -33,7 +32,6 @@ echo "Searching all repos for \"$SEARCHTERM\"" | tee -a $TMPFILE
 echo '------' | tee -a $TMPFILE
 echo '' | tee -a $TMPFILE
 
-cd /home/build/
 
 for i in $DIRS; do
 	if [ -d "$i/.git" ]; then
@@ -48,8 +46,6 @@ for i in $DIRS; do
 done;
 
 clear;
-
-cd $CWD
 
 #if [ "$SEARCHTERM" == "" ]; then
 #fi
