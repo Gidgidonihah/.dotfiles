@@ -81,10 +81,10 @@ au BufNewFile,BufRead *.sass set filetype=css
 au BufNewFile,BufRead *.txt set filetype=text
 
 " For CodeKit
-set nobackup
-set nowritebackup
-set noswapfile
-set directory=~/.vim/.tmp,~/tmp,/tmp " store swap files in one of these directories (in case swapfile is ever turned on)
+"set nobackup
+"set nowritebackup
+"set noswapfile
+"set directory=~/.vim/.tmp,~/tmp,/tmp " store swap files in one of these directories (in case swapfile is ever turned on)
 
 " Interactions
 
