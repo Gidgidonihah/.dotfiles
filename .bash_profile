@@ -2,9 +2,6 @@
 if [ -f ~/.bashrc ]; then
     . ~/.bashrc
 fi
-if [ -f ~/.sh/bash-ps1.sh ]; then
-	source ~/.sh/bash-ps1.sh
-fi
 
 export CLICOLOR=1
 export LSCOLORS=ExFxCxDxBxegedabagacad

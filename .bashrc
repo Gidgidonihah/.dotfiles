@@ -2,8 +2,15 @@
 if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
+
+# Set up my PS1
+if [ -f ~/.sh/bash-ps1.sh ]; then
+	source ~/.sh/bash-ps1.sh
+fi
+
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
 # Searchers
 if [ -f ~/Dropbox/Sites/searcher/.searchrc ]; then
     . ~/Dropbox/Sites/searcher/.searchrc
@@ -32,24 +39,21 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	# get image dimensions
 	alias imgdim='sips -g pixelHeight -g pixelWidth $1'
 else
-	if [ -f ~/.sh/bash-ps1.sh ]; then
-		. ~/.sh/bash-ps1.sh
-	fi
 	#linux
 	alias ls='ls -a --color'
 
 	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
 	alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
-	alias drupal_db="~/boxbuilder/scripts/drupal_db.sh"
 	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
 	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
 	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
-	alias runserverbg="cd /home/build/new.doba.com/ && nohup ./manage.py runserver 0.0.0.0:8000 >> /tmp/runserver & 2>&1"
 	alias elog="tail -f /var/log/httpd/error_log | sed 's/\\\\n/\\n/g'"
     alias trs="tr \"\n\" ' '"
 
-	source /etc/bash_completion.d/*
+    for f in /etc/bash_completion.d/*; do
+        source $f
+    done
 
 	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
 		cd /home/build/new.doba.com/;
@@ -99,70 +103,4 @@ function ssh-id-copy(){
 	SERVER=$1;
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
 	eval $CMD;
-}
-function screenSaver(){
-	a=1;x=1;y=1;xd=1;yd=1;while true;do if [[ $x == $LINES || $x == 0 ]]; then xd=$(( $xd *-1 )) ; fi ; if [[ $y == $COLUMNS || $y == 0 ]]; then yd=$(( $yd * -1 )) ; fi ; x=$(( $x + $xd )); y=$(( $y + $yd )); printf "\33[%s;%sH\33[48;5;%sm \33[0m" $x $y $(($a%199+16)) ;a=$(( $a + 1 )) ; sleep 0.001 ;done
-}
-
-function vack(){
-	SEARCH=$1;
-	CMD="vi \`ack '$SEARCH' -l --print0 | xargs -0 -L1\`";
-	eval $CMD;
-}
-function search(){
-	DIR="/tmp/search_results";
-	[ -d "$DIR" ] || mkdir $DIR;
-	NOW=$(date +"%M%S");
-	ack "$@" * | tee $DIR/search_result_$NOW.txt;
-	echo $DIR/search_result_$NOW.txt;
-}
-function sandr(){ # takes 2 inputs: search, replace
-	SEARCH=$1;
-	REPLACE=$2;
-	CMD="ack '$SEARCH' -l --print0 | xargs -0 -L1 sed -i 's/$SEARCH/$REPLACE/g'";
-
-	echo $CMD;
-	echo '------------------------------------------------------------------------';
-	eval $CMD;
-}
-function browserStack(){
-	DOMAIN=$1
-	SSH=$2
-	PORT=$3
-	SSHPORT=$4
-	BSKEY=`cat ~/.ssh/browserstack.key`
-
-	if [ -z "$DOMAIN" ]
-	then
-	   DOMAIN='jweir.dev.doba.com'
-	fi
-
-	if [ -z "$PORT" ]
-	then
-	   PORT="80"
-	fi
-
-	if [ -z "$SSH" ]
-	then
-	   SSH="1"
-	fi
-
-	if [ -z "$SSHPORT" ]
-	then
-	   SSHPORT="443"
-	fi
-
-	if [ -z "$BSKEY" ]
-	then
-	   echo 'Please store your BrowserStack CLI local testing key in "~/.ssh/browserstack.key"'
-	   return;
-	fi
-
-	CMD="java -jar /usr/local/lib/BrowserStackTunnel.jar $BSKEY $DOMAIN,$PORT,0"
-	if [ 1 == $SSH ]
-	then
-		CMD=$CMD",$DOMAIN,$SSHPORT,$SSH"
-	fi
-
-	eval $CMD
 }

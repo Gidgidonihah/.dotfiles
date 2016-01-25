@@ -8,7 +8,7 @@ fi
 
 # Auto-completion
 # ---------------
-[[ $- =~ i ]] && source /Users/jason/.fzf/fzf-completion.bash
+[[ $- =~ i ]] && [[ -f ~/.fzf/fzf-completion.bash ]] && source ~/.fzf/fzf-completion.bash
 
 # Key bindings
 # ------------
