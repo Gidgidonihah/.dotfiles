@@ -58,6 +58,9 @@
 		git br -d $branch; \
 	}; f"
 
+    # Edit in vim all modified and untracked files
+	vi = "!f() { git status --porcelain | sed -n 's/^\\( M\\|??\\) //p' | tr \"\\n\" ' ' | xargs bash -c 'vim \"$@\" < /dev/tty' ignoreme; }; f"
+
 	# Commit with branch name appended
 	cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
 
