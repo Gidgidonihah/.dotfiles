@@ -8,9 +8,6 @@ for f in ~/.profile.d/*; do
     source $f
 done
 
-# Fuzzy finder
-[ -f ~/.fzf.bash ] && source ~/.fzf.bash
-
 # Facebook Path Picker
 export FPP_DISABLE_SPLIT=false
 

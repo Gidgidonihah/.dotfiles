@@ -469,6 +469,10 @@
         \   'css': [ 're!^\s{4}', 're!:\s+' ],
         \   'html': [ '<', ' ' ],
         \ }
+    let g:ycm_autoclose_preview_window_after_completion = 1
+    let g:ycm_autoclose_preview_window_after_insertion = 1
+    let g:ycm_server_python_interpreter = '/usr/bin/python' " Interpret YCM using Python2.7
+    let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using Python3
 
     "Remapping CtrlP to my muscle memory
     noremap <leader>t :CtrlP<CR>
@@ -485,16 +489,14 @@
     let g:LargeFile = 10 " in megabytes
 
     " Syntastic Recommended settings
-    if exists("*SyntasticStatuslineFlag")
-        set statusline+=%#warningmsg#
-        set statusline+=%{SyntasticStatuslineFlag()}
-        set statusline+=%*
+    set statusline+=%#warningmsg#
+    set statusline+=%{SyntasticStatuslineFlag()}
+    set statusline+=%*
 
-        let g:syntastic_always_populate_loc_list = 1
-        let g:syntastic_auto_loc_list = 1
-        let g:syntastic_check_on_open = 1
-        let g:syntastic_check_on_wq = 0
-        let g:syntastic_python_checkers = ['flake8', 'pylint']
-    endif
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
+    let g:syntastic_python_checkers = ['flake8', 'pylint']
 
 " }}}
