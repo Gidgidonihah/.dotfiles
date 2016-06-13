@@ -61,7 +61,7 @@ else
 	fi
 fi
 
-export EDITOR='/usr/bin/vim'
+export EDITOR='/usr/local/bin/vim'
 
 # User specific aliases and functions
 alias gi='git'
