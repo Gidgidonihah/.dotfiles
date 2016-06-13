@@ -3,13 +3,16 @@ if [ -f /etc/bashrc ]; then
     . /etc/bashrc
 fi
 
-# Set up my PS1
-if [ -f ~/.sh/bash-ps1.sh ]; then
-	source ~/.sh/bash-ps1.sh
-fi
+# Source the profile scripts
+for f in ~/.profile.d/*; do
+    source $f
+done
 
 # Fuzzy finder
 [ -f ~/.fzf.bash ] && source ~/.fzf.bash
+
+# Facebook Path Picker
+export FPP_DISABLE_SPLIT=false
 
 # Searchers
 if [ -f ~/Dropbox/Sites/searcher/.searchrc ]; then
@@ -20,21 +23,19 @@ fi
 if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	#mac
 	alias ls='ls -aG'
+	alias salt='ssh ec2-user@direct.salt.doba.com'
 
+    # Doba Dev Settings
 	alias sshs='ssh root@jweir.dev.doba.com'
 	alias sshm='ssh 192.168.1.2'
-	alias sshds='ssh root@jason.dev.dropship.com'
-	alias salt='ssh ec2-user@direct.salt.doba.com'
-	alias cleanup="chflags -R nouchg ."
-	alias cup="cleanup"
-	alias dcup="dot_clean -mv /Volumes/build/"
+	#t alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
+
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
-	alias find="find . -iname"
 	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.
 	alias ipv6="ifconfig en0 | grep inet[^6] | awk  -F\"[ \t]+\" '{print $3}'" # Get your IPv6 IP address from ifconfig. This is the Mac version.
+
 	alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 	alias xdg-open="open"
-	alias runserver="cd ~/Sites/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
 
 	# get image dimensions
 	alias imgdim='sips -g pixelHeight -g pixelWidth $1'
@@ -42,14 +43,10 @@ else
 	#linux
 	alias ls='ls -a --color'
 
-	alias fn="find -iname"
 	alias sshs='echo "You are already on the dev server, dummy."'
 	alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
-	alias ip="ifconfig eth0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $4}'" # Get your IPv4 IP address from ifconfig. This is the Linux version.
-	alias ipv6="ifconfig eth0 | grep inet6 | awk  -F\"[ \t]+\" '{print $4}'" # Get your IPv6 IP address from ifconfig. This is the Linux version.
-	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver 0.0.0.0:8000"
+	alias runserver="cd /home/build/new.doba.com/ && ./manage.py runserver_plus --cert tmp 0.0.0.0:8000"
 	alias elog="tail -f /var/log/httpd/error_log | sed 's/\\\\n/\\n/g'"
-    alias trs="tr \"\n\" ' '"
 
     for f in /etc/bash_completion.d/*; do
         source $f
@@ -58,21 +55,13 @@ else
 	if [ -d /home/build/new.doba.com -a -n "${SSH_CLIENT}" ]; then
 		cd /home/build/new.doba.com/;
 	fi
-
-	alias pip="pip2.7"
-	alias python="python2.7"
-
-    export VIRTUALENVWRAPPER_PYTHON=/usr/bin/python2.7
-    export WORKON_HOME=/home/build/virtualenvs
-    export PROJECT_HOME=/home/build/new.doba.com
-    source `which virtualenvwrapper.sh`
-
 fi
 
 export EDITOR='/usr/bin/vim'
 
 # User specific aliases and functions
 alias gi='git'
+alias ggg="~/.sh/git-search.sh"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -92,13 +81,14 @@ function retailcomic(){
 	rm -f retailcomic.html
 }
 
-alias ggg="~/.sh/git-search.sh"
 function gg(){
 	git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
+
 function vig(){
 	vi `git grep -l "$@" | tr "\n" " "`
 }
+
 function ssh-id-copy(){
 	SERVER=$1;
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"

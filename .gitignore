@@ -32,9 +32,12 @@ editorconfig/*.pyc
 /.Trash/
 /.aws/
 /.cache/
+/.config/
 /.cups/
 /.dropbox/
+/.gem/
 /.gnupg
+/.ipython/
 /.kbd
 /.npm
 /.pearrc
@@ -42,3 +45,6 @@ editorconfig/*.pyc
 /.rnd
 /.shsh/
 /.subversion
+/.profile.d/fzf.bash
+/.composer/
+/.fpp/

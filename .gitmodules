@@ -1,0 +1,39 @@
+[submodule ".vim/bundle/syntastic"]
+	path = .vim/bundle/syntastic
+	url = https://github.com/scrooloose/syntastic.git
+[submodule ".vim/bundle/ctrlp.vim"]
+	path = .vim/bundle/ctrlp.vim
+	url = https://github.com/ctrlpvim/ctrlp.vim.git
+[submodule ".vim/bundle/YouCompleteMe"]
+	path = .vim/bundle/YouCompleteMe
+	url = https://github.com/Valloric/YouCompleteMe.git
+[submodule ".vim/bundle/editorconfig-vim"]
+	path = .vim/bundle/editorconfig-vim
+	url = https://github.com/editorconfig/editorconfig-vim.git
+[submodule ".vim/bundle/bufexplorer"]
+	path = .vim/bundle/bufexplorer
+	url = https://github.com/jlanzarotta/bufexplorer
+[submodule ".vim/bundle/salt-vim"]
+	path = .vim/bundle/salt-vim
+	url = https://github.com/saltstack/salt-vim
+[submodule ".vim/bundle/vim-colors-solarized"]
+	path = .vim/bundle/vim-colors-solarized
+	url = https://github.com/altercation/vim-colors-solarized
+[submodule ".vim/bundle/html5.vim"]
+	path = .vim/bundle/html5.vim
+	url = https://github.com/othree/html5.vim
+[submodule ".vim/bundle/csscomplete.vim"]
+	path = .vim/bundle/csscomplete.vim
+	url = https://github.com/othree/csscomplete.vim
+[submodule ".vim/bundle/python.vim"]
+	path = .vim/bundle/python.vim
+	url = https://github.com/vim-scripts/python.vim
+[submodule ".vim/bundle/LargeFile"]
+	path = .vim/bundle/LargeFile
+	url = https://github.com/vim-scripts/LargeFile
+[submodule ".vim/bundle/loremipsum"]
+	path = .vim/bundle/loremipsum
+	url = https://github.com/vim-scripts/loremipsum
+[submodule ".vim/bundle/taglist.vim"]
+	path = .vim/bundle/taglist.vim
+	url = https://github.com/vim-scripts/taglist.vim

@@ -2,7 +2,8 @@
 
 TMPFILE='/tmp/searchfile'
 CMD=$EDITOR
-DIRS=$(find /home/build/ -maxdepth 1 -type d);
+BASE='/home/build/'
+DIRS=$(find $BASE -maxdepth 1 -type d);
 
 while getopts ":pq:" optname; do
 	case "$optname" in
@@ -47,7 +48,5 @@ done;
 
 clear;
 
-#if [ "$SEARCHTERM" == "" ]; then
-#fi
 TMPFILE="$TMPFILE +/$SEARCHTERM"
 $CMD $TMPFILE

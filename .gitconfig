@@ -53,9 +53,9 @@
 		open $url > /dev/null 2>&1; \
 	}; f"
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
+		git pull && git push; \
 		git prurl; echo ''; \
-		git pull && git push && git co development; \
-		git br -d $branch; \
+        git co development && git br -d $branch; \
 	}; f"
 
     # Edit in vim all modified and untracked files
