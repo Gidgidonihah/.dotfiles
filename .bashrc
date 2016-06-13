@@ -23,11 +23,12 @@ fi
 if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 	#mac
 	alias ls='ls -aG'
-	alias salt='ssh ec2-user@direct.salt.doba.com'
+	alias salt='ssh ec2-user@salt.doba.com'
 
     # Doba Dev Settings
 	alias sshs='ssh root@jweir.dev.doba.com'
-	alias sshm='ssh 192.168.1.2'
+    alias cdc='cd ~/Sites/doba/'
+    alias cdd='cd ~/Sites/doba/docker.doba.com/'
 	#t alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
 
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
@@ -39,6 +40,12 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 
 	# get image dimensions
 	alias imgdim='sips -g pixelHeight -g pixelWidth $1'
+
+	alias sshm='ssh 192.168.1.50'
+    alias sshg='ssh gidgidonihah.com'
+
+    # thefuck
+    eval "$(thefuck --alias f)"
 else
 	#linux
 	alias ls='ls -a --color'
@@ -94,3 +101,9 @@ function ssh-id-copy(){
 	CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
 	eval $CMD;
 }
+
+function screenSaver(){
+	a=1;x=1;y=1;xd=1;yd=1;while true;do if [[ $x == $LINES || $x == 0 ]]; then xd=$(( $xd *-1 )) ; fi ; if [[ $y == $COLUMNS || $y == 0 ]]; then yd=$(( $yd * -1 )) ; fi ; x=$(( $x + $xd )); y=$(( $y + $yd )); printf "\33[%s;%sH\33[48;5;%sm \33[0m" $x $y $(($a%199+16)) ;a=$(( $a + 1 )) ; sleep 0.001 ;done
+}
+
+shrug(){ echo -n "¯\_(ツ)_/¯" | (xsel||pbcopy);echo "¯\_(ツ)_/¯ copied to your clipboard"; }

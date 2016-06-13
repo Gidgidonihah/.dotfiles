@@ -24,8 +24,6 @@
 "      Plugin Settings
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ## Help {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "
@@ -96,6 +94,9 @@
     " Keep search matches in the middle of the window and pulse the line when moving to them.
     nnoremap n n:call PulseCursorLine()<cr>
     nnoremap N N:call PulseCursorLine()<cr>
+
+    " store swap files in one of these directories (in case swapfile is ever turned on)
+    " set directory=~/.vim/.tmp,~/tmp,/tmp
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -134,6 +135,8 @@
         noremap <leader>f :set foldmethod=manual<CR>zR<CR> " Open all folds
         noremap <leader>F :set foldmethod=syntax<CR>zM<CR> " Close all folds
 
+        " Run a shell script while editing
+        :command! Sh let f=expand("%")|vnew|execute '.!/bin/sh "' . f . '"'
     " }}}
     " ### Tips to Forget (or muscle memorized) {{{
         " sort python imports according to pep8

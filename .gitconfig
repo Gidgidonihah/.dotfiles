@@ -49,7 +49,7 @@
 	# Github Pull Request
 	prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
 		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
-		url=https://github.com/$repo/pull/new/$branch; echo $url; \
+		url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
 		open $url > /dev/null 2>&1; \
 	}; f"
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
@@ -65,7 +65,7 @@
 	cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
 
 	# create branch on remote
-	cob = "!f() { git pull && git co -b $1 && branch=$(git rev-parse --abbrev-ref HEAD) && git push --set-upstream origin $branch && git prurl; }; f"
+	cob = "!f() { git pull && git co -b $1 && branch=$(git rev-parse --abbrev-ref HEAD) && git push --set-upstream origin $branch; }; f"
 
 	# forget this --set-upstream business.
 	track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"

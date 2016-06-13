@@ -5,17 +5,20 @@ import sys
 
 db_file = 'next-retail-comic-date.txt'
 html = '<html><head><title>Retail Comic</title></head><body>%(content)s</body></html>'
-url = 'http://safr.kingfeatures.com/idn/etv/zone/xml/content.php?file=%s'
+base_url= 'http://safr.kingfeatures.com/idn/cnfeed/zone/js/content.php?file=%s'
 img_url_str = 'http://safr.kingfeatures.com/Retail/%(year)s/%(month)02d/Retail%(ts)s.%(year)s%(month)02d%(day)02d_900.gif'
 
 def get_img_url(date):
+    print date
 
     ts = ''
     if date.weekday() == 6:
         ts = '_ts'
 
     string = img_url_str % { 'year': date.year, 'month': date.month, 'ts': ts, 'day': date.day, }
-    return url % base64.b64encode(string)
+    print string
+    print base64.b64encode(string)
+    return base_url % base64.b64encode(string)
 
 
 def get_comic_range_html(start_date, end_date):

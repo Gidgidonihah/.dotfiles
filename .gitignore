@@ -26,25 +26,27 @@ editorconfig/*.pyc
 
 # or any of this stuff
 *.espressostorage
+*private*
 /.CFUserTextEncoding
 /.DS_Store
 /.MacOSX/
 /.Trash/
 /.aws/
 /.cache/
+/.composer/
 /.config/
 /.cups/
+/.docker/
 /.dropbox/
+/.fpp/
 /.gem/
 /.gnupg
 /.ipython/
 /.kbd
 /.npm
 /.pearrc
+/.profile.d/fzf.bash
 /.pylint.d/
 /.rnd
 /.shsh/
 /.subversion
-/.profile.d/fzf.bash
-/.composer/
-/.fpp/
