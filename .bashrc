@@ -27,6 +27,8 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
     alias cdc='cd ~/Sites/doba/'
     alias cdd='cd ~/Sites/doba/docker.doba.com/'
 	#t alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
+    alias dc='docker-compose'
+    alias dobad='docker-compose up -d aurora-local dynamodb-local kinesis-local memcached s3-local sqs-local'
 
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.

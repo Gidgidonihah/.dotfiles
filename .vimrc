@@ -73,11 +73,13 @@
     set number          " show line numbers
     set tabstop=4       " tabs are 4 spaces
     set expandtab       " tabs are spaces
-    set shiftwidth=4	" shifting moves 4 spaces
-    set softtabstop=4	" treat spaces like tabs
-    set hidden			" hide buffers instead of closing them when you switch
-    set showmatch		" Show matching parens
-    set title			" change the terminal's title
+    set shiftwidth=4    " shifting moves 4 spaces
+    set softtabstop=4   " treat spaces like tabs
+    set hidden          " hide buffers instead of closing them when you switch
+    set showmatch       " Show matching parens
+    set title           " change the terminal's title
+    set encoding=utf-8  " utf8 ftw
+    set foldlevel=99    " folds should be open by default
 
     " Lines should be less than 120 chars. Show a helpful column
     if exists('+colorcolumn')
@@ -132,8 +134,8 @@
         noremap <silent> gd :!open dash://<cword><CR>
 
         " Easier fold managing
-        noremap <leader>f :set foldmethod=manual<CR>zR<CR> " Open all folds
-        noremap <leader>F :set foldmethod=syntax<CR>zM<CR> " Close all folds
+        noremap <leader>f :setlocal foldmethod=expr<CR>zR<CR> " Open all folds
+        noremap <leader>F :setlocal foldmethod=indent<CR>zM<CR> " Close all folds
 
         " Run a shell script while editing
         :command! Sh let f=expand("%")|vnew|execute '.!/bin/sh "' . f . '"'
@@ -164,7 +166,7 @@
 
         " Create non-existing parent directories on save.
         augroup BWCCreateDir
-            au!
+            autocmd!
             autocmd BufWritePre * if expand("<afile>")!~#'^\w\+:/' && !isdirectory(expand("%:h")) | execute "silent! !mkdir -p ".shellescape(expand('%:h'), 1) | redraw! | endif
         augroup END
 
@@ -191,7 +193,7 @@
 
     " Remember where my cursor was last time I was in this file
     set viminfo='10,\"1000,:20,%,n~/.viminfo
-    au BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
+    autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
 
     " Set Filetypes based on extension
     autocmd BufRead * silent! set ff=unix " Seriously, filetype is unix...
@@ -466,13 +468,14 @@
 
     " Set some YCM YouCompleteMe Symantic Triggers
     let g:ycm_semantic_triggers = {
-        \   'css': [ 're!^\s{4}', 're!:\s+' ],
+        \   'css': [ 're!\s{4}', 're!:\s+', ],
         \   'html': [ '<', ' ' ],
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
     let g:ycm_server_python_interpreter = '/usr/bin/python' " Interpret YCM using Python2.7
     let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using Python3
+    map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory
     noremap <leader>t :CtrlP<CR>
@@ -481,7 +484,7 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules\|docker.doba.com\/src$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
 
