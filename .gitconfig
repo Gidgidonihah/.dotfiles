@@ -55,7 +55,7 @@
 	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
 		git pull && git push; \
 		git prurl; echo ''; \
-        git co development && git br -d $branch; \
+        git co master && git br -d $branch; \
 	}; f"
 
     # Edit in vim all modified and untracked files

@@ -1,7 +1,11 @@
-#!/usr/bin/python
+#!/usr/bin/env python
+""" Check our code against flake8. """
+# pylint: disable=invalid-name
+
 import sys
+from configparser import SafeConfigParser
+
 from flake8.run import git_hook
-from ConfigParser import SafeConfigParser
 
 IGNORE = 'E302'
 COMPLEXITY = 12
@@ -13,9 +17,9 @@ if __name__ == '__main__':
     parser.read(['tox.ini', 'config.cfg'])
 
     if parser.has_section('flake8') and parser.has_option('flake8', 'ignore'):
-        IGNORE = parser.get('flake8', 'ignore')
+        IGNORE = str(parser.get('flake8', 'ignore'))
 
     result = git_hook(complexity=COMPLEXITY, strict=STRICT, ignore=IGNORE)
     if result != 0:
-        print '\033[31;5;49mFlake8 test failed. Git Commit aborted.\033[39m'
+        print('\033[31;5;49mFlake8 test failed. Git Commit aborted.\033[39m')
     sys.exit(result)

@@ -1,9 +1,8 @@
 #!/bin/bash
 
-TMPFILE='/tmp/searchfile'
 CMD=$EDITOR
-BASE='/home/build/'
-DIRS=$(find $BASE -maxdepth 1 -type d);
+BASE='/Users/jason/Sites/doba/docker.doba.com/src'
+DIRS=$(find $BASE -maxdepth 1 -type d)' '$(find $BASE -maxdepth 1 -type l);
 
 while getopts ":pq:" optname; do
 	case "$optname" in
@@ -22,6 +21,7 @@ while getopts ":pq:" optname; do
 done
 
 SEARCHTERM=${@:$OPTIND}
+TMPFILE="/tmp/searchfile.$SEARCHTERM.`date +%Y%m%d%H%M%S`.txt"
 
 if [ "$SEARCHTERM" == "" ]; then
 	echo 'Please provide a search term.'

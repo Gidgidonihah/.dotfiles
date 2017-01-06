@@ -7,15 +7,15 @@ exec < /dev/tty
 checkRelease (){
 	BRANCH="$(git symbolic-ref HEAD 2>/dev/null)" || BRANCH="(unnamed branch)"
 	BRANCH=${BRANCH##refs/heads/}
-	if [ $BRANCH = 'release' ]; then
+	if [ $BRANCH = 'master' -o $BRANCH = 'production' -o $BRANCH = 'development' ]; then
 		while true; do
-			echo -ne '\033[38;5;57mAre you sure you wish to commit to the release branch? [y,n]\033[39m'; read
+			echo -ne "\033[38;5;57mAre you sure you wish to commit to the \033[38;5;49m$BRANCH\033[39m\033[38;5;57m branch? [y,n]\033[39m"; read
 			case $REPLY in
 			[Yy])
 				exit 0
 				;;
 			[NnQq])
-				echo -e '\033[38;5;49mGit Commit aborted.\033[39m'
+				echo -e '\033[31;5;49mGit Commit aborted.\033[39m'
 				exit 1
 				;;
 			esac

@@ -24,11 +24,16 @@ if [ ${OSTYPE//[0-9.]/} == 'darwin' ]; then
 
     # Doba Dev Settings
 	alias sshs='ssh root@jweir.dev.doba.com'
-    alias cdc='cd ~/Sites/doba/'
+    alias cdc='cd ~/Sites/doba/docker.doba.com/src/'
     alias cdd='cd ~/Sites/doba/docker.doba.com/'
-	#t alias sql='mysql --auto-rehash -uroot -pQu@ntum Doba'
+    alias sql="mycli -h 127.0.0.1 -u root -proot Doba"
+    alias msql="mysql --auto-rehash -h 127.0.0.1 -u root -proot Doba"
     alias dc='docker-compose'
-    alias dobad='docker-compose up -d aurora-local dynamodb-local kinesis-local memcached s3-local sqs-local'
+    alias dobad='docker-compose up -d aurora-local dynamodb-local kinesis-local memcached s3-local sqs-local solr-local; docker-compose up web'
+    alias docker-web='docker exec -i -t dockerdobacom_web_1 /bin/bash'
+
+    # pylint modified python files
+    # git status --porcelain | awk 'match($0, "[AM].*.py"){print $2}' | xargs pylint
 
 	alias ssbg='/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine -background'
 	alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig. This is the Mac version.
@@ -68,6 +73,7 @@ export EDITOR='/usr/local/bin/vim'
 # User specific aliases and functions
 alias gi='git'
 alias ggg="~/.sh/git-search.sh"
+alias fng="find . | grep -i"
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
@@ -81,7 +87,7 @@ alias cls="clear; ls"
 
 function retailcomic(){
 	cd ~/Sites;
-	python retailcomic.py
+	python2.7 retailcomic.py
 	open retailcomic.html;
 	sleep 1;
 	rm -f retailcomic.html
@@ -93,6 +99,13 @@ function gg(){
 
 function vig(){
 	vi `git grep -l "$@" | tr "\n" " "`
+}
+
+function cdt(){
+    cd ~/Sites/doba/docker.doba.com/src/
+    if [ $# -gt 0 ]; then
+        cd $1
+    fi
 }
 
 function ssh-id-copy(){

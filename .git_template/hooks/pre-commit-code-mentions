@@ -1,20 +1,26 @@
 #!/usr/bin/env python
+# pylint: disable=invalid-name
+""" Find and burn code mentions. """
+
 import sys
 from subprocess import Popen, PIPE
 
 try:
     from termcolor import colored
 except ImportError:
+    # pylint: disable=unused-argument
     def colored(text, color=None, on_color=None, attrs=None):
+        """ Shim to output text when colored is not available. """
         return text
 
 
 def main():
+    """ Execute the git hook. """
     sys.stdin = open('/dev/tty')  # we would like to offer input, please.
-    pattern = '\@\w+'  # simple regex to match all mentions @bbarker, @yourmom, @buddah
+    pattern = r'\@\w+'  # basic regex to match @bbarker, @yourmom, @buddah, etc
 
     gitcmd = "git diff --staged --color -G %s --exit-code" % pattern
-    code, res, _ = run(gitcmd)
+    code, _, _ = run(gitcmd)
 
     if code:
         get_response(pattern)
@@ -23,34 +29,44 @@ def main():
 
 
 def get_response(pattern):
+    """ Get a action response from the user """
     response = None
     while response is None or response == '' or response not in 'YyNnQqRrh?':
 
-        string = 'The current commit contains code mentions (e.g. @bbarker). Continue? [y,n,r,?]'
-        response = raw_input(colored(string, 'magenta'))
+        string = 'The current commit contains code mentions (e.g. @bbarker).' \
+            'Continue? [y,n,r,?]'
+        response = input(colored(string, 'magenta'))
 
         if response != '':
             if response in 'Yy':
                 sys.exit(0)
             elif response in 'NnQq':
-                print colored('Git commit aborted.', 'red')
+                print(colored('Git commit aborted.', 'red'))
                 sys.exit(1)
             elif response in 'Rr':
-                print colored('showing', 'yellow')
+                print(colored('showing', 'yellow'))
                 response = None
-                gitcmd = "git diff --staged --color -G %s --exit-code" % pattern
-                code, res, _ = run(gitcmd)
+                gitcmd = "git diff --staged --color -G {} --exit-code".format(
+                    pattern
+                )
+                _, res, _ = run(gitcmd)
                 for line in res:
-                    print line
+                    print(line)
             elif response in 'h?':
-                print colored("y - Continue with the commit.\nn - Stop the commit.\nr - Review the matching diff.\n? - Show this help.\n", 'yellow')
+                print(colored(
+                    "y - Continue with the commit.\n"
+                    "n - Stop the commit.\n"
+                    "r - Review the matching diff.\n"
+                    "? - Show this help.\n", 'yellow'
+                ))
                 response = None
 
 
 # borrowed from https://bitbucket.org/tarek/flake8
 def run(command, raw_output=False, decode=True):
-    p = Popen(command.split(), stdout=PIPE, stderr=PIPE)
-    (stdout, stderr) = p.communicate()
+    """ Run a command. """
+    pipe = Popen(command.split(), stdout=PIPE, stderr=PIPE)
+    (stdout, stderr) = pipe.communicate()
     # On python 3, subprocess.Popen returns bytes objects which expect
     # endswith to be given a bytes object or a tuple of bytes but not native
     # string objects. This is simply less mysterious than using b'.py' in the
@@ -64,7 +80,7 @@ def run(command, raw_output=False, decode=True):
     if not raw_output:
         stdout = [line.strip() for line in stdout.splitlines()]
         stderr = [line.strip() for line in stderr.splitlines()]
-    return (p.returncode, stdout, stderr)
+    return (pipe.returncode, stdout, stderr)
 
 if __name__ == "__main__":
     main()

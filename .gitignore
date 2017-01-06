@@ -46,7 +46,6 @@ editorconfig/*.pyc
 /.kbd
 /.npm
 /.pearrc
-/.profile.d/fzf.bash
 /.pylint.d/
 /.rnd
 /.shsh/

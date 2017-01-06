@@ -81,6 +81,17 @@
     set encoding=utf-8  " utf8 ftw
     set foldlevel=99    " folds should be open by default
 
+    " Full stack indenting
+    "augroup frontendspacing
+        "autocmd!
+        "autocmd FileType html, htmldjango, css, javascript, js set tabstop=2
+        "autocmd FileType html, htmldjango, css, javascript, js set softtabstop=2
+        "autocmd FileType html, htmldjango, css, javascript, js set shiftwidth=2
+            "\ set tabstop=2
+            "\ set softtabstop=2
+            "\ set shiftwidth=2
+    "augroup END
+
     " Lines should be less than 120 chars. Show a helpful column
     if exists('+colorcolumn')
       set colorcolumn=121
@@ -94,8 +105,10 @@
     set fileformat=unix
 
     " Keep search matches in the middle of the window and pulse the line when moving to them.
-    nnoremap n n:call PulseCursorLine()<cr>
-    nnoremap N N:call PulseCursorLine()<cr>
+    if has("gui_running")
+        nnoremap n n:call PulseCursorLine()<cr>
+        nnoremap N N:call PulseCursorLine()<cr>
+    endif
 
     " store swap files in one of these directories (in case swapfile is ever turned on)
     " set directory=~/.vim/.tmp,~/tmp,/tmp
@@ -149,7 +162,7 @@
         noremap ff $zf%<CR>
 
         " Strip all trailing whitespace from a file, using \w
-        nnoremap <leader>w :%s/\s\+$//<CR>:let @/=''<CR>
+        nnoremap <leader>w :retab<CR>:%s/\s\+$//<CR>:let @/=''<CR>
 
         " Edit the vimrc file
         nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
@@ -207,6 +220,8 @@
     " Always expand tabs for python
     autocmd FileType py setlocal expandtab
 
+    " Prevent `crontab: temp file must be edited in place` error on osx
+    autocmd filetype crontab setlocal nobackup nowritebackup
 " }}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -237,13 +252,13 @@
     endfunction
 
     " Text expansion
-    ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(	$this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
+    ab dbpr /* TODO: @jweir Remove this dbpr block */echo("<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>");print_r(    $this);echo("</pre>\n");exit();/* */<esc>v3k<kwwv3l
     ab kl /* */ Lib_Script::debug(array( // TODO: @jweir remove this<cr>$this,<cr>), true, false); /* */<esc>k>>wv2l
     ab smdb {* TODO: @jweir Remove this dbpr block *}<pre style='border: 1px solid skyblue; padding: 10px; margin 10px;'>{$thingy\|@print_r}</pre>{* *}<esc>2kbvw2h
     ab elog /* TODO: @jweir Remove this elog block */error_log('jweir: '.__METHOD__.'::'.__LINE__ . ' ' . $var);<esc>2bvwh
-    ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.	var_export($this, true));/* */<esc>vk<k3wvwh
+    ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.   var_export($this, true));/* */<esc>vk<k3wvwh
     ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
-    ab trycatch try{	EngineName::methodName();}catch(Exception $e){	Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+    ab trycatch try{  EngineName::methodName();}catch(Exception $e){  Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
     ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());<esc>k5wvwh
 
     " ### Spell checking {{{
@@ -492,14 +507,19 @@
     let g:LargeFile = 10 " in megabytes
 
     " Syntastic Recommended settings
-    set statusline+=%#warningmsg#
-    set statusline+=%{SyntasticStatuslineFlag()}
-    set statusline+=%*
+    "set statusline+=%#warningmsg#
+    "set statusline+=%{SyntasticStatuslineFlag()}
+    "set statusline+=%*
 
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
     let g:syntastic_python_checkers = ['flake8', 'pylint']
+
+    augroup SmartyChecker
+        autocmd BufNewFile,BufRead *.tpl let b:syntastic_skip_checks = 1
+    augroup END
+
 
 " }}}
