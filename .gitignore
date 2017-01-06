@@ -44,6 +44,7 @@ editorconfig/*.pyc
 /.gnupg
 /.ipython/
 /.kbd
+/.mycli.log
 /.npm
 /.pearrc
 /.pylint.d/
