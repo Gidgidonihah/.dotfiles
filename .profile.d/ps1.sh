@@ -1,7 +1,15 @@
-# This is all the crap for my ps1 (and all my colors)
-if [ -f ~/.sh/bash-git-prompt.sh ]; then
-	source ~/.sh/bash-git-prompt.sh
+# Git prompt settings
+GIT_PS1_SHOWDIRTYSTATE=1
+GIT_PS1_SHOWCOLORHINTS=true
+
+# Virtualenv prompt settings
+VIRTUAL_ENV_DISABLE_PROMPT=1
+
+# Source my git prompt code
+if [ ! -n "$(type -t __git_ps1)" ] && [ ! "$(type -t __git_ps1)" = function ] && [ -f ~/.profile.d/git-prompt.sh ]; then
+    source ~/.profile.d/git-prompt.sh
 fi
+
 # Reset
 Color_Off='\e[0m'       # Text Reset
 
@@ -76,16 +84,61 @@ On_ICyan='\e[0;106m'    # Cyan
 On_IWhite='\e[0;107m'   # White
 
 if [[ ${EUID} == 0 ]] ; then
-	sq_color="\[$Red\]"
-else		
-	sq_color="\[$Blue\]"
+    sq_color="\001$Red\002"
+else
+    sq_color="\001$Blue\002"
 fi
+function SQcolor(){
+    if [[ ${EUID} == 0 ]] ; then
+        printf "\001$Red\002"
+    else
+        printf "\001$Blue\002"
+    fi
+}
 
-#This is WITH time
-#PS1="$sq_color\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[$White\]\342\234\227$sq_color]\342\224\200\")[\[$White\]\@$sq_color]\342\224\200[\[$White\]\h$sq_color]-[\[$Green$(__git_ps1 "%s")$sq_color]-[$Yellow\W$sq_color]\n\342\224\224\342\224\200\342\224\200>> \[$White\]$sq_color\[$White\]\\[\\033[0m\\]"
-#And WITHOUT time
-PS1="$sq_color\342\224\214\342\224\200\$([[ \$? != 0 ]] && echo \"[\[$White\]\342\234\227$sq_color]\342\224\200\")[\[$White\]\h$sq_color]-[\[$Green\$(__git_ps1 "%s")$sq_color]-[$Yellow\w$sq_color]\n\342\224\224\342\224\200\342\224\200>> \[$White\]$sq_color\[$White\]\\[\\033[0m\\]"
+# Special Characters
+Longdash="\342\224\200" # "─"
+Topleft="\342\224\214" # "┌"
+Bottomleft="\342\224\224" # "└"
+Failed_X="\342\234\227" # "✗"
 
-# See https://gist.github.com/dwelch2344/3179443 for spacing the git command off to the right
+TIME="[\[$White\]\@$sq_color]"
+HOST="[\[$White\]\h$sq_color]"
+GIT="[\[$Green\$(__git_ps1 "%s")$sq_color]"
+CWD="[$Yellow\w$sq_color]"
+
+function virtualenv_info(){
+    # Get Virtual Env
+    if [[ -n "$VIRTUAL_ENV" ]]; then
+        # Strip out the path and just leave the env name
+        venv="${VIRTUAL_ENV##*/}"
+    else
+        # In case you don't have one activated
+        venv=''
+    fi
+    # Must use \001 and \002, printf, and the SQcolor function to print colors from functions
+    [[ -n "$venv" ]] && printf "[\001$Purple\002$venv$(SQcolor)]-"
+}
+
+function failed_cmd(){
+    # Must use \001 and \002, printf, and the SQcolor function to print colors from functions
+    [[ $@ != 0 ]] && printf "[\001$Red\002$Failed_X$(SQcolor)]"
+}
+
+
+PS1="$sq_color\
+$Topleft\
+$Longdash\
+\$(failed_cmd \$?)\
+$Longdash\
+\$(virtualenv_info)\
+$HOST-\
+$GIT-\
+$CWD\
+\n\
+$Bottomleft\
+$Longdash\
+$Longdash>>\
+\[$White\]\\[\\033[0m\\]"
 
 unset sq_color

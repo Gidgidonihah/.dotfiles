@@ -381,6 +381,11 @@ defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebK
 # Add a context menu item for showing the Web Inspector in web views
 defaults write NSGlobalDomain WebKitDeveloperExtras -bool true
 
+# Disable auto-playing of video
+# See http://www.kirkville.com/stop-auto-play-videos-from-annoying-you-in-your-browser/
+defaults write com.apple.Safari WebKitVideoPlaybackRequiresUserGesture -bool true
+defaults write com.apple.Safari com.apple.Safari.ContentPageGroupIdentifier.WebKit2RequiresUserGestureForMediaPlayback -bool true
+
 ###############################################################################
 # iTunes                                                                      #
 ###############################################################################

@@ -26,8 +26,9 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ## Help {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"
 "   Here's a list of common commands from my plugins:
+"
+"   Remember to run `:Helptags` to generate helptags from pathogen installed bundles
 "
 "   BufExplorer:
 "       <leader>be - Open a buffer from a list of buffers in a buffer
@@ -44,6 +45,11 @@
 "   General:
 "       <f4> - Toggle mousemode
 "       See tips and tricks section
+"   undotree.vim:
+"       <f5> - Toggle undotree
+"       https://github.com/mbbill/undotree
+"   csv.vim:
+"       https://github.com/chrisbra/csv.vim#installation
 "
 " }}}
 "
@@ -54,7 +60,7 @@
     autocmd!
 
     " Install bundles via Pathagen.
-    " ctrlp.vim  editorconfig-vim  LargeFile  syntastic  YouCompleteMe and any other installed bundles
+    " See bundles found in ~/.vim/bundles
     " Disabling this line disables the above packages
     execute pathogen#infect()
 
@@ -82,15 +88,12 @@
     set foldlevel=99    " folds should be open by default
 
     " Full stack indenting
-    "augroup frontendspacing
-        "autocmd!
-        "autocmd FileType html, htmldjango, css, javascript, js set tabstop=2
-        "autocmd FileType html, htmldjango, css, javascript, js set softtabstop=2
-        "autocmd FileType html, htmldjango, css, javascript, js set shiftwidth=2
-            "\ set tabstop=2
-            "\ set softtabstop=2
-            "\ set shiftwidth=2
-    "augroup END
+    augroup frontendspacing
+        autocmd!
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set tabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set softtabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set shiftwidth=2
+    augroup END
 
     " Lines should be less than 120 chars. Show a helpful column
     if exists('+colorcolumn')
@@ -106,12 +109,16 @@
 
     " Keep search matches in the middle of the window and pulse the line when moving to them.
     if has("gui_running")
+        " Only run in the GUI. Doesn't work and simply slows down searching in the terminal
         nnoremap n n:call PulseCursorLine()<cr>
         nnoremap N N:call PulseCursorLine()<cr>
     endif
 
-    " store swap files in one of these directories (in case swapfile is ever turned on)
-    " set directory=~/.vim/.tmp,~/tmp,/tmp
+    " store swap files in one of these directories
+    set directory=~/.vim/.tmp,~/tmp,/tmp
+
+    " Show hidden characters
+    set list listchars=tab:❘-,trail:·,extends:»,precedes:«,nbsp:×
 " }}}
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -222,11 +229,23 @@
 
     " Prevent `crontab: temp file must be edited in place` error on osx
     autocmd filetype crontab setlocal nobackup nowritebackup
+
+    " Enable persistent undo and keep them together in home
+    if has("persistent_undo")
+        set undodir=~/.undodir/
+        set undofile
+    endif
 " }}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ## Text and Whitespace {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+    " Larger font size for MacVim
+    set guifont=Menlo\ Regular:h18
+
+    " Allow wrapping on word boundries
+    set linebreak
 
     " Show trailing whitespace, but don't be annoying about it
     highlight ExtraWhitespace ctermbg=red guibg=red
@@ -259,7 +278,19 @@
     ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.   var_export($this, true));/* */<esc>vk<k3wvwh
     ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
     ab trycatch try{  EngineName::methodName();}catch(Exception $e){  Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-    ab addmsg Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());<esc>k5wvwh
+
+    " Expand iff
+    autocmd FileType python     :iabbrev <buffer> iff if:<left>
+    autocmd FileType javascript :iabbrev <buffer> iff if ()<left>
+
+    " python change true => True, false => False
+    autocmd FileType python     :iabbrev <buffer> true True
+    autocmd FileType python     :iabbrev <buffer> false False
+
+    " js change True => true, False => false
+    autocmd FileType javascript :iabbrev <buffer> True true
+    autocmd FileType javascript :iabbrev <buffer> False false
+
 
     " ### Spell checking {{{
 
@@ -281,8 +312,9 @@
     inoremap jj <esc>jj
     " kk to throw you into normal mode from insert mode
     inoremap kk <esc>kk
-    " jk to throw you into normal mode from insert mode
+    " jk or kj to throw you into normal mode from insert mode
     inoremap jk <esc>
+    inoremap kj <esc>
     " ;w and :w save the file when in insert mode
     inoremap :w <esc>:w
     inoremap ;w <esc>:w
@@ -294,12 +326,8 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     set guioptions-=T " No toolbar for GUI
 
-    " Show status bar when in the terminal
-    if has("gui_running")
-       set laststatus=1
-    else
-       set laststatus=2
-    endif
+    " Show status bar
+    set laststatus=2
 
 " }}}
 "
@@ -375,34 +403,42 @@
 
         windo set cursorline
         execute current_window . 'wincmd w'
+        " TODO Currently this overwrites the end of file notification. That's not helpful
     endfunction
     " }}}
 
 
     " Comment map for blocks of code {{{
     let s:comment_map = {
+        \   "ahk": ';',
+        \   "bash_profile": '#',
+        \   "bashrc": '#',
+        \   "bat": 'REM',
         \   "c": '\/\/',
+        \   "css": '\/\/',
+        \   "conf": '#',
         \   "cpp": '\/\/',
+        \   "desktop": '#',
+        \   "dockerfile": '#',
+        \   "eml": '>',
+        \   "fstab": '#',
         \   "go": '\/\/',
         \   "java": '\/\/',
         \   "javascript": '\/\/',
-        \   "scala": '\/\/',
+        \   "javascript.jsx": '\/\/',
+        \   "js": '\/\/',
+        \   "jsx": '\/\/',
+        \   "mail": '>',
+        \   "markdown": '\/\/',
         \   "php": '\/\/',
+        \   "profile": '#',
         \   "python": '#',
         \   "ruby": '#',
+        \   "scala": '\/\/',
         \   "sh": '#',
-        \   "desktop": '#',
-        \   "fstab": '#',
-        \   "conf": '#',
-        \   "profile": '#',
-        \   "bashrc": '#',
-        \   "bash_profile": '#',
-        \   "mail": '>',
-        \   "eml": '>',
-        \   "bat": 'REM',
-        \   "ahk": ';',
-        \   "vim": '"',
         \   "tex": '%',
+        \   "vim": '"',
+        \   "yaml": '#',
         \ }
 
     " Toggle comments on a block of code {
@@ -422,7 +458,7 @@
             end
         end
         else
-            echo "No comment leader found for filetype"
+            echo "No comment leader found for filetype:" &filetype
         end
     endfunction
     " } }}}
@@ -472,6 +508,11 @@
     " Toggle Tlist pane
     nnoremap <silent> <F3> :TlistToggle<CR>
     vnoremap <silent> <F3> :TlistToggle<CR>
+
+    " Toggle undoTree
+    nnoremap <F5> :UndotreeToggle<cr>
+    nnoremap <F5> :UndotreeToggle<cr>
+
 " }}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -488,8 +529,10 @@
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_server_python_interpreter = '/usr/bin/python' " Interpret YCM using Python2.7
-    let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using Python3
+    " let g:ycm_server_python_interpreter = '/usr/local/bin/python' " Interpret YCM using default python
+    let g:ycm_server_python_interpreter = '/Users/jason/.virtualenvs/playground3/bin/python' " Interpret YCM using the python3 playground virtualenv
+    " let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using default python
+    " let g:ycm_python_binary_path = '/usr/local/Cellar/python3/3.5.1/bin/python3' " Autocomplete using brew installed Python3
     map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory
@@ -499,27 +542,44 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules\|docker.doba.com\/src$',
+    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
 
     " Largefile settings
     let g:LargeFile = 10 " in megabytes
 
-    " Syntastic Recommended settings
-    "set statusline+=%#warningmsg#
-    "set statusline+=%{SyntasticStatuslineFlag()}
-    "set statusline+=%*
+    " vim-jsx settings
+    let g:jsx_ext_required = 0 " Allow JSX in normal JS files
 
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
-    let g:syntastic_python_checkers = ['flake8', 'pylint']
+    " ALE settings
+    nmap <silent> <C-k> <Plug>(ale_previous_wrap)
+    nmap <silent> <C-j> <Plug>(ale_next_wrap)
+    let g:ale_echo_msg_error_str = 'E'
+    let g:ale_echo_msg_warning_str = 'W'
+    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
 
-    augroup SmartyChecker
-        autocmd BufNewFile,BufRead *.tpl let b:syntastic_skip_checks = 1
-    augroup END
+    " vim-indent-guides settings
+    let g:indent_guides_start_level = 2 "
 
+    " Airline settings
+    let g:airline_theme='simple'
+    let g:airline_powerline_fonts = 1
+    set guifont=Inconsolata-dz\ for\ Powerline:h17
+    let g:airline#extensions#tabline#enabled = 1
+    nnoremap <C-l> :bnext<CR>
+    nnoremap <C-h> :bprevious<CR>
+
+    " Modify the default "simple" airline theme. Change the visual mode yuck yellow to pretty pink
+    function! AirlineThemePatch(palette)
+        if g:airline_theme == 'simple'
+            let s:V1 = [ '#1a1a18' , '#ab3e5d', 007, 161 ] " Custom colors: blackestgravel & raspberry
+            let s:V2 = [ '#ff5f00' , '#1c1c1c', 202, 234 ] " Standard colors
+            let s:V3 = [ '#767676' , '#080808', 243, 232 ] " Standard colors
+            let a:palette.visual = airline#themes#generate_color_map(s:V1, s:V2, s:V3)
+            let a:palette.visual_modified = copy(a:palette.visual)
+        endif
+    endfunction
+    let g:airline_theme_patch_func = 'AirlineThemePatch'
 
 " }}}
