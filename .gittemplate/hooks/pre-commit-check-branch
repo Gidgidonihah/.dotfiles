@@ -1,13 +1,13 @@
-#!/bin/sh
+#!/bin/bash
 #
 # Allows us to read user input below, assigns stdin to keyboard
 exec < /dev/tty
 
 #make sure we want to commit to the release branch if that's where we are.
 checkRelease (){
-	BRANCH="$(git symbolic-ref HEAD 2>/dev/null)" || BRANCH="(unnamed branch)"
-	BRANCH=${BRANCH##refs/heads/}
-	if [ $BRANCH = 'master' -o $BRANCH = 'production' -o $BRANCH = 'development' ]; then
+	TMPBRANCH="$(git symbolic-ref HEAD 2>/dev/null)" || TMPBRANCH="(unnamed branch)"
+	BRANCH=${TMPBRANCH##refs/heads/}
+	if [ $BRANCH = 'master' -o $BRANCH = 'production' -o $BRANCH = 'release' -o $BRANCH = 'development' ]; then
 		while true; do
 			echo -ne "\033[38;5;57mAre you sure you wish to commit to the \033[38;5;49m$BRANCH\033[39m\033[38;5;57m branch? [y,n]\033[39m"; read
 			case $REPLY in
@@ -15,7 +15,7 @@ checkRelease (){
 				exit 0
 				;;
 			[NnQq])
-				echo -e '\033[31;5;49mGit Commit aborted.\033[39m'
+				echo -e '\033[31;5;49mCommit aborted.\033[39m'
 				exit 1
 				;;
 			esac

@@ -37,15 +37,19 @@ Thumbs.db
 
 # Explicitly Ignored #
 ######################
-*ignore*
 #media/
 
 # MetaData files #
 ##################
 *.esproj
 .*.swp
+.*.swo
 *~
 
 # Dev files #
 #############
 *tmp*
+
+# Mercurial files #
+###################
+.hg

@@ -9,20 +9,16 @@
 *history
 *hist
 *hst
-*.pyc
+.bash_sessions
 
 # or info files
 *shell
 *info
 
-# Only unison prf files
-/.unison/*
-!/.unison/*.prf
-
-# Compiled python files for vim plugin
-editorconfig/*.pyc
-# previous line not working on work box
-.vim/*/*/*/*.pyc
+# or cache files
+*.pyc
+.git-lint/
+/.cache/
 
 # or any of this stuff
 *.espressostorage
@@ -33,7 +29,6 @@ editorconfig/*.pyc
 /.Trash/
 /.autoenv_authorized*
 /.aws/
-/.cache/
 /.composer/
 /.config/
 /.cups/

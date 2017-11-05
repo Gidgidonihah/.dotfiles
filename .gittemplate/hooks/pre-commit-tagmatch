@@ -17,9 +17,14 @@ except ImportError:
 def main():
     """ Execute the git hook. """
     sys.stdin = open('/dev/tty')  # we would like to offer input, please.
-    pattern = r'\@\w+'  # basic regex to match @bbarker, @yourmom, @buddah, etc
 
-    gitcmd = "git diff --staged --color -G %s --exit-code" % pattern
+    pattern = None
+    patterncmd = "git config --global --get hooks.tagmatchpattern"
+    _, config_list, _ = run(patterncmd)
+    if config_list:
+        pattern = config_list.pop()  # pylint: disable=no-member
+
+    gitcmd = "git diff --staged --color -G {} --exit-code".format(pattern)
     code, _, _ = run(gitcmd)
 
     if code:
@@ -33,15 +38,15 @@ def get_response(pattern):
     response = None
     while response is None or response == '' or response not in 'YyNnQqRrh?':
 
-        string = 'The current commit contains code mentions (e.g. @bbarker).' \
-            'Continue? [y,n,r,?]'
+        string = 'The current commit contains code matching the alert pattern ({}).' \
+            ' Continue? [y,n,r,?]'.format(pattern.replace(r'\\', ''))
         response = input(colored(string, 'magenta'))
 
         if response != '':
             if response in 'Yy':
                 sys.exit(0)
             elif response in 'NnQq':
-                print(colored('Git commit aborted.', 'red'))
+                print(colored('Commit aborted.', 'red'))
                 sys.exit(1)
             elif response in 'Rr':
                 print(colored('showing', 'yellow'))
@@ -81,6 +86,7 @@ def run(command, raw_output=False, decode=True):
         stdout = [line.strip() for line in stdout.splitlines()]
         stderr = [line.strip() for line in stderr.splitlines()]
     return (pipe.returncode, stdout, stderr)
+
 
 if __name__ == "__main__":
     main()

@@ -1,11 +1,11 @@
 [user]
-	name = Jason Weir
-	email = jweir@doba.com
+    name = Jason Weir
+    email = jason.g.weir@gmail.com
 [color]
-	branch = auto
-	diff = auto
-	interactive = auto
-	status = auto
+    branch = auto
+    diff = auto
+    interactive = auto
+    status = auto
     ui = auto
 [color "branch"]
     current = green bold
@@ -21,60 +21,58 @@
     changed = yellow bold
     untracked = red
 [merge]
-	tool = vimdiff
-	stat = true
+    tool = vimdiff
+    stat = true
 [push]
-	default = tracking
+    default = tracking
 [branch]
-    #autosetuprebase = always
+    autosetuprebase = always
 [color "sh"]
     branch = yellow
 [diff]
-	renames = copies
+    renames = copies
     mnemonicprefix = true
 [svn]
     r
 [alias]
-	st = status
-	ci = commit
-	civ = commit --no-verify
-	br = branch
-	co = checkout
-	df = diff
-	dfw = diff --color-words
-	lg = log -p
-	dfs = diff --staged
-	cherry-pick = cherry-pick -no-commit
+    st = status
+    ci = commit
+    civ = commit --no-verify
+    br = branch
+    co = checkout
+    df = diff
+    dfw = diff --color-words
+    dfs = diff --staged
+    cherry-pick = cherry-pick -no-commit
 
-	# Github Pull Request
-	prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-		repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
-		url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
-		open $url > /dev/null 2>&1; \
-	}; f"
-	pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-		git pull && git push; \
-		git prurl; echo ''; \
+    # Github Pull Request
+    prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
+        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+        url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
+        open $url > /dev/null 2>&1; \
+    }; f"
+    pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
+        git pull && git push && git prurl && echo '' && \
         git co master && git br -d $branch; \
-	}; f"
+    }; f"
 
     # Edit in vim all modified and untracked files
-	vi = "!f() { git status --porcelain | sed -n 's/^\\( M\\|??\\) //p' | tr \"\\n\" ' ' | xargs bash -c 'vim \"$@\" < /dev/tty' ignoreme; }; f"
+    vi = "!f() { git status --porcelain | sed -n 's/^\\( M\\|??\\) //p' | tr \"\\n\" ' ' | xargs bash -c 'vim \"$@\" < /dev/tty' ignoreme; }; f"
 
-	# Commit with branch name appended
-	cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
+    # Commit with branch name appended
+    cim = "!f() { branch=$(git rev-parse --abbrev-ref HEAD) && git commit -m \"$1 -- $branch\"; }; f"
 
-	# create branch on remote
-	cob = "!f() { git pull && git co -b $1 && branch=$(git rev-parse --abbrev-ref HEAD) && git push --set-upstream origin $branch; }; f"
+    # create branch on remote
+    cob = "!f() { git pull && git co -b $1 && branch=$(git rev-parse --abbrev-ref HEAD) && git push --set-upstream origin $branch; }; f"
 
-	# forget this --set-upstream business.
-	track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"
+    # forget this --set-upstream business.
+    track = "!f(){ branch=$(git rev-parse --abbrev-ref HEAD); cmd=\"git branch --set-upstream $branch ${1:-origin}/${2:-$branch}\"; $cmd; }; f"
 
-	# unstash files
-	unstash = stash apply --index
+    # unstash files
+    unstash = stash apply --index
 
-	# pull/push
-	pp = "!git pull && git push"
+    # pull/push
+    pp = "!git pull && git push"
 
     # 'add all' stages all new+changed+deleted files
     aa = !git ls-files -d | xargs -r git rm && git ls-files -m -o --exclude-standard | xargs -r git add
@@ -100,15 +98,22 @@
     si = !git svn show-ignore > .git/info/exclude
     # start git-sh
     sh = !git-sh
-	# Grep like ack
-	ack = grep --ignore-case --break --heading --line-number --color=always
+    # Grep like ack
+    ack = grep --break --heading --line-number --color=always -I
+    ick = grep --break --heading --line-number --color=always -I --ignore-case
 [core]
-	excludesfile = ~/.gitignore_global
-	quotepath = false
-	whitespace = trailing-space,space-before-tab
+    excludesfile = ~/.gitignore_global
+    quotepath = false
+    whitespace = trailing-space,space-before-tab
 [init]
-	templatedir = ~/.git_template
+    templatedir = ~/.gittemplate
 [grep]
-	lineNumber = true
+    lineNumber = true
 [branch]
-	autosetupmerge = true
+    autosetupmerge = true
+[hooks]
+    tagmatchpattern = jweir|todo
+[flake8]
+    strict = true
+[pull]
+    rebase = true
