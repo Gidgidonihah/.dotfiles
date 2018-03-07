@@ -10,6 +10,7 @@
 *hist
 *hst
 .bash_sessions
+.scdalias.zsh
 
 # or info files
 *shell
@@ -19,8 +20,10 @@
 *.pyc
 .git-lint/
 /.cache/
+.babel.json
 
 # or any of this stuff
+karabiner
 *.espressostorage
 *private*
 /.CFUserTextEncoding
@@ -29,6 +32,7 @@
 /.Trash/
 /.autoenv_authorized*
 /.aws/
+/.bundle/
 /.composer/
 /.config/
 /.cups/
@@ -36,14 +40,19 @@
 /.dropbox/
 /.fpp/
 /.gem/
-/.gnupg
+/.gnupg*
+/.httpie/
 /.ipython/
 /.kbd
 /.mycli.log
-/.npm
+/.node-*
+/.npm*
 /.pearrc
 /.pylint.d/
 /.rnd
 /.shsh/
 /.subversion
 /.virtualenvs/
+/.yarnrc
+/.zcompdump*
+/.zsh-update

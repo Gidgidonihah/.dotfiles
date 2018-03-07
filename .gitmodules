@@ -34,9 +34,6 @@
 [submodule ".vim/bundle/taglist.vim"]
 	path = .vim/bundle/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim
-[submodule ".fzf"]
-	path = .fzf
-	url = https://github.com/junegunn/fzf
 [submodule ".vim/bundle/SimpylFold"]
 	path = .vim/bundle/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
@@ -73,3 +70,15 @@
 [submodule ".vim/bundle/shuffle.vim"]
 	path = .vim/bundle/shuffle.vim
 	url = https://github.com/vim-scripts/shuffle.vim.git
+[submodule ".vim/bundle/dracula-theme"]
+	path = .vim/bundle/dracula-theme
+	url = git@github.com:dracula/vim.git
+[submodule ".vim/bundle/vim-ctrlp-autoignore"]
+	path = .vim/bundle/vim-ctrlp-autoignore
+	url = git@github.com:ludovicchabant/vim-ctrlp-autoignore.git
+[submodule ".gittemplate"]
+	path = .gittemplate
+	url = git@github.com:CruxConnect/git_template.git
+[submodule ".oh-my-zsh"]
+	path = .oh-my-zsh
+	url = https://github.com/robbyrussell/oh-my-zsh.git

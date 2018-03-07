@@ -90,9 +90,9 @@
     " Full stack indenting
     augroup frontendspacing
         autocmd!
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set tabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set softtabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json set shiftwidth=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set tabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set softtabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set shiftwidth=2
     augroup END
 
     " Lines should be less than 120 chars. Show a helpful column
@@ -439,6 +439,7 @@
         \   "tex": '%',
         \   "vim": '"',
         \   "yaml": '#',
+        \   "zsh": '#',
         \ }
 
     " Toggle comments on a block of code {
@@ -529,10 +530,8 @@
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-    " let g:ycm_server_python_interpreter = '/usr/local/bin/python' " Interpret YCM using default python
-    let g:ycm_server_python_interpreter = '/Users/jason/.virtualenvs/playground3/bin/python' " Interpret YCM using the python3 playground virtualenv
-    " let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using default python
-    " let g:ycm_python_binary_path = '/usr/local/Cellar/python3/3.5.1/bin/python3' " Autocomplete using brew installed Python3
+    let g:ycm_server_python_interpreter = '/usr/local/bin/python' " Interpret YCM using default python (python 3)
+    let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using default python (python 3)
     map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory
@@ -542,9 +541,14 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.git$\|\.hg$\|\.svn$\|\.yardoc\|public\/images\|public\/system\|tmp$\|node_modules$',
+    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|node_modules\)$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
+
+    " Git files only please for the home directory
+    if getcwd() == '/Users/jason'
+        let g:ctrlp_user_command = ['.git', 'cd %s && git ls-files -co --exclude-standard']
+    endif
 
     " Largefile settings
     let g:LargeFile = 10 " in megabytes

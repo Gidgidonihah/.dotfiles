@@ -121,15 +121,28 @@ function virtualenv_info(){
 }
 
 function failed_cmd(){
+    CODE=$@
     # Must use \001 and \002, printf, and the SQcolor function to print colors from functions
     [[ $@ != 0 ]] && printf "[\001$Red\002$Failed_X$(SQcolor)]"
+    return $CODE
 }
 
+function f_notifyme {
+    LAST_EXIT_CODE=$@
+    # I should be able to use:
+    # CMD=$(fc -ln -1)
+    # but because of some sillyness with my configs, that always gives me the penultimate command
+    # so instead, I'm generic:
+    CMD='The last terminal command'
+    # # No point in waiting for the command to complete
+    ~/.sh/notify_cmd_complete "$CMD" "$LAST_EXIT_CODE" &
+}
 
 PS1="$sq_color\
 $Topleft\
 $Longdash\
 \$(failed_cmd \$?)\
+\$(f_notifyme \$?)\
 $Longdash\
 \$(virtualenv_info)\
 $HOST-\
