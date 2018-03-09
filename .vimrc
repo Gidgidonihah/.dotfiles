@@ -565,6 +565,8 @@
 
     " vim-indent-guides settings
     let g:indent_guides_start_level = 2 "
+    " Set this. Airline will handle the rest.
+    let g:airline#extensions#ale#enabled = 1
 
     " Airline settings
     let g:airline_theme='simple'

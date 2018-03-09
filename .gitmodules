@@ -82,3 +82,9 @@
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
+[submodule "/Users/jason/.vim/bundle/vim-repeat"]
+	path = /Users/jason/.vim/bundle/vim-repeat
+	url = https://github.com/tpope/vim-repeat.git
+[submodule ".oh-my-zsh-custom/plugins/notify"]
+	path = .oh-my-zsh-custom/plugins/notify
+	url = https://github.com/marzocchi/zsh-notify.git
