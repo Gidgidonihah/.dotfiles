@@ -7,9 +7,12 @@ function retailcomic(){
 }
 
 function gitick(){
-    git ick "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
+    hr; git ick "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
-alias gg=gitick # Overwrite a possible default alias for gg from the oh-my-zsh git plugin
+alias gg='noglob gitick' # Overwrite a possible default alias for gg from the oh-my-zsh git plugin
+function page(){
+    cat $@ | $PAGER
+}
 
 function gi(){
     git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
