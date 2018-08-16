@@ -154,8 +154,14 @@
         noremap <silent> gd :!open dash://<cword><CR>
 
         " Easier fold managing
-        noremap <leader>f :setlocal foldmethod=expr<CR>zR<CR> " Open all folds
-        noremap <leader>F :setlocal foldmethod=indent<CR>zM<CR> " Close all folds
+        " noremap <leader>f :setlocal foldmethod=expr<CR>zR<CR> " Open all folds
+        " noremap <leader>F :setlocal foldmethod=indent<CR>zM<CR> " Close all folds
+        noremap <leader>f zi " toggle all folds
+        noremap <leader>F zi " toggle all folds
+
+        " Swap the default folding options
+        nnoremap zO zo " Open one level below with zO
+        nnoremap zo zO " Open ALL level below with zo
 
         " Run a shell script while editing
         :command! Sh let f=expand("%")|vnew|execute '.!/bin/sh "' . f . '"'
@@ -230,6 +236,17 @@
     " Prevent `crontab: temp file must be edited in place` error on osx
     autocmd filetype crontab setlocal nobackup nowritebackup
 
+    """ markdown {{{
+    " Allow markdown folding
+    let g:markdown_folding = 1
+
+    " Show folding levels in a column
+    " autocmd filetype markdown setlocal foldcolumn=2
+
+    " Start all folds level ##+ closed
+    autocmd filetype markdown setlocal foldlevel=1
+    """ }}}
+
     " Enable persistent undo and keep them together in home
     if has("persistent_undo")
         set undodir=~/.undodir/
@@ -290,6 +307,7 @@
     " js change True => true, False => false
     autocmd FileType javascript :iabbrev <buffer> True true
     autocmd FileType javascript :iabbrev <buffer> False false
+    autocmd FileType javascript :iabbrev <buffer> cl console.log()<left>
 
 
     " ### Spell checking {{{
@@ -299,6 +317,8 @@
         set nospell
         autocmd FileType html,text,txt,smarty setlocal spell
 
+        :iabbrev teh the
+        :iabbrev seperate separate
     " }}}
 " }}}
 "
@@ -541,7 +561,7 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|node_modules\)$',
+    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|dist\|coverage\|node_modules\)$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
 

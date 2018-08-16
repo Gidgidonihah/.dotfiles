@@ -19,7 +19,7 @@ function gi(){
 }
 
 function vig(){
-    vi `git grep -il "$@" | tr "\n" " "`
+    noglob vi `git grep -il "$@" | tr "\n" " "`
 }
 
 function ssh-id-copy(){

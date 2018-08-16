@@ -88,3 +88,9 @@
 [submodule ".oh-my-zsh-custom/plugins/notify"]
 	path = .oh-my-zsh-custom/plugins/notify
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule "/Users/jason/.vim/bundle/vim-import-js"]
+	path = /Users/jason/.vim/bundle/vim-import-js
+	url = git@github.com:Galooshi/vim-import-js.git
+[submodule ".vim/bundle/vim-sort-imports"]
+	path = .vim/bundle/vim-sort-imports
+	url = git@github.com:ruanyl/vim-sort-imports.git

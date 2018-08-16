@@ -24,6 +24,7 @@ alias imgdim='sips -g pixelHeight -g pixelWidth $1'
 alias gi='git'
 alias tgit='git'
 alias ping="ping -c4"
+alias stfp="git status | fpp"
 
 # SSH to common servers
 alias sshm='ssh 192.168.1.50'
