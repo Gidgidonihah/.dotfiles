@@ -1,7 +1,7 @@
 #!/bin/bash
 
-if [ -d ~/.install ]; then
-  echo "${red}It appears the installation has already been run. This installation script is not idempotent${reset}"
+if [ -d /tmp/.install ] || [ -d ~/.install ]; then
+  echo "It appears the installation has already been run. This installation script is not idempotent"
   exit 1
 fi
 
@@ -18,4 +18,4 @@ svn export https://github.com/Gidgidonihah/.dotfiles/branches/automation-init/.i
 # svn export https://github.com/Gidgidonihah/.dotfiles/trunk/.install
 cd .install
 
-./init.sh
+./main.sh
