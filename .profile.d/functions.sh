@@ -19,7 +19,7 @@ function gi(){
 }
 
 function vig(){
-    noglob vi `git grep -il "$@" | tr "\n" " "`
+    noglob vi `noglob git grep -il "$@" | tr "\n" " "`
 }
 
 function ssh-id-copy(){
@@ -31,4 +31,9 @@ function ssh-id-copy(){
 shrug(){
     echo -n "¯\_(ツ)_/¯" | (pbcopy||xsel);
     echo "¯\_(ツ)_/¯ copied to your clipboard";
+}
+rainymood() {
+    FILE=$((RANDOM%4))
+    URL="https://rainymood.com/audio1110/${FILE}.ogg"
+    mpv "$URL" && rainymood
 }

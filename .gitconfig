@@ -1,6 +1,7 @@
 [user]
     name = Jason Weir
-    email = jason.g.weir@gmail.com
+    email = jweir@cruxconnect.com
+    signingkey = 6708C0D2AD06C84E
 [color]
     branch = auto
     diff = auto
@@ -43,7 +44,8 @@
     df = diff
     dfw = diff --color-words
     dfs = diff --staged
-    cherry-pick = cherry-pick -no-commit
+    cherry-pick = cherry-pick --no-commit
+    cp = cherry-pick --no-commit
 
     # Github Pull Request
     prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
@@ -101,6 +103,9 @@
     # Grep like ack
     ack = grep --break --heading --line-number --color=always -I
     ick = grep --break --heading --line-number --color=always -I --ignore-case
+    # Pretend I haven't changed things
+    ignore = update-index --assume-unchanged
+    unignore = update-index --no-assume-unchanged
 [core]
     excludesfile = ~/.gitignore_global
     quotepath = false

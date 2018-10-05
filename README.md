@@ -1,33 +1,32 @@
 # .dotfiles
 
-This is just my default configs for my home directory.
+This is my home public home directory and all the things I need to set up a new system the way I like.
+This started based off the excellent [.dotfiles by Mathias Bynens](https://github.com/mathiasbynens/dotfiles)
+and has since grown.
 
-# TODO
+## Installation
 
-## General things to do or try
+If you are setting up a new system, you can simply run:
+```
+/bin/bash <(curl -fsSL https://raw.githubusercontent.com/Gidgidonihah/.dotfiles/master/.install/init.sh)
+```
 
-* Try ZSH (https://code.tutsplus.com/tutorials/how-to-customize-your-command-prompt--net-24083)
-* Update the readme to be actually helpfull
-* add note about `sandbox-exec -f ~/no-network.sb python -m unittest discover`
+If you would like to simply apply the dotfiles:
+```
+/bin/bash <(curl -fsSL https://raw.githubusercontent.com/Gidgidonihah/.dotfiles/master/.install/dotfiles.sh)
+```
+Please note that by default that script uses ssh to clone.
+You may want to copy and use https if you don't have access.
 
-## Simple command to setup a new box (via ansible)
+## TODO
 
-* Auto setup for private files
-    * SSH
-    * .profile.d/private.github-token.sh
-* Install powerline font
-
-## Vim tweaks, updates and things to try
+### Vim tweaks, updates and things to try
 
 * Learn and use https://github.com/Valloric/YouCompleteMe#goto-commands
-* install https://github.com/jmcantrell/vim-virtualenv
 * Try replacing the pulse line function with https://github.com/inside/vim-search-pulse
 * Try a new line commenting function:
     * https://github.com/tpope/vim-commentary
     * https://github.com/tomtom/tcomment_vim
-* Get the best visual indentation available
-    * https://github.com/nathanaelkane/vim-indent-guides
-    * https://github.com/Yggdroot/indentLine
 * Take a look at incorporating parts of these
     * https://github.com/L0stSoul/vim-config
     * https://github.com/victorvoid/vim-frontend
