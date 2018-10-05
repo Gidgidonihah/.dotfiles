@@ -1,3 +1,8 @@
+#!/bin/bash
+
+# Set up GPG
+echo "🥤   Setting up GPG"
+
 EMAIL=$(get_input 'Email to use for GPG')
 NAME='Jason Weir'
 

@@ -1,5 +1,7 @@
 #!/bin/bash
+
 # Create an SSH key and prompt to add it to github
+echo "🥤   Generated SSH key for github"
 
 # Prompt for settings
 KEYFILE=$(get_input_with_default "Where would you like to save the key" "~/.ssh/id_rsa")

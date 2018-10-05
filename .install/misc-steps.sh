@@ -1,6 +1,9 @@
 # Install one-off and manual things
 
-echo "Installing virtualenvwrapper"
+# Install Apps from Mac App Store
+echo "🥤   Executing misc steps"
+
+# Instal virtualenvwrapper
 pip install virtualenvwrapper
 
 # Install delivery status widget

@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Executing OSX Settings"
+echo "🥤   Executing OSX Settings"
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change

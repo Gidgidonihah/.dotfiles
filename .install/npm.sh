@@ -1,6 +1,7 @@
 #!/bin/bash
+
 # NPM Global Installs
-echo "Installing global npm packages"
+echo "🥤   Installing global npm packages"
 
 PKGS='
 caniuse-cli

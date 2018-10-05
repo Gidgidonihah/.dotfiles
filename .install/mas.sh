@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Install Apps from Mac App Store
+echo "🥤   Installing MAS Apps"
+
 enter_to_continue "Press sign in to the mac app store."
 open /Applications/App\ Store.app
 confirm_to_continue "Have you signed into the mac app store?"

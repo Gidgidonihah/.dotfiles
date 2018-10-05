@@ -1,6 +1,6 @@
 #!/bin/bash
 # Brew Install Casks
-echo "Installing homebrew casks"
+echo "🥤   Installing homebrew casks"
 
 # Tap the cask-versions repo
 brew tap homebrew/cask-versions
@@ -35,6 +35,7 @@ transmit4
 '
 
 for PKG in $CASK_PKGS; do
+    echo "🥤   Installing $PKG"
     brew cask install $PKG
 done
 for PKG in $CASK_PKGS; do

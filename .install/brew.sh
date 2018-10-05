@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Brew Install packages
-echo "Installing homebrew packages"
+echo "🥤   Installing homebrew packages"
 
 BREW_TAPS='drone/drone'
 for TAP in $BREW_TAPS; do
@@ -40,6 +40,7 @@ wget
 yarn
 '
 for PKG in $BREW_PKGS; do
+    echo "🥤   Installing $PKG"
     brew install $PKG
 done
 
