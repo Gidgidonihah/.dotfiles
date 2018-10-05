@@ -1,7 +1,4 @@
 #!/bin/bash
-# Install Homebrew
-echo "Installing HomeBrew (and Xcode CLI tools)"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 # Brew Install packages
 echo "Installing homebrew packages"
