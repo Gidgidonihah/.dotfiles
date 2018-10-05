@@ -29,6 +29,9 @@ source "$DIR/functions.sh"
 # Install Mac App Store Apps
 . "$DIR/mas.sh"
 
+# Install global NPM packages
+. "$DIR/npm.sh"
+
 # Create an SSH/GPG keys and prompt to add them to github
 . "$DIR/ssh.sh"
 . "$DIR/gpg.sh"
