@@ -4,8 +4,9 @@
 echo "🥤   Cloning dotfiles"
 
 # Note: You may want to use https instead: https://github.com/Gidgidonihah/.dotfiles.git
-git clone --recurse-submodules -j8 git@github.com:Gidgidonihah/.dotfiles.git ~/.dotfiles
-git checkout automation-init # TODO: temporary for testing
+# git clone --recurse-submodules -j8 git@github.com:Gidgidonihah/.dotfiles.git ~/.dotfiles
+# TODO: temmporary for testing
+git clone --recurse-submodules -j8 --single-branch -b automation-init git@github.com:Gidgidonihah/.dotfiles.git
 mv -f ~/.dotfiles/* ~/.dotfiles/.* ~/
 rmdir ~/.dotfiles
 
