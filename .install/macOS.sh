@@ -1024,7 +1024,7 @@ open "~/Gid Solarized Dark.itermcolors"
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.iterm"
 
 # Don’t display the annoying prompt when quitting iTerm
-# defaults write com.googlecode.iterm2 PromptOnQuit -bool false
+defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
 # Tweetbot.app                                                                #
