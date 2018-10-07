@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "🥤   Executing OSX Settings"
+echo "🥤   Executing OSX Settings. Please enter your system password"
 
 # Close any open System Preferences panes, to prevent them from overriding
 # settings we’re about to change
@@ -17,6 +17,21 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
 # Add custom tones to the system sounds
 [ -d ~/.aiff_tones/ ] && ln -s ~/.aiff_tones/ ~/Library/Sounds/Custom\ Tones
+
+# Disable guest access
+sudo /usr/bin/dscl . -delete /Users/Guest
+sudo /usr/bin/security delete-generic-password -a Guest -s com.apple.loginwindow.guest-account -D "application password" /Library/Keychains/System.keychain
+sudo defaults write /Library/Preferences/com.apple.loginwindow GuestEnabled -bool FALSE
+
+# Show TimeMachine, Bluetooth, Wifi, Battery in menu bar
+defaults write com.apple.systemuiserver menuExtras -array-add \
+  "/System/Library/CoreServices/Menu Extras/TimeMachine.menu" \
+  "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" \
+  "/System/Library/CoreServices/Menu Extras/AirPort.menu" \
+  "/System/Library/CoreServices/Menu Extras/Battery.menu"
+
+# Show siri in menu bar
+defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool true
 
 # Set computer name (as done via System Preferences → Sharing)
 NAME=$(get_input_with_default "What would you like to name this system" "WorkPete")
@@ -42,14 +57,14 @@ sudo defaults write /Library/Preferences/SystemConfiguration/com.apple.smb.serve
 defaults write NSGlobalDomain NSUseAnimatedFocusRing -bool false
 
 # Set sidebar icon size to medium
-defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
+# defaults write NSGlobalDomain NSTableViewDefaultSizeMode -int 2
 
 # Menu bar: show remaining battery time (on pre-10.8); hide percentage
 #defaults write com.apple.menuextra.battery ShowPercent -string "NO"
 #defaults write com.apple.menuextra.battery ShowTime -string "YES"
 
 # Menu bar: hide the useless Time Machine and Volume icons
-defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
+# defaults write com.apple.systemuiserver menuExtras -array "/System/Library/CoreServices/Menu Extras/Bluetooth.menu" "/System/Library/CoreServices/Menu Extras/AirPort.menu" "/System/Library/CoreServices/Menu Extras/Battery.menu" "/System/Library/CoreServices/Menu Extras/Clock.menu"
 
 # Always show scrollbars
 # defaults write NSGlobalDomain AppleShowScrollBars -string "Always"
@@ -863,6 +878,86 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 # defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
+# Startup Items                                                               #
+###############################################################################
+
+for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender 3"; do
+    confirm_to_continue "Please ensure that $APP is set to start at login"
+done
+
+###############################################################################
+# Bartender                                                                   #
+###############################################################################
+
+# Update infrequently when on battery
+defaults write com.surteesstudios.Bartender ReduceUpdateCheckFrequencyWhenOnBattery -bool true
+
+# Set the hide/show settings as best we can
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position statusItem" -string "48.800078"
+
+# Hide apps
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position EItem" -int 60000;
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position HItem" -int 10000;
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position HItem1" -int 10000;
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position HItem2" -int 10000;
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position HItem3" -int 10000;
+defaults write com.surteesstudios.Bartender "NSStatusItem Preferred Position statusItem" -string "48.80078";
+defaults write com.surteesstudios.Bartender "NSStatusItem Visible Item-0" -int 1;
+for APPNAME in \
+  "2BUA8C4S2C.com.agilebits.onepassword-osx-helper" \
+  "AppleTimeMachineExtra" \
+  "DisplaysExtra" \
+  "EjectExtra" \
+  "com.adobe.acc.AdobeCreativeCloud" \
+  "com.apple.Spotlight" \
+  "com.dustinsenos.littleipsum" \
+  "com.getdropbox.dropbox" \
+  "com.incident57.Muzzle" \
+  "io.sipapp.Sip-paddle" \
+  "net.matthewpalmer.Rocket"
+do
+  defaults write com.surteesstudios.Bartender appSettings -dict-add APPNAME "<dict><key>controlled</key><integer>1</integer></dict>"
+done
+defaults write com.surteesstudios.Bartender "bartender.storedPositions" -dict \
+  "2BUA8C4S2C.com.agilebits.onepassword-osx-helper-Item-0" -int 370 \
+  "com.adobe.acc.AdobeCreativeCloud-Item-0" -int 5304 \
+  "com.apple.systemuiserver-AppleTimeMachineExtra" -int 253 \
+  "com.apple.systemuiserver-DisplaysExtra" -int 272 \
+  "com.apple.systemuiserver-EjectExtra" -int 279 \
+  "com.apple.systemuiserver-Siri" -int 89 \
+  "com.davidcaddy.bartunes-Item-0" -int 288 \
+  "com.dustinsenos.littleipsum-Item-0" -int 377 \
+  "com.flexibits.fantastical2.mac-Fantastical" -int "196.80078125" \
+  "com.getdropbox.dropbox-Item-0" -int 307 \
+  "com.incident57.Muzzle-Item-0" -int 333 \
+  "io.sipapp.Sip-paddle-Item-0" -int 336 \
+  "net.matthewpalmer.Rocket-Item-0" -int 275
+
+###############################################################################
+# Moom                                                                        #
+###############################################################################
+
+# Run as faceless application
+defaults write com.manytricks.Moom "Application Mode" -int 2
+
+# Set hotkey to CMD+SHIFT+UP (⌘  + ⇧  + ↑)
+defaults write com.manytricks.Moom "Keyboard Controls" -dict \
+  Identifier -string "Keyboard Controls" \
+  "Key Code" -int 126 \
+  "Modifier Flags" -int 11665674 \
+  "Visual Representation" -string '\\U21e7\\U2318\\U2191'
+
+###############################################################################
+# Fantastical                                                                 #
+###############################################################################
+
+# Set font size to small
+defaults read com.flexibits.fantastical2.mac ListTextSize -int 3
+
+# Hide the dock icon
+defaults read com.flexibits.fantastical2.mac HideDockIcon -bool true
+
+###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
 
@@ -946,11 +1041,28 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 defaults write com.giorgiocalderolla.Wipr-Mac enable_login_item -int 1
 
 ###############################################################################
-# wipr.app                                                                    #
+# Dash.app                                                                    #
+###############################################################################
+
+# Set up syncing
+defaults write com.kapeli.dashdoc snippetSQLPath -string "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/App Sync/Dash/Snippets.dash";
+defaults write com.kapeli.dashdoc syncFolderPath -string "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/App Sync/Dash";
+
+# Start at login
+defaults write com.kapeli.dashdoc shouldStartAtLogin -bool true
+
+# Hide from dock
+defaults write com.kapeli.dashdoc showInDock -bool false
+
+# Show menu bar icon
+defaults write com.kapeli.dashdoc shouldShowStatusIcon -bool false
+
+###############################################################################
+# Icons                                                                    #
 ###############################################################################
 
 # Change the default MacVim icon
-cp ~/.custom-icons/macvim\ solarized.icns /Applications/MacVim.app/Contents/Resources/MacVim.icns
+yes | cp ~/.custom-icons/macvim\ solarized.icns /Applications/MacVim.app/Contents/Resources/MacVim.icns
 touch /Applications/MacVim.app
 
 ###############################################################################
@@ -961,6 +1073,16 @@ touch /Applications/MacVim.app
 HARDWARE_UUID=$(ioreg -d2 -c IOPlatformExpertDevice | awk -F\" '/IOPlatformUUID/{print $(NF-1)}')
 defaults -currentHost write com.apple.screensaver moduleDict -dict-add moduleName Aerial path "${HOME}/Library/Screen Savers/Aerial.save" type 0
 plutil -replace differentDisplays -bool 1 "${HOME}/Library/Preferences/ByHost/com.JohnCoates.Aerial.${HARDWARE_UUID}.plist"
+
+###############################################################################
+# Fantastical 2                                                               #
+###############################################################################
+
+# Hide dock icon
+defaults write com.flexibits.fantastical2.mac HideDockIcon -bool true
+
+# Show menu bar icon
+defaults write com.flexibits.fantastical2.mac HideStatusItem -bool false
 
 ###############################################################################
 # Kill affected applications                                                  #

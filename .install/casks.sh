@@ -38,6 +38,11 @@ for PKG in $CASK_PKGS; do
     echo "🥤   Installing $PKG"
     brew cask install $PKG
 done
+
+enter_to_continue "Please install Adobe Creative Cloud"
+open /usr/local/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
+confirm_to_continue "Have you installed all Adobe CC apps?"
+
 for PKG in $CASK_PKGS; do
     confirm_to_continue "Have entered your license for and/or logged in to $PKG?"
 done
@@ -48,8 +53,13 @@ confirm_to_continue "Is Dropbox syncing?"
 
 enter_to_continue "Please log into google chrome and start syncing your settings"
 open /Applications/Google\ Chrome.app
-confirm_to_continue "Have you installed all Adobe CC apps?"
+confirm_to_continue "Is google chrome syncing?"
 
-enter_to_continue "Please install Adobe Creative Cloud"
-open /usr/local/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
-confirm_to_continue "Have you installed all Adobe CC apps?"
+enter_to_continue "Please add your accounts to Fantastical (rata, cruxcconnect, gid-gmail)"
+open /Applications/Fantastical\ 2.app
+confirm_to_continue "Is google chrome syncing?"
+
+echo "Please set up dash sync folder (icloud/app sync/dash)"
+enter_to_continue "Also show meny bar icon and hide dock icon"
+open /Applications/Dash.app
+confirm_to_continue "Is Dash syncing?"

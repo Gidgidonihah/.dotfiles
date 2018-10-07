@@ -18,7 +18,7 @@ If you would like to simply apply the dotfiles:
 Please note that by default that script uses ssh to clone.
 You may want to copy and use https if you don't have access.
 
-## TODO
+## Personal TODO
 
 ### Vim tweaks, updates and things to try
 

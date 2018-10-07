@@ -3,12 +3,13 @@
 # Install Apps from Mac App Store
 echo "🥤   Installing MAS Apps"
 
-enter_to_continue "Press sign in to the mac app store."
 open /Applications/App\ Store.app
+enter_to_continue "Press sign in to the mac app store."
 confirm_to_continue "Have you signed into the mac app store?"
 
 echo "Installing from Mac App Store"
 for APP in \
+  '443987910'  `# 1Password (6.8.8)` \
   '693112260'  `# Sim Daltonism (2.0.2)` \
   '1153157709' `# Speedtest (1.5)` \
   '498944723'  `# JPEGmini (2.2.1)` \
@@ -17,7 +18,6 @@ for APP in \
   '407963104'  `# Pixelmator (3.7.5)` \
   '405772121'  `# LittleIpsum (2.0.6)` \
   '1384080005' `# Tweetbot (3.1)` \
-  '443987910'  `# 1Password (6.8.8)` \
   '417602904'  `# CloudApp (4.4.2)` \
   '444425546'  `# BarTunes (1.2)` \
   '1176895641' `# Spark (2.0.13)` \
@@ -27,7 +27,7 @@ for APP in \
   '413965349'  `# Soulver (2.6.8)` \
   '803453959'  `# Slack (3.3.2)` \
   '489094439'  `# iTeleport (6.1.8)` \
-  '411246225'  `# Caffeine (1.1.1)` \
+  '1437130425' `# Jolt of Caffeine (1.0)` \
   '411643860'  `# DaisyDisk (4.6.5)` \
   '409203825'  `# Numbers (5.2)` \
   '409183694'  `# Keynote (8.2)` \
@@ -38,29 +38,39 @@ for APP in \
   mas install $APP
 done
 
-enter_to_continue "Please install 1password browser plugins and setup sync with dropbox"
 open /Applications/1Password.app
+enter_to_continue "Please install 1password browser plugins and setup sync with dropbox"
 confirm_to_continue "Have you installed the 1password browser plugins?"
 
-enter_to_continue "Please log into feedbin with Reeder"
 open /Applications/Reeder.app
+enter_to_continue "Please log into feedbin with Reeder"
 confirm_to_continue "Have you logged into Feedbin with Reeder?"
 
-enter_to_continue "Please log into Slack"
-open /Applications/Slack.app
-confirm_to_continue "Have you logged into Slack?"
-
-enter_to_continue "Please log into your email in Spark"
 open /Applications/Spark.app
+enter_to_continue "Please log into your email in Spark (rata, doba, jason-gidgidonihah, jason.g, gid-gmail, icloud, cruxconnect"
 confirm_to_continue "Have you logged into email in Spark?"
 
-enter_to_continue "Please log into Pocket"
 open /Applications/Pocket.app
+enter_to_continue "Please log into Pocket"
 confirm_to_continue "Have you logged into Pocket?"
 
-enter_to_continue "Please log into Tweetbot"
 open /Applications/Tweetbot.app
+enter_to_continue "Please log into Tweetbot"
 confirm_to_continue "Have you logged into Tweetbot?"
+
+
+# Request assistive access for terminal (silly way of doing so, but it works)
+osascript <<END
+tell application "Terminal"
+    activate
+    tell application "System Events"
+        tell process "Terminal"
+            click menu item "Merge All Windows" of menu "Window" of menu bar 1
+        end tell
+    end tell
+end tell
+END
+confirm_to_continue "Has terminal been granted assistive access?"
 
 # Enable Wipr Safari Extensions
 osascript -e '

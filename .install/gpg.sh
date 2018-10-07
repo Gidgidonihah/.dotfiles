@@ -25,7 +25,7 @@ chmod 700 ~/.gnupg
 KEY=$(gpg -K --keyid-format SHORT | grep -i "sec.*rsa" | sed "s/sec.*\/\([^ ]*\) .*/\1/")
 
 # Allow adding additional emails to the key
-while $(confirm 'Add another (work) email?'); do
+while $(confirm 'Would you like to add another (work) email?'); do
   NEW_EMAIL=$(get_input 'Email')
   {
     echo adduid

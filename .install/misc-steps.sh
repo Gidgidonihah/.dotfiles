@@ -44,7 +44,7 @@ setup_drone() {
 confirm "Would you like to set up drone?" && setup_drone
 
 # Install powerline fonts
-curl https://raw.githubusercontent.com/powerline/fonts/master/NotoMono/Noto%20Mono%20for%20Powerline.ttf -o "~/Library/Fonts/Noto Mono for Powerline.ttf"
+curl https://raw.githubusercontent.com/powerline/fonts/master/NotoMono/Noto%20Mono%20for%20Powerline.ttf -o ~/Library/Fonts/Noto\ Mono\ for\ Powerline.ttf
 
 # Point Joplin to the right location
 confirm "Would you like to configure Joplin?" \
@@ -52,3 +52,5 @@ confirm "Would you like to configure Joplin?" \
   && echo ":config sync.2.path = /Users/jason/Library/Mobile\\ Documents/com~apple~CloudDocs/App\\ Sync/Joplin/" \
   && enter_to_continue "Please copy the commands above and apply them once joplin has loaded" \
   && joplin
+
+confirm_to_continue "Have you setup time machine backups?"
