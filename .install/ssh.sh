@@ -26,6 +26,8 @@ cat $KEYFILE.pub
 echo '----------------------------'
 
 # Setup the config file
-echo "Host *\n  AddKeysToAgent yes\n  UseKeychain yes" > ~/.ssh/config
+echo "Host *
+  AddKeysToAgent yes
+  UseKeychain yes" > ~/.ssh/config
 
 confirm_to_continue "Has your key been added to github?"
