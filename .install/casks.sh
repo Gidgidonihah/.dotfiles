@@ -9,6 +9,7 @@ CASK_PKGS='
 adobe-creative-cloud
 aerial
 bartender
+base
 choosy
 dash
 docker
@@ -58,8 +59,3 @@ confirm_to_continue "Is google chrome syncing?"
 enter_to_continue "Please add your accounts to Fantastical (rata, cruxcconnect, gid-gmail)"
 open /Applications/Fantastical\ 2.app
 confirm_to_continue "Is google chrome syncing?"
-
-echo "Please set up dash sync folder (icloud/app sync/dash)"
-enter_to_continue "Also show meny bar icon and hide dock icon"
-open /Applications/Dash.app
-confirm_to_continue "Is Dash syncing?"

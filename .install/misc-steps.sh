@@ -49,7 +49,8 @@ curl https://raw.githubusercontent.com/powerline/fonts/master/NotoMono/Noto%20Mo
 # Point Joplin to the right location
 confirm "Would you like to configure Joplin?" \
   && echo ":config sync.interval 60" \
-  && echo ":config sync.2.path = /Users/jason/Library/Mobile\\ Documents/com~apple~CloudDocs/App\\ Sync/Joplin/" \
+  && echo ":config sync.2.path /Users/jason/Library/Mobile\\ Documents/com~apple~CloudDocs/App\\ Sync/Joplin/" \
+  && echo ":config sync.target 2" \
   && enter_to_continue "Please copy the commands above and apply them once joplin has loaded" \
   && joplin
 

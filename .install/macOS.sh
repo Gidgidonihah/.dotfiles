@@ -14,6 +14,7 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 # General UI/UX                                                               #
 ###############################################################################
+echo "🥤   Setting up UI/UX"
 
 # Add custom tones to the system sounds
 [ -d ~/.aiff_tones/ ] && ln -s ~/.aiff_tones/ ~/Library/Sounds/Custom\ Tones
@@ -158,6 +159,7 @@ sudo systemsetup -setrestartfreeze on
 ###############################################################################
 # SSD-specific tweaks                                                         #
 ###############################################################################
+# echo "🥤   Setting up SSD Tweaks"
 
 # Disable hibernation (speeds up entering sleep mode)
 # sudo pmset -a hibernatemode 0
@@ -174,6 +176,7 @@ sudo systemsetup -setrestartfreeze on
 ###############################################################################
 # Trackpad, mouse, keyboard, Bluetooth accessories, and input                 #
 ###############################################################################
+echo "🥤   Setting up Trackpad, mouse, keyboard, Bluetooth accessories, and input"
 
 # Trackpad: enable tap to click for this user and for the login screen
 defaults write com.apple.driver.AppleBluetoothMultitouch.trackpad Clicking -bool true
@@ -290,6 +293,7 @@ fi
 ###############################################################################
 # Screen                                                                      #
 ###############################################################################
+echo "🥤   Setting up Screen"
 
 # Require password immediately after sleep or screen saver begins
 defaults write com.apple.screensaver askForPassword -int 1
@@ -314,6 +318,7 @@ sudo defaults write /Library/Preferences/com.apple.windowserver DisplayResolutio
 ###############################################################################
 # Finder                                                                      #
 ###############################################################################
+echo "🥤   Setting up Finder"
 
 # Finder: allow quitting via ⌘ + Q; doing so will also hide desktop icons
 defaults write com.apple.finder QuitMenuItem -bool true
@@ -433,6 +438,7 @@ defaults write com.apple.finder FXInfoPanesExpanded -dict \
 ###############################################################################
 # Dock & Dashboard                                                            #
 ###############################################################################
+echo "🥤   Setting up Dock & Dashboard"
 
 # Enable highlight hover effect for the grid view of a stack (Dock)
 defaults write com.apple.dock mouse-over-hilite-stack -bool true
@@ -560,6 +566,7 @@ done
 # 11: Launchpad                                                               #
 # 12: Notification Center                                                     #
 ###############################################################################
+echo "🥤   Setting up Hot Cornerns"
 
 # Top left screen corner → Mission Control
 # defaults write com.apple.dock wvous-tl-corner -int 2
@@ -576,6 +583,7 @@ defaults write com.apple.dock wvous-tr-modifier -int 0
 ###############################################################################
 # Safari & WebKit                                                             #
 ###############################################################################
+echo "🥤   Setting up Safari & Webkit"
 
 # Privacy: don’t send search queries to Apple
 # defaults write com.apple.Safari UniversalSearchEnabled -bool false
@@ -665,6 +673,7 @@ defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 ###############################################################################
 # iTunes                                                                      #
 ###############################################################################
+echo "🥤   Setting up iTunes"
 
 # Enable iTunes half stars
 defaults write com.apple.iTunes allow-half-stars -bool TRUE
@@ -672,6 +681,7 @@ defaults write com.apple.iTunes allow-half-stars -bool TRUE
 ###############################################################################
 # Mail                                                                        #
 ###############################################################################
+echo "🥤   Setting up Mail"
 
 # Disable send and reply animations in Mail.app
 # defaults write com.apple.mail DisableReplyAnimations -bool true
@@ -697,6 +707,7 @@ defaults write com.apple.mail DisableInlineAttachmentViewing -bool true
 ###############################################################################
 # Spotlight                                                                   #
 ###############################################################################
+echo "🥤   Setting up Spotlight"
 
 # Hide Spotlight tray-icon (and subsequent helper)
 # sudo chmod 600 /System/Library/CoreServices/Search.bundle/Contents/MacOS/Search
@@ -749,12 +760,13 @@ sudo mdutil -E / > /dev/null
 ###############################################################################
 # Terminal                                                                    #
 ###############################################################################
+echo "🥤   Setting up Terminal"
 
 # Only use UTF-8 in Terminal.app
 defaults write com.apple.terminal StringEncodings -array 4
 
 # Set the default profile
-open ~/Gid Solarized Dark.terminal
+open ~/Gid\ Solarized\ Dark.terminal
 defaults write com.apple.Terminal "Default Window Settings" -string "Gid Solarized Dark";
 
 # Set zshell as the default shell
@@ -775,6 +787,7 @@ defaults write com.apple.Terminal ShowLineMarks -int 0
 ###############################################################################
 # Time Machine                                                                #
 ###############################################################################
+echo "🥤   Setting up Time Machine"
 
 # Prevent Time Machine from prompting to use new hard drives as backup volume
 defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
@@ -785,6 +798,7 @@ defaults write com.apple.TimeMachine DoNotOfferNewDisksForBackup -bool true
 ###############################################################################
 # Activity Monitor                                                            #
 ###############################################################################
+echo "🥤   Setting up Activity Monitor"
 
 # Show the main window when launching Activity Monitor
 defaults write com.apple.ActivityMonitor OpenMainWindow -bool true
@@ -802,6 +816,7 @@ defaults write com.apple.ActivityMonitor SortDirection -int 0
 ###############################################################################
 # Address Book, Dashboard, iCal, TextEdit, and Disk Utility                   #
 ###############################################################################
+echo "🥤   Setting up Address Book, Dashboard, iCal, TextEdit, and Disk Utility"
 
 # Enable the debug menu in Address Book
 # defaults write com.apple.addressbook ABShowDebugMenu -bool true
@@ -829,6 +844,7 @@ defaults write com.apple.QuickTimePlayerX MGPlayMovieOnOpen -bool true
 ###############################################################################
 # Mac App Store                                                               #
 ###############################################################################
+echo "🥤   Setting up Mac App Store"
 
 # Enable the WebKit Developer Tools in the Mac App Store
 defaults write com.apple.appstore WebKitDeveloperExtras -bool true
@@ -860,6 +876,7 @@ defaults write com.apple.commerce AutoUpdateRestartRequired -bool true
 ###############################################################################
 # Photos                                                                      #
 ###############################################################################
+echo "🥤   Setting up Photos"
 
 # Prevent Photos from opening automatically when devices are plugged in
 defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
@@ -867,6 +884,7 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 ###############################################################################
 # Messages                                                                    #
 ###############################################################################
+echo "🥤   Setting up Messages"
 
 # Disable automatic emoji substitution (i.e. use plain text smileys)
 # defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "automaticEmojiSubstitutionEnablediMessage" -bool false
@@ -878,16 +896,9 @@ defaults -currentHost write com.apple.ImageCapture disableHotPlug -bool true
 # defaults write com.apple.messageshelper.MessageController SOInputLineSettings -dict-add "continuousSpellCheckingEnabled" -bool false
 
 ###############################################################################
-# Startup Items                                                               #
-###############################################################################
-
-for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender 3"; do
-    confirm_to_continue "Please ensure that $APP is set to start at login"
-done
-
-###############################################################################
 # Bartender                                                                   #
 ###############################################################################
+echo "🥤   Setting up Bartender"
 
 # Update infrequently when on battery
 defaults write com.surteesstudios.Bartender ReduceUpdateCheckFrequencyWhenOnBattery -bool true
@@ -936,6 +947,7 @@ defaults write com.surteesstudios.Bartender "bartender.storedPositions" -dict \
 ###############################################################################
 # Moom                                                                        #
 ###############################################################################
+echo "🥤   Setting up Moom"
 
 # Run as faceless application
 defaults write com.manytricks.Moom "Application Mode" -int 2
@@ -950,16 +962,18 @@ defaults write com.manytricks.Moom "Keyboard Controls" -dict \
 ###############################################################################
 # Fantastical                                                                 #
 ###############################################################################
+echo "🥤   Setting up Fantastical"
 
 # Set font size to small
-defaults read com.flexibits.fantastical2.mac ListTextSize -int 3
+defaults write com.flexibits.fantastical2.mac ListTextSize -int 3
 
 # Hide the dock icon
-defaults read com.flexibits.fantastical2.mac HideDockIcon -bool true
+defaults write com.flexibits.fantastical2.mac HideDockIcon -bool true
 
 ###############################################################################
 # Google Chrome & Google Chrome Canary                                        #
 ###############################################################################
+echo "🥤   Setting up Chrome"
 
 # Disable the all too sensitive backswipe on trackpads
 defaults write com.google.Chrome AppleEnableSwipeNavigateWithScrolls -bool false
@@ -980,6 +994,7 @@ defaults write com.google.Chrome.canary PMPrintingExpandedStateForPrint2 -bool t
 ###############################################################################
 # Transmission.app                                                            #
 ###############################################################################
+echo "🥤   Setting up Transmission"
 
 # Use `~/Documents/Torrents` to store incomplete downloads
 defaults write org.m0k.transmission UseIncompleteDownloadFolder -bool true
@@ -1016,9 +1031,10 @@ defaults write org.m0k.transmission RandomPort -bool true
 ###############################################################################
 # iterm2.app                                                                  #
 ###############################################################################
+echo "🥤   Setting up iTerm"
 
 # Install the Gid Solarized Dark theme
-open "~/Gid Solarized Dark.itermcolors"
+open ~/Gid\ Solarized\ Dark.itermcolors
 
 # Set the custom preferences folder
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.iterm"
@@ -1029,6 +1045,7 @@ defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 ###############################################################################
 # Tweetbot.app                                                                #
 ###############################################################################
+echo "🥤   Setting up Tweetbot"
 
 # Bypass the annoyingly slow t.co URL shortener
 defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
@@ -1036,6 +1053,7 @@ defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
 ###############################################################################
 # wipr.app                                                                    #
 ###############################################################################
+echo "🥤   Setting up wipr"
 
 # Enable automatic updates
 defaults write com.giorgiocalderolla.Wipr-Mac enable_login_item -int 1
@@ -1043,6 +1061,7 @@ defaults write com.giorgiocalderolla.Wipr-Mac enable_login_item -int 1
 ###############################################################################
 # Dash.app                                                                    #
 ###############################################################################
+echo "🥤   Setting up Dash"
 
 # Set up syncing
 defaults write com.kapeli.dashdoc snippetSQLPath -string "${HOME}/Library/Mobile Documents/com~apple~CloudDocs/App Sync/Dash/Snippets.dash";
@@ -1060,6 +1079,7 @@ defaults write com.kapeli.dashdoc shouldShowStatusIcon -bool false
 ###############################################################################
 # Icons                                                                    #
 ###############################################################################
+echo "🥤   Setting up Icons"
 
 # Change the default MacVim icon
 yes | cp ~/.custom-icons/macvim\ solarized.icns /Applications/MacVim.app/Contents/Resources/MacVim.icns
@@ -1068,6 +1088,7 @@ touch /Applications/MacVim.app
 ###############################################################################
 # Screensaver                                                                 #
 ###############################################################################
+echo "🥤   Setting up Screensaver"
 
 # Set default screen saver to Aerial
 HARDWARE_UUID=$(ioreg -d2 -c IOPlatformExpertDevice | awk -F\" '/IOPlatformUUID/{print $(NF-1)}')
@@ -1077,6 +1098,7 @@ plutil -replace differentDisplays -bool 1 "${HOME}/Library/Preferences/ByHost/co
 ###############################################################################
 # Fantastical 2                                                               #
 ###############################################################################
+echo "🥤   Setting up Fantastical"
 
 # Hide dock icon
 defaults write com.flexibits.fantastical2.mac HideDockIcon -bool true
@@ -1087,6 +1109,7 @@ defaults write com.flexibits.fantastical2.mac HideStatusItem -bool false
 ###############################################################################
 # Kill affected applications                                                  #
 ###############################################################################
+echo "🥤   Setting up UI/UX"
 
 # Not killing terminal because this script is likely running in terminal and is not the final step
 for app in "Activity Monitor" \
@@ -1095,6 +1118,7 @@ for app in "Activity Monitor" \
   "cfprefsd" \
   "Contacts" \
   "Dock" \
+  "Fantastical 2" \
   "Finder" \
   "Google Chrome Canary" \
   "Google Chrome" \
@@ -1113,3 +1137,12 @@ for app in "Activity Monitor" \
     killall "$app" > /dev/null 2>&1
 done
 echo "Done. Note that some of these changes will require a logout/restart to take effect."
+
+###############################################################################
+# Startup Items                                                               #
+###############################################################################
+echo "🥤   Setting up Startup"
+
+for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender 3"; do
+    confirm_to_continue "Please ensure that $APP is set to start at login"
+done

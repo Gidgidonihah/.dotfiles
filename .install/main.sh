@@ -3,13 +3,16 @@
 # TODO-POST
 #  * Save all the videos and photos (add to photos app) from messages (use Storage\ Management.app)
 #  * backup ~/Music
+#    * find anything that isn't in icloud and put it there, then... don't copy it back onto the computer
 #  * backup ~/Pictures
+#    * Import videos/pictures from messages (https://support.apple.com/guide/system-information/optimize-storage-space-sysp4ee93ca4/mac)
 #  * backup ~/Sites
 #  * backup ~/.
 #  * backup ENV
 #  * backup things.app stuff
 #  * backup transmission downloads
 #  * backup installed fonts
+#  * sync joplin
 
 # TODO-POST:
 #   * Safari: Copy all settings
@@ -38,12 +41,14 @@ source "$DIR/functions.sh"
 # Install global NPM packages
 . "$DIR/npm.sh"
 
-# Create an SSH/GPG keys and prompt to add them to github
+# Set up SSH
 . "$DIR/ssh.sh"
-. "$DIR/gpg.sh"
 
 # Clone dotfiles (should be done after public key is added to github)
 . "$DIR/dotfiles.sh"
+
+# Set up GPG
+. "$DIR/gpg.sh"
 
 # Configure macOS
 . "$DIR/macOS.sh"
