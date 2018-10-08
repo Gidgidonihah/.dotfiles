@@ -36,6 +36,7 @@ defaults write com.apple.systemuiserver "NSStatusItem Visible Siri" -bool true
 
 # Set computer name (as done via System Preferences → Sharing)
 NAME=$(get_input_with_default "What would you like to name this system" "WorkPete")
+echo "🥤   Setting up Computer/Network name"
 MACHINE_NAME=${NAME// /-}
 sudo scutil --set ComputerName $NAME
 sudo scutil --set HostName $NAME
@@ -1038,6 +1039,7 @@ open ~/Gid\ Solarized\ Dark.itermcolors
 
 # Set the custom preferences folder
 defaults write com.googlecode.iterm2 PrefsCustomFolder -string "~/.iterm"
+defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 
 # Don’t display the annoying prompt when quitting iTerm
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
