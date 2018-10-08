@@ -928,7 +928,7 @@ for APPNAME in \
   "io.sipapp.Sip-paddle" \
   "net.matthewpalmer.Rocket"
 do
-  defaults write com.surteesstudios.Bartender appSettings -dict-add APPNAME "<dict><key>controlled</key><integer>1</integer></dict>"
+  defaults write com.surteesstudios.Bartender appSettings -dict-add $APPNAME "<dict><key>controlled</key><integer>1</integer></dict>"
 done
 defaults write com.surteesstudios.Bartender "bartender.storedPositions" -dict \
   "2BUA8C4S2C.com.agilebits.onepassword-osx-helper-Item-0" -int 370 \
