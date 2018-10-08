@@ -552,6 +552,11 @@ do
   fi
 done
 
+# My previous commands done screwed up the app icon cache. Clear that cache in all the possible ways.
+sudo rm -rfv /Library/Caches/com.apple.iconservices.store;
+sudo find /private/var/folders/ \( -name com.apple.dock.iconcache -or -name com.apple.iconservices \) -exec rm -rfv {} \;
+sleep 3; sudo touch /Applications/*
+
 ###############################################################################
 # Hot Corners                                                                 #
 #                                                                             #
@@ -1077,6 +1082,15 @@ defaults write com.kapeli.dashdoc showInDock -bool false
 
 # Show menu bar icon
 defaults write com.kapeli.dashdoc shouldShowStatusIcon -bool false
+
+###############################################################################
+# Joplin                                                                      #
+###############################################################################
+
+# Point Joplin to the right location
+joplin config sync.interval 60
+joplin config sync.2.path ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/App\ Sync/Joplin/
+joplin config sync.target 2
 
 ###############################################################################
 # Icons                                                                    #
