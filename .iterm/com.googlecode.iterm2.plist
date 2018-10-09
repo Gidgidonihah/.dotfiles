@@ -2890,7 +2890,7 @@
 		<string>0069</string>
 	</array>
 	<key>OnlyWhenMoreTabs</key>
-	<true/>
+	<false/>
 	<key>OpenArrangementAtStartup</key>
 	<false/>
 	<key>OpenBookmark</key>
@@ -2941,11 +2941,11 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/jason/.iterm</string>
+	<string>~/.iterm</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>PromptOnQuit</key>
-	<true/>
+	<false/>
 	<key>QuitWhenAllWindowsClosed</key>
 	<false/>
 	<key>RightCommand</key>

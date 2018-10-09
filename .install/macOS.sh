@@ -212,7 +212,7 @@ defaults write NSGlobalDomain ApplePressAndHoldEnabled -bool false
 
 # Set a blazingly fast keyboard repeat rate
 defaults write NSGlobalDomain KeyRepeat -int 1
-defaults write NSGlobalDomain InitialKeyRepeat -int 10
+defaults write NSGlobalDomain InitialKeyRepeat -int 15
 
 # Automatically illuminate built-in MacBook keyboard in low light
 defaults write com.apple.BezelServices kDim -bool true
@@ -572,7 +572,7 @@ sleep 3; sudo touch /Applications/*
 # 11: Launchpad                                                               #
 # 12: Notification Center                                                     #
 ###############################################################################
-echo "🥤   Setting up Hot Cornerns"
+echo "🥤   Setting up Hot Corners"
 
 # Top left screen corner → Mission Control
 # defaults write com.apple.dock wvous-tl-corner -int 2

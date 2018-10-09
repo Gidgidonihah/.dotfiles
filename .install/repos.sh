@@ -1,7 +1,10 @@
 #!/bin/bash
 echo "🥤  Cloning personal repos"
 
+ORIG_PATH=$(pwd)
+
 # Clone into ~/Sites
+mkdir -p ${HOME}/Sites
 cd ~/Sites
 for REPO in \
   "https://github.com/IQAndreas/github-issues-import.git" \
@@ -10,9 +13,6 @@ for REPO in \
 do
   git clone $REPO > /dev/null 2>&1
 done
-
-# Return to where the script started
-cd -
 
 echo "🥤  Cloning Crux repos"
 
@@ -34,4 +34,4 @@ do
 done
 
 # Return to where the script started
-cd -
+cd $ORIG_PATH

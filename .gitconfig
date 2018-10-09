@@ -1,7 +1,7 @@
 [user]
     name = Jason Weir
     email = jweir@cruxconnect.com
-    signingkey = 6708C0D2AD06C84E
+    signingkey = 29F5D504
 [color]
     branch = auto
     diff = auto
@@ -124,3 +124,5 @@
     rebase = true
 [commit]
     gpgsign = true
+[gpg]
+    program = /usr/local/bin/gpg
