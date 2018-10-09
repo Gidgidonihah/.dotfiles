@@ -177,6 +177,9 @@
         " Strip all trailing whitespace from a file, using \w
         nnoremap <leader>w :retab<CR>:%s/\s\+$//<CR>:let @/=''<CR>
 
+        " ALEFix all the things using \af
+        nnoremap <leader>af :ALEFix<CR>
+
         " Edit the vimrc file
         nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
         " Source the vimrc file
@@ -561,7 +564,7 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|dist\|coverage\|node_modules\)$',
+    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|dist\|coverage\|node_modules\|crux-crul\/lib\)$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
 
@@ -582,6 +585,10 @@
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_fixers = {
+    \ '*': ['remove_trailing_lines', 'trim_whitespace'],
+    \ 'javascript': ['eslint'],
+    \ }
 
     " vim-indent-guides settings
     let g:indent_guides_start_level = 2 "

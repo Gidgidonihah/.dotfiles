@@ -1,9 +1,10 @@
 function retailcomic(){
-    cd ~/Sites;
+    cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/App\ Sync/RetailComic
     python2.7 retailcomic.py
-    open retailcomic.html;
-    sleep 1;
+    open retailcomic.html
+    sleep 1
     rm -f retailcomic.html
+    cd -
 }
 
 function gitick(){
@@ -19,7 +20,7 @@ function gi(){
 }
 
 function vig(){
-    noglob vi `git grep -il "$@" | tr "\n" " "`
+    noglob vi `noglob git grep -il "$@" | tr "\n" " "`
 }
 
 function ssh-id-copy(){
@@ -31,4 +32,9 @@ function ssh-id-copy(){
 shrug(){
     echo -n "¯\_(ツ)_/¯" | (pbcopy||xsel);
     echo "¯\_(ツ)_/¯ copied to your clipboard";
+}
+rainymood() {
+    FILE=$((RANDOM%4))
+    URL="https://rainymood.com/audio1110/${FILE}.ogg"
+    mpv "$URL" && rainymood
 }

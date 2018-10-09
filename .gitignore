@@ -38,6 +38,7 @@ karabiner
 /.cups/
 /.docker/
 /.dropbox/
+/.electron/
 /.fpp/
 /.gem/
 /.gnupg*
@@ -52,7 +53,9 @@ karabiner
 /.rnd
 /.shsh/
 /.subversion
+/.tldrc/
 /.virtualenvs/
 /.yarnrc
 /.zcompdump*
+/.zoomus/
 /.zsh-update
