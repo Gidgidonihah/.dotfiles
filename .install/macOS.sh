@@ -676,6 +676,12 @@ defaults write com.apple.Safari SendDoNotTrackHTTPHeader -bool true
 # Update extensions automatically
 defaults write com.apple.Safari InstallExtensionUpdatesAutomatically -bool true
 
+# Show icons in tabes
+defaults write com.apple.Safari ShowIconsInTabs -bool true
+
+# Don't auto-fill passwords
+defaults write com.apple.Safari AutoFillPasswords -bool false
+
 ###############################################################################
 # iTunes                                                                      #
 ###############################################################################

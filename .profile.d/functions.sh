@@ -1,9 +1,10 @@
 function retailcomic(){
-    cd ~/Sites;
+    cd ~/Library/Mobile\ Documents/com~apple~CloudDocs/App\ Sync/RetailComic
     python2.7 retailcomic.py
-    open retailcomic.html;
-    sleep 1;
+    open retailcomic.html
+    sleep 1
     rm -f retailcomic.html
+    cd -
 }
 
 function gitick(){

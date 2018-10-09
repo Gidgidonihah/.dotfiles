@@ -13,9 +13,7 @@ echo "Installing HomeBrew (and Xcode CLI tools)"
 
 # Sparse clone of install scripts to /tmp
 cd /tmp
-# TODO: temporarily changed for full testing
-svn export https://github.com/Gidgidonihah/.dotfiles/branches/automation-init/.install
-# svn export https://github.com/Gidgidonihah/.dotfiles/trunk/.install
+svn export https://github.com/Gidgidonihah/.dotfiles/trunk/.install
 cd .install
 
 ./main.sh

@@ -43,7 +43,8 @@ setup_drone() {
 }
 confirm "Would you like to set up drone?" && setup_drone
 
-# Install powerline fonts
+# Install fonts
 curl https://raw.githubusercontent.com/powerline/fonts/master/NotoMono/Noto%20Mono%20for%20Powerline.ttf -o ~/Library/Fonts/Noto\ Mono\ for\ Powerline.ttf
+cp ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/Fonts/* ${HOME}/Library/Fonts/
 
 confirm_to_continue "Have you setup time machine backups?"
