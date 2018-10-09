@@ -16,6 +16,9 @@ while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 ###############################################################################
 echo "🥤   Setting up UI/UX"
 
+# Link iCloud Drive from home dir for ease of use
+ln -s "${HOME}/Library/Mobile Documents/com~apple~CloudDocs" "${HOME}/iCloud Drive"
+
 # Add custom tones to the system sounds
 [ -d ~/.aiff_tones/ ] && ln -s ~/.aiff_tones/ ~/Library/Sounds/Custom\ Tones
 
