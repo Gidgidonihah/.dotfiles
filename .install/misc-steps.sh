@@ -28,7 +28,7 @@ request_github_token() {
     TOKEN_NAME="$(echo $TYPE | awk '{print toupper($0)}')_GITHUB_API_TOKEN"
   fi
 
-  echo "$TOKEN_NAME=$TOKEN" >> ~/.profile.d/private.github-tokens.sh
+  echo "export $TOKEN_NAME=$TOKEN" >> ~/.profile.d/private.github-tokens.sh
 }
 confirm "Would you like to set up a homebrew github token?" && request_github_token 'Homebrew'
 confirm "Would you like to set up a gren (github-tools/github-release-notes) github token?" && request_github_token 'gren' 'repo'

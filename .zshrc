@@ -58,6 +58,9 @@ export PATH="/usr/local/sbin:$PATH"
 bindkey -v
 export KEYTIMEOUT=1
 
+# Auto pushd
+setopt AUTO_PUSHD
+
 # shift+tab to go backwards
 bindkey '^[[Z' reverse-menu-complete
 

@@ -22,7 +22,6 @@ You may want to copy and use https if you don't have access.
 
 ### Vim tweaks, updates and things to try
 
-* Learn and use https://github.com/Valloric/YouCompleteMe#goto-commands
 * Try replacing the pulse line function with https://github.com/inside/vim-search-pulse
 * Try a new line commenting function:
     * https://github.com/tpope/vim-commentary

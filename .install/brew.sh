@@ -12,6 +12,7 @@ BREW_PKGS='
 autoenv
 awscli
 cmake
+ctags
 colordiff
 drone
 fpp

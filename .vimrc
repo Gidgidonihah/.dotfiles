@@ -69,7 +69,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ## General Style Settings {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    syntax enable " Syntax highlighting is the shiz
     colorscheme solarized " Give me a nice color scheme.
     set background=dark " Dark background, please.
     set nowrap          " Don't wrap by default. That's icky.
@@ -90,9 +89,9 @@
     " Full stack indenting
     augroup frontendspacing
         autocmd!
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set tabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set softtabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,yaml set shiftwidth=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set tabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set softtabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set shiftwidth=2
     augroup END
 
     " Lines should be less than 120 chars. Show a helpful column
@@ -147,6 +146,9 @@
         " Format json using python
         map =j !python -m json.tool
 
+        " Format xml using xmllint
+        map =x !xmllint --format %
+
         " Quick regex to add quotes around HTML attributes
         cabbrev quotize %s/\([^&^?]\)\(\<[[:alnum:]-]\{-}\)=\([[:alnum:]-#%]\+\)/\1\2="\3"/g
 
@@ -168,7 +170,7 @@
     " }}}
     " ### Tips to Forget (or muscle memorized) {{{
         " sort python imports according to pep8
-        command! -range=% Isort :<line1>,<line2>! isort --force_single_line_imports --lines 120 -
+        command! -range=% Isort :<line1>,<line2>! isort --force-single-line-imports --lines 120 -
 
         " Backspace disables highlighting
         noremap <BS> :noh<CR>
@@ -220,6 +222,8 @@
     " Allow filetype settings
     filetype plugin on
 
+    syntax enable " Syntax highlighting is the shiz
+
     " Remember where my cursor was last time I was in this file
     set viminfo='10,\"1000,:20,%,n~/.viminfo
     autocmd BufReadPost * if line("'\"") > 0|if line("'\"") <= line("$")|exe("norm '\"")|else|exe "norm $"|endif|endif
@@ -248,6 +252,13 @@
 
     " Start all folds level ##+ closed
     autocmd filetype markdown setlocal foldlevel=1
+
+    " Exec markdown-toc against a markdown file when saving
+    augroup markdowntoc
+        autocmd!
+        autocmd FileType markdown set autoread
+        autocmd BufWritePost *.md silent !markdown-toc -i %:p
+    augroup END
     """ }}}
 
     " Enable persistent undo and keep them together in home
@@ -262,7 +273,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
     " Larger font size for MacVim
-    set guifont=Menlo\ Regular:h18
+    set guifont=Noto\ Mono\ for\ Powerline:h18
 
     " Allow wrapping on word boundries
     set linebreak
@@ -329,6 +340,10 @@
 " ## Movement, Tabs, Windows and Buffers {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
+    " bbb to throw you into normal mode from insert mode
+    inoremap bbb <esc>bbb
+    " www to throw you into normal mode from insert mode
+    inoremap www <esc>www
     " kk to throw you into normal mode from insert mode
     inoremap kk <esc>kk
     " jj to throw you into normal mode from insert mode
@@ -459,6 +474,8 @@
         \   "ruby": '#',
         \   "scala": '\/\/',
         \   "sh": '#',
+        \   "typescript": '\/\/',
+        \   "ts": '\/\/',
         \   "tex": '%',
         \   "vim": '"',
         \   "yaml": '#',
@@ -545,6 +562,12 @@
 
     " Point the taglist plugin to the ctags executable
     " let Tlist_Ctags_Cmd = '/usr/bin/ctags'
+    let Tlist_WinWidth = 40
+    let Tlist_Close_On_Select = 1
+    let Tlist_Enable_Fold_Column = 1
+    let Tlist_File_Fold_Auto_Close = 1
+    let Tlist_GainFocus_On_ToggleOpen = 1
+    map t :TlistToggle<CR>
 
     " Set some YCM YouCompleteMe Symantic Triggers
     let g:ycm_semantic_triggers = {
@@ -564,7 +587,7 @@
 
     " Sane Ignore For ctrlp
     let g:ctrlp_custom_ignore = {
-    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|dist\|coverage\|node_modules\|crux-crul\/lib\)$',
+    \ 'dir':  '\.\(git\|hg\|svn\)$\|\(tmp\|dist\|coverage\|node_modules\|build\|crux-crul\/lib\)$',
     \ 'file': '\.pyc$\|\.exe$\|\.so$\|\.dat$'
     \ }
 
@@ -582,6 +605,7 @@
     " ALE settings
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
+    let g:ale_fix_on_save = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
@@ -598,7 +622,6 @@
     " Airline settings
     let g:airline_theme='simple'
     let g:airline_powerline_fonts = 1
-    set guifont=Inconsolata-dz\ for\ Powerline:h17
     let g:airline#extensions#tabline#enabled = 1
     nnoremap <C-l> :bnext<CR>
     nnoremap <C-h> :bprevious<CR>
@@ -614,5 +637,27 @@
         endif
     endfunction
     let g:airline_theme_patch_func = 'AirlineThemePatch'
+
+    " Vim-Table-Mode settings {{{
+    function! s:isAtStartOfLine(mapping)
+        let text_before_cursor = getline('.')[0 : col('.')-1]
+        let mapping_pattern = '\V' . escape(a:mapping, '\')
+        let comment_pattern = '\V' . escape(substitute(&l:commentstring, '%s.*$', '', ''), '\')
+        return (text_before_cursor =~? '^' . ('\v(' . comment_pattern . '\v)?') . '\s*\v' . mapping_pattern . '\v$')
+    endfunction
+
+    " Markdown safe corners
+    let g:table_mode_corner='|'
+
+    " Easy enter table mode with ||| as first chars on a line
+    inoreabbrev <expr> <bar><bar>
+              \ <SID>isAtStartOfLine('\|\|') ?
+              \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
+    " }}}
+
+    " CSV.vim settings
+    let g:csv_highlight_column = 'y'
+    hi link CSVColumnOdd MoreMsg
+    hi link CSVColumnEven Question
 
 " }}}

@@ -91,3 +91,18 @@
 [submodule ".vim/bundle/vim-sort-imports"]
 	path = .vim/bundle/vim-sort-imports
 	url = git@github.com:ruanyl/vim-sort-imports.git
+[submodule ".vim/bundle/FastFold"]
+	path = .vim/bundle/FastFold
+	url = https://github.com/Konfekt/FastFold.git
+[submodule ".vim/bundle/vim-table-mode"]
+	path = .vim/bundle/vim-table-mode
+	url = https://github.com/dhruvasagar/vim-table-mode.git
+[submodule ".vim/bundle/phpcomplete.vim"]
+	path = .vim/bundle/phpcomplete.vim
+	url = git://github.com/shawncplus/phpcomplete.vim.git
+[submodule ".vim/bundle/typescript-vim"]
+	path = .vim/bundle/typescript-vim
+	url = https://github.com/leafgarland/typescript-vim.git
+[submodule ".vim/bundle/vim-gdscript3"]
+	path = .vim/bundle/vim-gdscript3
+	url = https://github.com/calviken/vim-gdscript3.git

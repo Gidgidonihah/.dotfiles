@@ -36,13 +36,14 @@
 [svn]
     r
 [alias]
+    ad = add
     st = status
     ci = commit
     civ = commit --no-verify
     br = branch
     co = checkout
     df = diff
-    dfw = diff --color-words
+    dfw = diff --color-words -b
     dfs = diff --staged
     cherry-pick = cherry-pick --no-commit
     cp = cherry-pick --no-commit
@@ -121,7 +122,7 @@
 [flake8]
     strict = true
 [pull]
-    rebase = true
+    rebase = false
 [commit]
     gpgsign = true
 [gpg]

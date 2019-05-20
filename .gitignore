@@ -59,3 +59,8 @@ karabiner
 /.zcompdump*
 /.zoomus/
 /.zsh-update
+/.local/
+/.mono/
+/.ngrok2/
+/.nvm/
+/.oracle_jre_usage/

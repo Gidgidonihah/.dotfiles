@@ -49,7 +49,12 @@ Thumbs.db
 # Dev files #
 #############
 *tmp*
+tags
 
 # Mercurial files #
 ###################
 .hg
+
+# Crux
+supplier/**/files/
+supplier/**/out/
