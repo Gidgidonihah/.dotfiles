@@ -1,4 +1,4 @@
-# Teaching VIM
+# VIM notes
 
 Generic vim has none of the nicieties, but with all the power. For example, opening HUGE files isn't a problem.
 If you have a vimrc set up, you can start fresh by providing a differnt vimrc file:
@@ -68,6 +68,7 @@ vim -u ~/.vimrc-empty
 ## Resources
 * https://danielmiessler.com/study/vim/
 * https://www.labnol.org/internet/learning-vim-for-beginners/28820/
+* https://statico.github.io/vim2.html
 
 ## Vim as Language
 See  https://danielmiessler.com/study/vim/#language
@@ -342,11 +343,9 @@ Makes dealing with markdown tables super simple and NOT a nightmare.
 * Block editing
 * ~ will change case
 * My personal vim config
+* Piping into vim
 
 ## My Vim Config
 
 Let's walk through my vimrc and explain what they do.
 And you can ask any questions about what you see.
-* <leader> ev
-* 626,627 -> easy buffer switching
-* Changing the leader key
