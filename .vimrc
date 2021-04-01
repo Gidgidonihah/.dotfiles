@@ -28,7 +28,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "   Here's a list of common commands from my plugins:
 "
-"   Remember to run `:Helptags` to generate helptags from pathogen installed bundles
+"   Remember to run `:Helptags` to generate helptags from installed bundles
 "
 "   BufExplorer:
 "       <leader>be - Open a buffer from a list of buffers in a buffer
@@ -58,12 +58,6 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " First, remove ALL autocommands so they aren't defined multiple times when .vimrc is sourced again upon save
     autocmd!
-
-    " Install bundles via Pathagen.
-    " See bundles found in ~/.vim/bundles
-    " Disabling this line disables the above packages
-    execute pathogen#infect()
-
 " }}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

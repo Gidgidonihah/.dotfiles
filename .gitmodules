@@ -1,81 +1,81 @@
 [submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/bundle/ctrlp.vim
+	path = .vim/pack/git-plugins/start/ctrlp.vim
 	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule ".vim/bundle/YouCompleteMe"]
-	path = .vim/bundle/YouCompleteMe
+	path = .vim/pack/git-plugins/start/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/editorconfig-vim"]
-	path = .vim/bundle/editorconfig-vim
+	path = .vim/pack/git-plugins/start/editorconfig-vim
 	url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule ".vim/bundle/bufexplorer"]
-	path = .vim/bundle/bufexplorer
+	path = .vim/pack/git-plugins/start/bufexplorer
 	url = https://github.com/jlanzarotta/bufexplorer
 [submodule ".vim/bundle/salt-vim"]
-	path = .vim/bundle/salt-vim
+	path = .vim/pack/git-plugins/start/salt-vim
 	url = https://github.com/saltstack/salt-vim
 [submodule ".vim/bundle/vim-colors-solarized"]
-	path = .vim/bundle/vim-colors-solarized
+	path = .vim/pack/git-plugins/start/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized
 [submodule ".vim/bundle/html5.vim"]
-	path = .vim/bundle/html5.vim
+	path = .vim/pack/git-plugins/start/html5.vim
 	url = https://github.com/othree/html5.vim
 [submodule ".vim/bundle/csscomplete.vim"]
-	path = .vim/bundle/csscomplete.vim
+	path = .vim/pack/git-plugins/start/csscomplete.vim
 	url = https://github.com/othree/csscomplete.vim
 [submodule ".vim/bundle/python.vim"]
-	path = .vim/bundle/python.vim
+	path = .vim/pack/git-plugins/start/python.vim
 	url = https://github.com/vim-scripts/python.vim
 [submodule ".vim/bundle/LargeFile"]
-	path = .vim/bundle/LargeFile
+	path = .vim/pack/git-plugins/start/LargeFile
 	url = https://github.com/vim-scripts/LargeFile
 [submodule ".vim/bundle/loremipsum"]
-	path = .vim/bundle/loremipsum
+	path = .vim/pack/git-plugins/start/loremipsum
 	url = https://github.com/vim-scripts/loremipsum
 [submodule ".vim/bundle/taglist.vim"]
-	path = .vim/bundle/taglist.vim
+	path = .vim/pack/git-plugins/start/taglist.vim
 	url = https://github.com/vim-scripts/taglist.vim
 [submodule ".vim/bundle/SimpylFold"]
-	path = .vim/bundle/SimpylFold
+	path = .vim/pack/git-plugins/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
 [submodule ".vim/bundle/vim-jsx"]
-	path = .vim/bundle/vim-jsx
+	path = .vim/pack/git-plugins/start/vim-jsx
 	url = https://github.com/mxw/vim-jsx
 [submodule ".vim/bundle/vim-javascript"]
-	path = .vim/bundle/vim-javascript
+	path = .vim/pack/git-plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
 [submodule ".vim/bundle/vim-indent-guides"]
-	path = .vim/bundle/vim-indent-guides
-	url = git://github.com/nathanaelkane/vim-indent-guides.git
+	path = .vim/pack/git-plugins/start/vim-indent-guides
+	url = https://github.com/nathanaelkane/vim-indent-guides.git
 [submodule ".vim/bundle/vim-airline-themes"]
-	path = .vim/bundle/vim-airline-themes
+	path = .vim/pack/git-plugins/start/vim-airline-themes
 	url = https://github.com/vim-airline/vim-airline-themes.git
 [submodule ".vim/bundle/vim-airline"]
-	path = .vim/bundle/vim-airline
+	path = .vim/pack/git-plugins/start/vim-airline
 	url = https://github.com/vim-airline/vim-airline.git
 [submodule ".vim/bundle/ale"]
-	path = .vim/bundle/ale
+	path = .vim/pack/git-plugins/start/ale
 	url = https://github.com/w0rp/ale.git
 [submodule ".vim/bundle/vim-fugitive"]
-	path = .vim/bundle/vim-fugitive
+	path = .vim/pack/git-plugins/start/vim-fugitive
 	url = https://github.com/tpope/vim-fugitive.git
 [submodule ".vim/bundle/undotree"]
-	path = .vim/bundle/undotree
+	path = .vim/pack/git-plugins/start/undotree
 	url = https://github.com/mbbill/undotree.git
 [submodule ".vim/bundle/csv.vim"]
-	path = .vim/bundle/csv.vim
+	path = .vim/pack/git-plugins/start/csv.vim
 	url = https://github.com/chrisbra/csv.vim.git
 [submodule ".vim/bundle/vim-surround"]
-	path = .vim/bundle/vim-surround
+	path = .vim/pack/git-plugins/start/vim-surround
 	url = https://github.com/tpope/vim-surround.git
 [submodule ".vim/bundle/shuffle.vim"]
-	path = .vim/bundle/shuffle.vim
+	path = .vim/pack/git-plugins/start/shuffle.vim
 	url = https://github.com/vim-scripts/shuffle.vim.git
 [submodule ".vim/bundle/dracula-theme"]
-	path = .vim/bundle/dracula-theme
-	url = git@github.com:dracula/vim.git
+	path = .vim/pack/git-plugins/start/dracula-theme
+	url = https://github.com/dracula/vim.git
 [submodule ".vim/bundle/vim-ctrlp-autoignore"]
 	path = .vim/bundle/vim-ctrlp-autoignore
-	url = git@github.com:ludovicchabant/vim-ctrlp-autoignore.git
+	url = https://github.com/ludovicchabant/vim-ctrlp-autoignore.git
 [submodule ".gittemplate"]
 	path = .gittemplate
 	url = https://github.com/CruxConnect/git_template.git
@@ -83,26 +83,50 @@
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
 [submodule ".vim/bundle/vim-repeat"]
-	path = .vim/bundle/vim-repeat
+	path = .vim/pack/git-plugins/start/vim-repeat
 	url = https://github.com/tpope/vim-repeat.git
 [submodule ".oh-my-zsh-custom/plugins/notify"]
 	path = .oh-my-zsh-custom/plugins/notify
 	url = https://github.com/marzocchi/zsh-notify.git
 [submodule ".vim/bundle/vim-sort-imports"]
-	path = .vim/bundle/vim-sort-imports
-	url = git@github.com:ruanyl/vim-sort-imports.git
+	path = .vim/pack/git-plugins/start/vim-sort-imports
+	url = https://github.com/ruanyl/vim-sort-imports.git
 [submodule ".vim/bundle/FastFold"]
-	path = .vim/bundle/FastFold
+	path = .vim/pack/git-plugins/start/FastFold
 	url = https://github.com/Konfekt/FastFold.git
 [submodule ".vim/bundle/vim-table-mode"]
-	path = .vim/bundle/vim-table-mode
+	path = .vim/pack/git-plugins/start/vim-table-mode
 	url = https://github.com/dhruvasagar/vim-table-mode.git
 [submodule ".vim/bundle/phpcomplete.vim"]
-	path = .vim/bundle/phpcomplete.vim
-	url = git://github.com/shawncplus/phpcomplete.vim.git
+	path = .vim/pack/git-plugins/start/phpcomplete.vim
+	url = https://github.com/shawncplus/phpcomplete.vim.git
 [submodule ".vim/bundle/typescript-vim"]
-	path = .vim/bundle/typescript-vim
+	path = .vim/pack/git-plugins/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
 [submodule ".vim/bundle/vim-gdscript3"]
-	path = .vim/bundle/vim-gdscript3
+	path = .vim/pack/git-plugins/start/vim-gdscript3
 	url = https://github.com/calviken/vim-gdscript3.git
+[submodule ".vim/bundle/vim-mustache-handlebars"]
+	path = .vim/bundle/vim-mustache-handlebars
+	url = https://github.com/mustache/vim-mustache-handlebars.git
+[submodule ".vim/bundle/vim-markdown"]
+	path = .vim/pack/git-plugins/start/vim-markdown
+	url = https://github.com/plasticboy/vim-markdown.git
+[submodule ".vim/bundle/swift.vim"]
+	path = .vim/pack/git-plugins/start/swift.vim
+	url = https://github.com/keith/swift.vim.git
+[submodule ".vim/pack/git-plugins/start/vim-terraform"]
+	path = .vim/pack/git-plugins/start/vim-terraform
+	url = https://github.com/hashivim/vim-terraform.git
+[submodule ".vim/pack/git-plugins/start/vim-minimap"]
+	path = .vim/pack/git-plugins/start/vim-minimap
+	url = https://github.com/severin-lemaignan/vim-minimap.git
+[submodule ".vim/pack/git-plugins/start/vim-go"]
+	path = .vim/pack/git-plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/git-plugins/vim-dbml"]
+	path = .vim/pack/git-plugins/start/vim-dbml
+	url = https://github.com/jidn/vim-dbml.git
+[submodule ".vim/pack/git-plugins/start/vim-test"]
+	path = .vim/pack/git-plugins/start/vim-test
+	url = https://github.com/vim-test/vim-test.git

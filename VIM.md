@@ -26,7 +26,7 @@ vim -u ~/.vimrc-empty
   * [You can run a vim command against multiple buffers at once](#you-can-run-a-vim-command-against-multiple-buffers-at-once)
   * [You can switch between them easily](#you-can-switch-between-them-easily)
 - [Plugins](#plugins)
-  * [Pathogen](#pathogen)
+  * [Installation](#installation)
   * [General Usage Plugins](#general-usage-plugins)
     + [ctrlp.vim](#ctrlpvim)
     + [YouCompleteMe](#youcompleteme)
@@ -181,12 +181,13 @@ There are of course different tools for this.
 
 ## Plugins
 
-### Pathogen
-All other plugins are installed with [pathogen](https://github.com/tpope/vim-pathogen).
-Makes installation of plugins SUPER easy. Just stick it in the autoload folder (~/.vim/autoload/)
-and infect your .vimrc:
+### Installation
+Plugins are installed with vim's native package manager.
+Makes installation of plugins SUPER easy.
+For example, I installed the vim-test plugin with the following command
 ```
-execute pathogen#infect()
+cd .vim/pack/git-plugins/start
+git submoule add https://github.com/vim-test/vim-test.git
 ```
 
 ### General Usage Plugins
@@ -331,6 +332,9 @@ Uses import-sort to sort javascript imports. Similar to iSort.
 
 #### [vim-table-mode](https://github.com/dhruvasagar/vim-table-mode) (markdown)
 Makes dealing with markdown tables super simple and NOT a nightmare.
+
+Many other plugins not listed here are installed. Check the .gitmodules (or
+`.vim/pack/git-plugins/start`) to see which.
 
 ## Other topics to cover
 
