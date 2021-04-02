@@ -40,6 +40,7 @@
 "       :Loreplace [REPLACEMENT] [PREFIX] [POSTFIX] - Replace the random text with something else or simply remove it.
 "   TagList:
 "       <f3> - Toggle the taglist
+"       t - Toggle the taglist
 "   Python.vim:
 "       https://github.com/vim-scripts/python.vim
 "   General:
@@ -90,7 +91,7 @@
 
     " Lines should be less than 120 chars. Show a helpful column
     if exists('+colorcolumn')
-      set colorcolumn=121
+      set colorcolumn=81
     endif
 
     " ### Searching
@@ -164,7 +165,7 @@
     " }}}
     " ### Tips to Forget (or muscle memorized) {{{
         " sort python imports according to pep8
-        command! -range=% Isort :<line1>,<line2>! isort --force-single-line-imports --lines 120 -
+        command! -range=% Isort :<line1>,<line2>! isort --force-single-line-imports -lai 2 --lines 80 -
 
         " Backspace disables highlighting
         noremap <BS> :noh<CR>
@@ -180,6 +181,9 @@
         nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
         " Source the vimrc file
         nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+
+        " Open the current markdown file in MacDown
+        nnoremap <silent> <leader>emd :!open -a MacDown %:p<CR>
 
         " Highlight conflict markers
         match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -227,6 +231,7 @@
     autocmd BufNewFile,BufRead *.less,*.scss,*.sass set filetype=css
     autocmd BufNewFile,BufRead *.tpl set filetype=html
     autocmd BufNewFile,BufRead *.txt set filetype=text
+    autocmd BufNewFile,BufRead Dockerfile* set filetype=Dockerfile
 
     " Set omnifunc autocompletion
     autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS noci
@@ -284,8 +289,9 @@
     " Hilight debugger blocks
     highlight jweir ctermfg=168 guifg=#d33682
     autocmd ColorScheme * highlight jweir ctermfg=168 guifg=#d33682
-    2match jweir /@\?jweir/
-    autocmd BufWinEnter,InsertEnter,InsertLeave * 2match jweir /@\?jweir/
+    " Note: added todo because TODO isn't being highlighted in markdown files
+    2match jweir /@\?jweir\|TODO/
+    autocmd BufWinEnter,InsertEnter,InsertLeave * 2match jweir /@\?jweir\|TODO/
     autocmd BufWinLeave * call clearmatches()
 
     " Change paste without overriding the default buffer. (cp{motion})
@@ -303,6 +309,7 @@
     ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.   var_export($this, true));/* */<esc>vk<k3wvwh
     ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
     ab trycatch try{  EngineName::methodName();}catch(Exception $e){  Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
+    ab pdb import pdb; pdb.set_trace()<esc>
 
     " Expand iff
     autocmd FileType python     :iabbrev <buffer> iff if:<left>
@@ -450,8 +457,10 @@
         \   "css": '\/\/',
         \   "conf": '#',
         \   "cpp": '\/\/',
+        \   "dbml": '\/\/',
         \   "desktop": '#',
         \   "dockerfile": '#',
+        \   "dosini": ';',
         \   "eml": '>',
         \   "fstab": '#',
         \   "go": '\/\/',
@@ -470,6 +479,7 @@
         \   "sh": '#',
         \   "typescript": '\/\/',
         \   "ts": '\/\/',
+        \   "terraform": '#',
         \   "tex": '%',
         \   "vim": '"',
         \   "yaml": '#',
@@ -511,6 +521,13 @@
     " Toggle Comments
     nnoremap <leader><Space> :call ToggleComment()<cr>
     vnoremap <leader><Space> :call ToggleComment()<cr>
+
+    " Execute Tests (vim-test)
+    nmap <silent> t<C-n> :TestNearest<CR>
+    nmap <silent> t<C-f> :TestFile<CR>
+    nmap <silent> t<C-s> :TestSuite<CR>
+    nmap <silent> t<C-l> :TestLast<CR>
+    nmap <silent> t<C-g> :TestVisit<CR>
 
     " <Home> and <End> go up and down the quickfix list and wrap around
     "nnoremap <silent> <Home> :call WrapCommandNextPrev('up', 'c')<CR>
@@ -570,8 +587,8 @@
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_server_python_interpreter = '/usr/local/bin/python' " Interpret YCM using default python (python 3)
-    let g:ycm_python_binary_path = '/usr/local/bin/python' " Autocomplete using default python (python 3)
+    let g:ycm_server_python_interpreter = '/usr/local/bin/python3' " Interpret YCM using default python (python 3)
+    let g:ycm_python_binary_path = '/usr/local/bin/python3' " Autocomplete using default python (python 3)
     map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory
@@ -600,13 +617,21 @@
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
     let g:ale_fix_on_save = 1
+    " let g:ale_fix_on_save = 0
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
-    let g:ale_echo_msg_format = '[%linter%] %s [%severity%]'
+    let g:ale_echo_msg_format = '[%linter%] %s (%code%) [%severity%]'
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint'],
+    \ 'python': ['black'],
     \ }
+    " TODO: get isort working properly (due to `cd` in cmd), then add as a fixer
+    " \ 'python': ['black', 'isort'],
+    let g:ale_python_black_options='--config=/Users/jweir/Sites/owlet/ci-kit/bin/python/configuration/pyproject.toml'
+    let g:ale_python_pylint_change_directory=0
+    let g:ale_yaml_yamllint_options='-d "{extends: default, rules: {line-length: {max: 88}}}"'
+    let g:ale_python_mypy_options='--ignore-missing-imports'
 
     " vim-indent-guides settings
     let g:indent_guides_start_level = 2 "
@@ -645,7 +670,7 @@
 
     " Easy enter table mode with ||| as first chars on a line
     inoreabbrev <expr> <bar><bar>
-              \ <SID>isAtStartOfLine('\|\|') ?
+              \ <SID>isAtStartOfLine('\|\|\|') ?
               \ '<c-o>:TableModeEnable<cr><bar><space><bar><left><left>' : '<bar><bar>'
     " }}}
 
@@ -653,5 +678,9 @@
     let g:csv_highlight_column = 'y'
     hi link CSVColumnOdd MoreMsg
     hi link CSVColumnEven Question
+
+    "" Minimap settings
+    let g:minimap_toggle='<leader>mm'
+    let g:minimap_highlight='VisualNOS'
 
 " }}}

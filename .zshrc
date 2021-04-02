@@ -5,7 +5,9 @@ export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-ZSH_THEME="agnoster"
+DEFAULT_USER="jweir"
+export VIRTUAL_ENV_DISABLE_PROMPT=1 # Disable default virtualenv ps1 (replaced w/ agnoster)
+ZSH_THEME="jweir"
 
 # Uncomment the following line to use hyphen-insensitive completion. Case
 # sensitive completion must be off. _ and - will be interchangeable.
@@ -25,7 +27,6 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
   emoji
-  autoenv
   colored-man-pages
   docker
   docker-compose
@@ -35,10 +36,8 @@ plugins=(
   scd
   thefuck
   vi-mode
-  virtualenv
   virtualenvwrapper
   yarn
-  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -52,7 +51,9 @@ source $ZSH/oh-my-zsh.sh
 # * learn the aliases (see `alias`)
 
 # Update path
-export PATH="/usr/local/sbin:$PATH"
+export PATH="$HOME/.rbenv/shims:$HOME/.bin:/usr/local/sbin:$PATH"
+# Add non VC scripts (stored on icloud for backup, but not ready for commit)
+export PATH="$HOME/Documents/.bin:$PATH"
 
 # Enable Vi mode
 bindkey -v

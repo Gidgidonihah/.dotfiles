@@ -9,7 +9,7 @@ alias msqld="mysql --auto-rehash -h 127.0.0.1 -u root -proot"
 alias dobad='docker-compose up -d aurora-local dynamodb-local kinesis-local memcached s3-local sqs-local solr-local; docker-compose up web'
 alias docker-web='docker exec -i -t dockerdobacom_web_1 /bin/bash'
 alias cda="cd ~/Sites/doba/docker.doba.com/src/tech.doba.com/ansible"
-alias ggg="~/.sh/doba-git-search.sh"
+alias ggg="~/.sh/doba-git-search.sh" # TODO: change to multi-repo-search
 
 function dorepos(){
     CODEDIR=~/Sites/doba/docker.doba.com/src;

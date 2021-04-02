@@ -1,13 +1,14 @@
 [user]
     name = Jason Weir
-    email = jweir@cruxconnect.com
-    signingkey = 29F5D504
+    email = jweir@owletcare.com
+    signingkey = 34057365
 [color]
     branch = auto
     diff = auto
     interactive = auto
     status = auto
     ui = auto
+    grep = auto
 [color "branch"]
     current = green bold
     local = green
@@ -21,6 +22,11 @@
     added = green bold
     changed = yellow bold
     untracked = red
+[color "grep"]
+    filename = yellow bold
+    linenumber = green
+[color "sh"]
+    branch = yellow
 [merge]
     tool = vimdiff
     stat = true
@@ -28,8 +34,6 @@
     default = tracking
 [branch]
     autosetuprebase = always
-[color "sh"]
-    branch = yellow
 [diff]
     renames = copies
     mnemonicprefix = true
@@ -47,10 +51,27 @@
     dfs = diff --staged
     cherry-pick = cherry-pick --no-commit
     cp = cherry-pick --no-commit
+    ammend = commit --amend -C HEAD
+    fp = push --force-with-lease
+    rm = rm --ignore-unmatch
 
+    # Used by other aliases
+    remoterepo = "!f() { \
+        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+        echo $repo; \
+    }; f"
+    reponame = "!f() { \
+        name=$(basename $(git remote get-url origin) .git); \
+        echo $name; \
+    }; f"
+    # Open Repo in github
+    hub = "!f() { repo=$(git remoterepo); \
+        url=https://github.com/$repo; echo $url; echo ''; \
+        open $url > /dev/null 2>&1; \
+    }; f"
     # Github Pull Request
     prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+        repo=$(git remoterepo); \
         url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"
@@ -58,6 +79,29 @@
         git pull && git push && git prurl && echo '' && \
         git co master && git br -d $branch; \
     }; f"
+
+    # Open CircleCI: opens url https://circleci.com/gh/<ORG>/<REPO>
+    cci = "!f() { repo=$(git remoterepo); \
+        url=https://circleci.com/gh/$repo; echo $url; echo ''; \
+        open $url > /dev/null 2>&1; \
+    }; f"
+
+    # Open CodeFresh: opens url https://g.codefresh.io/builds2?filter=repository:<REPO>
+    cf = "!f() { repo=$(git reponame); \
+        echo 'Codefresh link not yet implemented.'; \
+        url=https://g.codefresh.io/builds2?filter=repository:$repo; echo $url; echo ''; \
+        open $url > /dev/null 2>&1; \
+    }; f"
+
+    # Replace a file with the version at a specific hash
+    overwrite = "!f() { \
+        commit=0dd165a; \
+        for file in $@; do \
+            git show $commit:$file > $file; \
+            git add $file; \
+        done; \
+    }; f"
+    ow=overwrite
 
     # Edit in vim all modified and untracked files
     vi = "!f() { git status --porcelain | sed -n 's/^\\( M\\|??\\) //p' | tr \"\\n\" ' ' | xargs bash -c 'vim \"$@\" < /dev/tty' ignoreme; }; f"
@@ -127,3 +171,33 @@
     gpgsign = true
 [gpg]
     program = /usr/local/bin/gpg
+[diff "sopsdiffer"]
+    textconv = sops -d
+[url "ssh://git@github.com"]
+    insteadOf = https://github.com
+[credential]
+    helper = osxkeychain
+[help]
+    autocorrect = 1
+# TODO: test out p4merge
+# https://git-scm.com/book/en/v2/Customizing-Git-Git-Configuration#_external_merge_tools
+# [merge]
+#   tool = extMerge
+# [mergetool "extMerge"]
+#   cmd = extMerge "$BASE" "$LOCAL" "$REMOTE" "$MERGED"
+#   trustExitCode = false
+# [diff]
+#   external = extDiff
+[mergetool]
+    keepBackup = false
+[rerere]
+    enabled = true
+[secrets]
+    providers = git secrets --aws-provider
+    patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+    patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+    patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+    allowed = AKIAIOSFODNN7EXAMPLE
+    allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
+    patterns = private_key
+    patterns = private_key_id

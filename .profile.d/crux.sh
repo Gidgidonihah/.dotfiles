@@ -1,6 +1,5 @@
 # Crux specific helpers
 alias cdx='scd crux'
-alias cdo='scd ops'
 alias cruxalias='cat ~/.profile.d/crux.sh'
 
 # UI development
@@ -25,14 +24,3 @@ alias msqlx="mysql --auto-rehash -h 127.0.0.1 -u develro -pd3v3lRO"
 ### note that alias cannot be used with entr. Instead:
 # find apps/administration -iname '*.py' | entr -c docker exec -i -t crux-api_web_1 ./manage.py test --testrunner=django_utils.test.runners.PrettyTestRunner --keepdb apps.administration
 alias testapi="docker exec -i -t crux-api_web_1 ./manage.py test --testrunner=django_utils.test.runners.PrettyTestRunner --keepdb"
-
-
-function pycover(){
-    unset AUTH_TOKEN
-    unset THANOS_API
-    unset OUT_DIRECTORY
-    LOCATION=${1:-discover}
-    echo "Running tests against $LOCATION"
-    find . -iname '*.py' | entr -c -s "coverage run -m --source=. unittest $LOCATION && coverage html"
-}
-

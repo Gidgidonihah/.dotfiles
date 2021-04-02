@@ -1,0 +1,45 @@
+This commit will... (be less than 50 chars)
+
+I'm making this commit because (specifically and technically) lorem
+ipsum dolor sit amet. Pork belly elit ipsum ut eu aliquip buffalo.
+Brisket dolore veniam fatback picanha. Short ribs in voluptate, ex
+salami sirloin prosciutto. Mollit cow pastrami occaecat. Tenderloin pork
+loin tail laborum do pig.
+
+
+### A good commit message is broken up into 3 parts:
+
+1. The What
+2. The Why
+3. The Where
+
+--->
+
+## 1. The What
+
+  * This is your first line.
+  * It completes the sentence, "This change in this commit will..."
+  * It does not end in a period
+  * It is no longer than 50 characters
+
+--->
+
+## 2. The Why:
+
+  * This makes up most of the body.
+  * linewrapped at 72 chars.
+  * Why specifically and technically is this change being made?
+  * If referencing details for which the files inside this commit provide
+    context, also reference those files here as that information will be
+    muddied in a squashed message.
+
+--->
+
+## 3. The Where:
+
+  i.e. Where can I find more information about this task?
+
+  * Why the Jira ticket, of course! i.e. List all applicable Jira ticket.
+    * Or github issue. Or whatever ticketing system.
+  * You may list more than one ticket
+  * Each ticket on its own line.

@@ -2,6 +2,10 @@
 /*
 !/.*
 
+# Ingore env stuff
+.env
+env
+
 # Don't want everyone seeing my private keys, now do I?
 .ssh
 
@@ -16,11 +20,16 @@
 *shell
 *info
 
+# or vim spell files (don't remember saved words)
+.vim/spell/
+
 # or cache files
 *.pyc
 .git-lint/
 /.cache/
 .babel.json
+.mypy_cache
+.swp
 
 # or any of this stuff
 karabiner
@@ -32,6 +41,7 @@ karabiner
 /.Trash/
 /.autoenv_authorized*
 /.aws/
+/.bigqueryrc
 /.bundle/
 /.composer/
 /.config/
@@ -42,25 +52,37 @@ karabiner
 /.fpp/
 /.gem/
 /.gnupg*
+/.grip
+/.gsutil
+/.helm
 /.httpie/
 /.ipython/
 /.kbd
+/.krew
+/.kube
+/.local/
+/.m2
+/.matplotlib/
+/.minikube/
+/.mono/
 /.mycli.log
+/.ngrok2/
 /.node-*
 /.npm*
+/.nvm/
+/.openvpn-connect.json
+/.oracle_jre_usage/
+/.owlet
 /.pearrc
 /.pylint.d/
+/.rbenv
 /.rnd
 /.shsh/
 /.subversion
+/.terraform.d/
 /.tldrc/
 /.virtualenvs/
 /.yarnrc
 /.zcompdump*
 /.zoomus/
 /.zsh-update
-/.local/
-/.mono/
-/.ngrok2/
-/.nvm/
-/.oracle_jre_usage/

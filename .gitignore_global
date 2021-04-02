@@ -1,3 +1,12 @@
+# git attributes #
+##################
+.gitattributes
+
+# Prive stuff #
+###############
+*private*
+*local*
+
 # Compiled source #
 ###################
 #*.com
@@ -6,6 +15,7 @@
 *.exe
 *.o
 *.so
+__pycache__
 
 # Packages #
 ############
