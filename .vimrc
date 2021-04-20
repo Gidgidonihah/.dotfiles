@@ -165,7 +165,7 @@
     " }}}
     " ### Tips to Forget (or muscle memorized) {{{
         " sort python imports according to pep8
-        command! -range=% Isort :<line1>,<line2>! isort --force-single-line-imports -lai 2 --lines 80 -
+        command! -range=% Isort :<line1>,<line2>!  isort --settings-path ~/pyproject.toml --src - -
 
         " Backspace disables highlighting
         noremap <BS> :noh<CR>
@@ -454,9 +454,9 @@
         \   "bashrc": '#',
         \   "bat": 'REM',
         \   "c": '\/\/',
-        \   "css": '\/\/',
         \   "conf": '#',
         \   "cpp": '\/\/',
+        \   "css": '\/\/',
         \   "dbml": '\/\/',
         \   "desktop": '#',
         \   "dockerfile": '#',
@@ -477,10 +477,11 @@
         \   "ruby": '#',
         \   "scala": '\/\/',
         \   "sh": '#',
-        \   "typescript": '\/\/',
-        \   "ts": '\/\/',
         \   "terraform": '#',
         \   "tex": '%',
+        \   "toml": '#',
+        \   "ts": '\/\/',
+        \   "typescript": '\/\/',
         \   "vim": '"',
         \   "yaml": '#',
         \   "zsh": '#',
@@ -628,7 +629,8 @@
     \ }
     " TODO: get isort working properly (due to `cd` in cmd), then add as a fixer
     " \ 'python': ['black', 'isort'],
-    let g:ale_python_black_options='--config=/Users/jweir/Sites/owlet/ci-kit/bin/python/configuration/pyproject.toml'
+    let g:ale_python_black_options='--config=~/pyproject.toml'
+    let g:ale_python_pylint_options = '--rcfile=~/pyproject.toml'
     let g:ale_python_pylint_change_directory=0
     let g:ale_yaml_yamllint_options='-d "{extends: default, rules: {line-length: {max: 88}}}"'
     let g:ale_python_mypy_options='--ignore-missing-imports'

@@ -38,6 +38,7 @@ plugins=(
   vi-mode
   virtualenvwrapper
   yarn
+  zsh-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -54,6 +55,9 @@ source $ZSH/oh-my-zsh.sh
 export PATH="$HOME/.rbenv/shims:$HOME/.bin:/usr/local/sbin:$PATH"
 # Add non VC scripts (stored on icloud for backup, but not ready for commit)
 export PATH="$HOME/Documents/.bin:$PATH"
+
+# Spelling correction
+# setopt correct # Or `correctall` for param correction
 
 # Enable Vi mode
 bindkey -v

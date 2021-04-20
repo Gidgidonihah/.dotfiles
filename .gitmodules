@@ -88,6 +88,9 @@
 [submodule ".oh-my-zsh-custom/plugins/notify"]
 	path = .oh-my-zsh-custom/plugins/notify
 	url = https://github.com/marzocchi/zsh-notify.git
+[submodule ".oh-my-zsh-custom/plugins/zsh-syntax-highlighting"]
+	path = .oh-my-zsh-custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting.git
 [submodule ".vim/bundle/vim-sort-imports"]
 	path = .vim/pack/git-plugins/start/vim-sort-imports
 	url = https://github.com/ruanyl/vim-sort-imports.git
@@ -130,3 +133,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-test"]
 	path = .vim/pack/git-plugins/start/vim-test
 	url = https://github.com/vim-test/vim-test.git
+[submodule ".vim/pack/git-plugins/start/vim-toml"]
+	path = .vim/pack/git-plugins/start/vim-toml
+	url = https://github.com/cespare/vim-toml.git

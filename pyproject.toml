@@ -1,0 +1,39 @@
+[tool.black]
+line-length = 80
+safe = true
+target-version = ['py37']
+exclude = '/(\.git|owlet|protos)/'
+
+[tool.isort]
+force_single_line = true
+include_trailing_comma = true
+known_powlet = 'powlet'
+line_length = 80
+lines_after_imports = 2
+multi_line_output = 3  # Vertical Hanging Indent
+sections = [
+    'FUTURE',
+    'STDLIB',
+    'THIRDPARTY',
+    'POWLET',
+    'FIRSTPARTY',
+    'LOCALFOLDER',
+]
+use_parentheses = true
+skip = 'owlet, protos'
+
+[tool.pylint.format]
+max-line-length = 80
+good-names = [ "logger","i","e","ns","id","db","df","tz" ]
+
+[tool.pylint.messages_control]
+disable = [
+    # The next 2 are here so we can use dotenv without complaint, though we
+    # they are disabled because we shouldn't have dotenv in code, but rather use
+    # it at the CLI, or have docker-compose use the .env files.
+    # "wrong-import-position",
+    # "wrong-import-order",
+
+    # These are disabled because we intentionally leave TODOs in the code.
+    "fixme",
+]

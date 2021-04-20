@@ -88,7 +88,6 @@
 
     # Open CodeFresh: opens url https://g.codefresh.io/builds2?filter=repository:<REPO>
     cf = "!f() { repo=$(git reponame); \
-        echo 'Codefresh link not yet implemented.'; \
         url=https://g.codefresh.io/builds2?filter=repository:$repo; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"

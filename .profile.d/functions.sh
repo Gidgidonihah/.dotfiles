@@ -45,3 +45,8 @@ rainymood() {
     URL="https://rainymood.com/audio1110/${FILE}.ogg"
     mpv "$URL" && rainymood
 }
+
+
+ztheme(){
+    export ZSH_THEME="$@" && source $ZSH/oh-my-zsh.sh
+}

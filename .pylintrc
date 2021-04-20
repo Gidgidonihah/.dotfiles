@@ -1,9 +1,9 @@
+# TODO: consolidate and use pyproject.toml
 [FORMAT]
 max-line-length=80
 
 [BASIC]
 good-names=logger,i,e,ns,id,db,tz
-const-rgx=[A-Za-z_][A-Za-z0-9_]{2,30}$
 load-plugins=pylint_pytest
 
 [MESSAGES CONTROL]
