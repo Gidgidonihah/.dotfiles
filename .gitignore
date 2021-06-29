@@ -43,6 +43,7 @@ karabiner
 /.aws/
 /.bigqueryrc
 /.bundle/
+/.cfconfig
 /.composer/
 /.config/
 /.cups/

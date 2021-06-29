@@ -37,9 +37,6 @@
 [submodule ".vim/bundle/SimpylFold"]
 	path = .vim/pack/git-plugins/start/SimpylFold
 	url = https://github.com/tmhedberg/SimpylFold.git
-[submodule ".vim/bundle/vim-jsx"]
-	path = .vim/pack/git-plugins/start/vim-jsx
-	url = https://github.com/mxw/vim-jsx
 [submodule ".vim/bundle/vim-javascript"]
 	path = .vim/pack/git-plugins/start/vim-javascript
 	url = https://github.com/pangloss/vim-javascript
@@ -124,9 +121,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-minimap"]
 	path = .vim/pack/git-plugins/start/vim-minimap
 	url = https://github.com/severin-lemaignan/vim-minimap.git
-[submodule ".vim/pack/git-plugins/start/vim-go"]
-	path = .vim/pack/git-plugins/start/vim-go
-	url = https://github.com/fatih/vim-go.git
 [submodule ".vim/pack/git-plugins/vim-dbml"]
 	path = .vim/pack/git-plugins/start/vim-dbml
 	url = https://github.com/jidn/vim-dbml.git
@@ -139,3 +133,6 @@
 [submodule ".vim/pack/git-plugins/start/commentary"]
 	path = .vim/pack/git-plugins/start/commentary
 	url = https://tpope.io/vim/commentary.git
+[submodule ".vim/pack/git-plugins/start/vim-jsx-pretty"]
+	path = .vim/pack/git-plugins/start/vim-jsx-pretty
+	url = http://github.com/MaxMEllon/vim-jsx-pretty
