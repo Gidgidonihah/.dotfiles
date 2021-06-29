@@ -26,13 +26,16 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-  emoji
   colored-man-pages
   docker
   docker-compose
+  emoji
+  gcloud
   git
+  kubectx
   notify
   osx
+  # pyenv
   scd
   thefuck
   vi-mode
@@ -58,10 +61,6 @@ export PATH="$HOME/Documents/.bin:$PATH"
 
 # Spelling correction
 # setopt correct # Or `correctall` for param correction
-
-# Enable Vi mode
-bindkey -v
-export KEYTIMEOUT=1
 
 # Auto pushd
 setopt AUTO_PUSHD

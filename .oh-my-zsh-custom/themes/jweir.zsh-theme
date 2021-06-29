@@ -73,6 +73,11 @@ prompt_segment() {
 }
 
 # End the prompt, closing any open segments
+prompt_start() {
+  echo -n ""
+  CURRENT_BG=''
+}
+# End the prompt, closing any open segments
 prompt_end() {
   if [[ -n $CURRENT_BG ]]; then
     echo -n " %{%k%F{$CURRENT_BG}%}$SEGMENT_SEPARATOR"
@@ -90,6 +95,14 @@ prompt_end() {
 prompt_context() {
   if [[ "$USER" != "$DEFAULT_USER" || -n "$SSH_CLIENT" ]]; then
     prompt_segment black default "%(!.%{%F{yellow}%}.)%n@%m"
+  fi
+}
+
+prompt_kubectx() {
+  context=$(kubectx_prompt_info 2>/dev/null)
+
+  if [[ -n "$context" ]]; then
+    prompt_segment 128 black "☸️  $context "
   fi
 }
 
@@ -242,14 +255,19 @@ build_prompt() {
   RETVAL=$?
   prompt_status
   prompt_virtualenv
-  prompt_aws
+  # prompt_aws
   prompt_context
   prompt_dir
   prompt_git
-  prompt_bzr
-  prompt_hg
+  # prompt_bzr
+  # prompt_hg
+  prompt_end
+}
+build_right_prompt() {
+  prompt_start
+  prompt_kubectx
   prompt_end
 }
 
 PROMPT='%{%f%b%k%}$(build_prompt) '
-RPROMPT=''
+RPROMPT='$(build_right_prompt)'

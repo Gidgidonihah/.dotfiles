@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: these are no longer installed with brew cask
 # Brew Install Casks
 echo "🥤   Installing homebrew casks"
 
@@ -18,6 +19,7 @@ fantastical
 firefox
 google-chrome
 google-chrome-canary
+google-cloud-sdk
 imagealpha
 imageoptim
 iterm2
@@ -33,6 +35,7 @@ sip
 sketch
 transmission
 transmit4
+visual-studio-code
 '
 
 for PKG in $CASK_PKGS; do

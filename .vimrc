@@ -89,7 +89,7 @@
         autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set shiftwidth=2
     augroup END
 
-    " Lines should be less than 120 chars. Show a helpful column
+    " Lines should be less than 80 chars. Show a helpful column
     if exists('+colorcolumn')
       set colorcolumn=81
     endif
@@ -140,6 +140,9 @@
 
         " Format json using python
         map =j !python -m json.tool
+
+        " Sort lines based on length (valid numeric sort)
+        map =s ! awk '{ print length(), $0 \| "sort -n \| cut -d\\  -f2-" }'
 
         " Format xml using xmllint
         map =x !xmllint --format %
@@ -445,70 +448,6 @@
         " TODO Currently this overwrites the end of file notification. That's not helpful
     endfunction
     " }}}
-
-
-    " Comment map for blocks of code {{{
-    let s:comment_map = {
-        \   "ahk": ';',
-        \   "bash_profile": '#',
-        \   "bashrc": '#',
-        \   "bat": 'REM',
-        \   "c": '\/\/',
-        \   "conf": '#',
-        \   "cpp": '\/\/',
-        \   "css": '\/\/',
-        \   "dbml": '\/\/',
-        \   "desktop": '#',
-        \   "dockerfile": '#',
-        \   "dosini": ';',
-        \   "eml": '>',
-        \   "fstab": '#',
-        \   "go": '\/\/',
-        \   "java": '\/\/',
-        \   "javascript": '\/\/',
-        \   "javascript.jsx": '\/\/',
-        \   "js": '\/\/',
-        \   "jsx": '\/\/',
-        \   "mail": '>',
-        \   "markdown": '\/\/',
-        \   "php": '\/\/',
-        \   "profile": '#',
-        \   "python": '#',
-        \   "ruby": '#',
-        \   "scala": '\/\/',
-        \   "sh": '#',
-        \   "terraform": '#',
-        \   "tex": '%',
-        \   "toml": '#',
-        \   "ts": '\/\/',
-        \   "typescript": '\/\/',
-        \   "vim": '"',
-        \   "yaml": '#',
-        \   "zsh": '#',
-        \ }
-
-    " Toggle comments on a block of code {
-    function! ToggleComment()
-        if has_key(s:comment_map, &filetype)
-            let comment_leader = s:comment_map[&filetype]
-        if getline('.') =~ "^\\s*" . comment_leader . " "
-            " Uncomment the line
-            execute "silent s/^\\(\\s*\\)" . comment_leader . " /\\1/"
-        else
-            if getline('.') =~ "^\\s*" . comment_leader
-                " Uncomment the line
-                execute "silent s/^\\(\\s*\\)" . comment_leader . "/\\1/"
-            else
-                " Comment the line
-                execute "silent s/^\\(\\s*\\)/\\1" . comment_leader . " /"
-            end
-        end
-        else
-            echo "No comment leader found for filetype:" &filetype
-        end
-    endfunction
-    " } }}}
-
 " }}}
 "
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -520,8 +459,8 @@
     vnoremap <silent> <F4> :call ToggleMouse()<cr>
 
     " Toggle Comments
-    nnoremap <leader><Space> :call ToggleComment()<cr>
-    vnoremap <leader><Space> :call ToggleComment()<cr>
+    xmap <leader><Space>  <Plug>Commentary
+    nmap <leader><Space>  <Plug>CommentaryLine
 
     " Execute Tests (vim-test)
     nmap <silent> t<C-n> :TestNearest<CR>

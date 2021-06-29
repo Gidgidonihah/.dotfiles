@@ -11,6 +11,7 @@ known_powlet = 'powlet'
 line_length = 80
 lines_after_imports = 2
 multi_line_output = 3  # Vertical Hanging Indent
+remove_imports = [ 'from app.models.set import Set' ]
 sections = [
     'FUTURE',
     'STDLIB',
@@ -19,21 +20,33 @@ sections = [
     'FIRSTPARTY',
     'LOCALFOLDER',
 ]
-use_parentheses = true
 skip = 'owlet, protos'
 
+[tool.pylint.master]
+extension-pkg-allow-list = "dependency_injector"
+jobs = 4
+persistent = "no"
+
 [tool.pylint.format]
+good-names = [ "T","d","db","df","e","i","id","logger","ns","tz" ]
+ignore-long-lines='''
+(?x)(
+  ^\s*(\#\ )?<?https?://\S+>?$|
+  ^\s*(from\s+\S+\s+)?import\s+.+$|
+  ^\s*"\S+"$)
+'''
 max-line-length = 80
-good-names = [ "logger","i","e","ns","id","db","df","tz" ]
+single-line-if-stmt = "yes"
 
-[tool.pylint.messages_control]
+[tool.pylint.similarities]
+ignore-imports = "yes"
+
+[tool.pylint.global.messages_control]
 disable = [
-    # The next 2 are here so we can use dotenv without complaint, though we
-    # they are disabled because we shouldn't have dotenv in code, but rather use
-    # it at the CLI, or have docker-compose use the .env files.
-    # "wrong-import-position",
-    # "wrong-import-order",
-
-    # These are disabled because we intentionally leave TODOs in the code.
-    "fixme",
+    "fixme",  # We intentionally leave TODOs in the code.
+    "missing-module-docstring",  # We don't require them.
+    # Disabled so that my editor reminds me to deal with it
+    # "ungrouped-imports",  # Leave it to isort.
+    # "wrong-import-order",  # Leave it to isort.
+    # "wrong-import-position",  # Leave it to isort.
 ]

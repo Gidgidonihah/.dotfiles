@@ -136,3 +136,6 @@
 [submodule ".vim/pack/git-plugins/start/vim-toml"]
 	path = .vim/pack/git-plugins/start/vim-toml
 	url = https://github.com/cespare/vim-toml.git
+[submodule ".vim/pack/git-plugins/start/commentary"]
+	path = .vim/pack/git-plugins/start/commentary
+	url = https://tpope.io/vim/commentary.git
