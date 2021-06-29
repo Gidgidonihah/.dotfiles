@@ -17,13 +17,7 @@ function wunittest(){
 
 # Linting
 export OWLET_PYPROJECT_FILE=/Users/jweir/Sites/owlet/ci-kit/bin/python/configuration/pyproject.toml
-alias lint="isort --apply --settings-path $OWLET_PYPROJECT_FILE && black --config $OWLET_PYPROJECT_FILE ."
-
-function genApiKey(){
-  APIKEY=$(python -c 'import secrets; print(secrets.token_urlsafe(32))')
-  echo $APIKEY
-  echo $APIKEY | pbcopy
-}
+alias lint="isort --settings-path $OWLET_PYPROJECT_FILE --src . . && black --config $OWLET_PYPROJECT_FILE ."
 
 # NOTES:
 # # number of nodes in cluster
