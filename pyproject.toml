@@ -20,7 +20,7 @@ sections = [
     'FIRSTPARTY',
     'LOCALFOLDER',
 ]
-skip = 'owlet, protos'
+skip = 'owlet\/, protos'
 
 [tool.pylint.master]
 extension-pkg-allow-list = "dependency_injector"
@@ -28,20 +28,15 @@ jobs = 4
 persistent = "no"
 
 [tool.pylint.format]
-good-names = [ "T","d","db","df","e","i","id","logger","ns","tz" ]
-ignore-long-lines='''
-(?x)(
-  ^\s*(\#\ )?<?https?://\S+>?$|
-  ^\s*(from\s+\S+\s+)?import\s+.+$|
-  ^\s*"\S+"$)
-'''
+good-names = [ "T", "d", "db", "df", "e", "i", "id", "logger", "ns", "tz" ]
+ignore-long-lines = "(?x)(\n  ^\\s*(\\#\\ )?<?https?://\\S+>?$|\n  ^\\s*(from\\s+\\S+\\s+)?import\\s+.+$|\n  ^\\s*\"\\S+\"$)\n"
 max-line-length = 80
 single-line-if-stmt = "yes"
 
 [tool.pylint.similarities]
 ignore-imports = "yes"
 
-[tool.pylint.global.messages_control]
+[tool.pylint.messages_control]
 disable = [
     "fixme",  # We intentionally leave TODOs in the code.
     "missing-module-docstring",  # We don't require them.

@@ -80,6 +80,7 @@
     set title           " change the terminal's title
     set encoding=utf-8  " utf8 ftw
     set foldlevel=99    " folds should be open by default
+    set backupcopy=yes  " Fix for inotify seeing 2 changes
 
     " Full stack indenting
     augroup frontendspacing
@@ -168,10 +169,11 @@
     " }}}
     " ### Tips to Forget (or muscle memorized) {{{
         " sort python imports according to pep8
-        command! -range=% Isort :<line1>,<line2>!  isort --settings-path ~/pyproject.toml --src - -
+        command! -range=% Isort :<line1>,<line2>!  isort --settings-path ~/pyproject.toml --src . -
 
-        " Backspace disables highlighting
-        noremap <BS> :noh<CR>
+        " Backspace disables highlighting and closes quickfix window
+        noremap <BS> :noh<CR>:cclose<CR>
+
         noremap ff $zf%<CR>
 
         " Strip all trailing whitespace from a file, using \w
@@ -181,9 +183,11 @@
         nnoremap <leader>af :ALEFix<CR>
 
         " Edit the vimrc file
-        nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+        " nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
+        nnoremap <silent> <leader>vre :e $MYVIMRC<CR>
         " Source the vimrc file
-        nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+        " nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
+        nnoremap <silent> <leader>vrs :so $MYVIMRC<CR>
 
         " Open the current markdown file in MacDown
         nnoremap <silent> <leader>emd :!open -a MacDown %:p<CR>
@@ -564,12 +568,16 @@
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint'],
-    \ 'python': ['black'],
+    \ 'python': ['black', 'isort'],
     \ }
-    " TODO: get isort working properly (due to `cd` in cmd), then add as a fixer
-    " \ 'python': ['black', 'isort'],
-    let g:ale_python_black_options='--config=~/pyproject.toml'
-    let g:ale_python_pylint_options = '--rcfile=~/pyproject.toml'
+    " TODO: get isort working properly (due to `cwd` in cmd), then add as a fixer
+    " isort will set the cwd to the basename of the file
+    " https://github.com/dense-analysis/ale/blob/f0887d3e6178482255f11aa378124aef3699245f/autoload/ale/fixers/isort.vim#L30
+    " I've removed the cwd and given `--src .` to the isort options, allowing
+    " it to work, but this is very hacky and a short term solution.
+    let g:ale_python_isort_options="--settings-path=/Users/jweir/pyproject.toml --src ."
+    let g:ale_python_black_options='--config=/Users/jweir/pyproject.toml'
+    let g:ale_python_pylint_options = '--rcfile=/Users/jweir/pyproject.toml'
     let g:ale_python_pylint_change_directory=0
     let g:ale_yaml_yamllint_options='-d "{extends: default, rules: {line-length: {max: 88}}}"'
     let g:ale_python_mypy_options='--ignore-missing-imports'
@@ -624,4 +632,13 @@
     let g:minimap_toggle='<leader>mm'
     let g:minimap_highlight='VisualNOS'
 
+    " vim-grepper settings
+    map <leader>x  :GrepperGit <cword><CR> " Grep for the current word
+    " Also search for the current word with \s, but that competes for time
+    map <leader>s  :GrepperGit <cword><CR> " Grep for the current word
+
+" }}}
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" ## Testing Section (should be empty at commit) {{{
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " }}}

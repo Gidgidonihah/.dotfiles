@@ -8,7 +8,7 @@ alias cp='cp -i'
 alias mv='mv -i'
 alias ls='ls -aG'
 alias lh="ls -alh"
-alias dc='docker-compose'
+alias dc='docker compose'
 alias xdg-open="open"
 alias tf=terraform
 alias copy="tr -d '\n' | pbcopy"
@@ -41,3 +41,6 @@ unalias y 2> /dev/null
 
 # Run command without network
 alias nonet="sandbox-exec -f ~/no-network.sandbox"
+
+# Multi repo search
+# alias ggg="~/.sh/multi-repo-search.sh ~/Sites/"
