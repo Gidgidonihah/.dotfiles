@@ -5,16 +5,16 @@ DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
 # Source our helpful functions
-source "$DIR/functions.sh"
+for f in "$DIR/lib/*.sh"; do source $f; done
 
 # Brew Install packages
 . "$DIR/brew.sh"
 
+# Install Homebrew Casks
+. "$DIR/brew-licensed.sh"
+
 # Install Mac App Store Apps
 . "$DIR/mas.sh"
-
-# Install Homebrew Casks
-. "$DIR/casks.sh"
 
 # Install global NPM packages
 . "$DIR/npm.sh"

@@ -3,63 +3,86 @@
 # Brew Install packages
 echo "🥤   Installing homebrew packages"
 
-BREW_PKGS='
-awscli
-cmake
-colordiff
-ctags
-entr
-fpp
-fzf
-git
-git-secrets
-gnupg
-go
-grip
-gron
-hadolint
-helm
-hey
-hr
-httpie
-joplin
-jq
-jsonlint
-kubectx
-kubernetes-cli
-lynx
-mas
-mycli
-node
-nodeenv
-nvm
-pgcli
-pinentry-mac
-pre-commit
-python
-pyenv
-pv
-python-yq
-reminders-cli
-ripgrep
-sops
-svgo
-terminal-notifier
-thefuck
-tidy-html5
-tldr
-tree
-vim
-watch
-wget
-yamllint
-yarn
-zoom
-'
-for PKG in $BREW_PKGS; do
-    echo "🥤   Installing $PKG"
-    brew install $PKG
-done
+# Tap the cask-versions repo
+brew tap homebrew/cask-versions
 
-# Make typescript available for YCM Completion
-npm install -g typescript
+BREW_PKGS=(
+    "aerial"
+    "awscli"
+    "base"
+    "brave"
+    "cmake"
+    "colordiff"
+    "ctags"
+    "docker"
+    "entr"
+    "firefox"
+    "fpp"
+    "fzf"
+    "git"
+    "git-secrets"
+    "gnupg"
+    "go"
+    "google-chrome"
+    "google-chrome-canary"
+    "google-cloud-sdk"
+    "grip"
+    "gron"
+    "hadolint"
+    "helm"
+    "hey"
+    "hr"
+    "httpie"
+    "imagealpha"
+    "imageoptim"
+    "iterm2"
+    "joplin"
+    "jq"
+    "jsonlint"
+    "kubectx"
+    "kubernetes-cli"
+    "lynx"
+    "macdown"
+    "macvim"
+    "mas"
+    "muzzle"
+    "mycli"
+    "ngrok"
+    "node"
+    "nodeenv"
+    "nvm"
+    "parallel"
+    "pgcli"
+    "pinentry-mac"
+    "pre-commit"
+    "pv"
+    "pyenv"
+    "python"
+    "python-yq"
+    "reminders-cli"
+    "ripgrep"
+    "safari-technology-preview"
+    "sequel-pro"
+    "sip"
+    "sops"
+    "svgo"
+    "terminal-notifier"
+    "thefuck"
+    "tidy-html5"
+    "tldr"
+    "transmission"
+    "tree"
+    "vim"
+    "visual-studio-code"
+    "watch"
+    "wget"
+    "wireguard-go"
+    "yamllint"
+    "yarn"
+    "zoom"
+)
+
+multi_select_from_list "${BREW_PKGS[@]}"
+
+echo "🥤   Installing: ${selected_packages[@]}"
+brew install ${selected_packages[@]}
