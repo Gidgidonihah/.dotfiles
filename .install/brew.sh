@@ -8,6 +8,7 @@ brew tap homebrew/cask-versions
 
 # Required packages
 REQUIRED_PKGS=(
+    "gnupg"
     "mas"
     "node"
     "pinentry-mac"
@@ -29,7 +30,6 @@ BREW_PKGS=(
     "fzf"
     "git"
     "git-secrets"
-    "gnupg"
     "go"
     "google-chrome"
     "google-chrome-canary"
