@@ -236,7 +236,7 @@
     " Set Filetypes based on extension
     autocmd BufRead * silent! set ff=unix " Seriously, filetype is unix...
     autocmd BufNewFile,BufRead *.less,*.scss,*.sass set filetype=css
-    autocmd BufNewFile,BufRead *.tpl set filetype=html
+    autocmd BufNewFile,BufRead *.tpl,*.pug set filetype=html
     autocmd BufNewFile,BufRead *.txt set filetype=text
     autocmd BufNewFile,BufRead Dockerfile* set filetype=Dockerfile
 
@@ -531,8 +531,8 @@
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-    let g:ycm_server_python_interpreter = '/usr/local/bin/python3' " Interpret YCM using default python (python 3)
-    let g:ycm_python_binary_path = '/usr/local/bin/python3' " Autocomplete using default python (python 3)
+    " let g:ycm_server_python_interpreter = '/usr/local/bin/python3' " Interpret YCM using default python (python 3)
+    " let g:ycm_python_binary_path = '/usr/local/bin/python3' " Autocomplete using default python (python 3)
     map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory
@@ -561,7 +561,6 @@
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
     let g:ale_fix_on_save = 1
-    " let g:ale_fix_on_save = 0
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s (%code%) [%severity%]'
@@ -636,6 +635,13 @@
     map <leader>x  :GrepperGit <cword><CR> " Grep for the current word
     " Also search for the current word with \s, but that competes for time
     map <leader>s  :GrepperGit <cword><CR> " Grep for the current word
+
+    " vimdiff settings
+    " TODO: remap <C-j> and <C-k>
+    if &diff
+      nnoremap <expr> <C-J> ']c'
+      nnoremap <expr> <C-K> '[c'
+    endif
 
 " }}}
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

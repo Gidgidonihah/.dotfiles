@@ -426,7 +426,7 @@ defaults write com.apple.finder EmptyTrashSecurely -bool true
 defaults write com.apple.NetworkBrowser BrowseAllInterfaces -bool true
 
 # Show the ~/Library folder
-chflags nohidden ~/Library
+chflags nohidden ~/Library && xattr -d com.apple.FinderInfo ~/Library
 
 # Remove Dropbox’s green checkmark icons in Finder
 # file=/Applications/Dropbox.app/Contents/Resources/emblem-dropbox-uptodate.icns
@@ -691,7 +691,7 @@ defaults write com.apple.Safari AutoFillPasswords -bool false
 echo "🥤   Setting up iTunes"
 
 # Enable iTunes half stars
-defaults write com.apple.iTunes allow-half-stars -bool TRUE
+defaults write com.apple.music allow-half-stars -bool TRUE
 
 ###############################################################################
 # Mail                                                                        #

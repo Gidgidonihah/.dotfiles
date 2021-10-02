@@ -32,6 +32,11 @@ alias plt='owlet_pylint_tests tests/ $(find . -iname "*.py" | grep "^./tests")'
 
 # Multi repo search
 alias ggg="~/.sh/multi-repo-search.sh -b ~/Sites/owlet"
+alias ggo="ggg"
+
+
+
+
 
 # NOTES:
 # # number of nodes in cluster

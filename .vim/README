@@ -1,0 +1,14 @@
+Couple things I forgot to mention about vim that I use a lot. marks. You can
+mark a spot in your file to be able to come back to real easy like. m+mark name
+(i.e. ma ) will mark the location of the cursor. Navigate, do other things, the
+hit 'a and you’ll be back at your mark.
+The other thing that I use every once in a while is macros.
+With `.` you can redo the last command, but if you want to redo the last
+several commands together, that would be a macro.
+
+
+Also, with vim if you want to open a file and jump to a specific line:
+```sh
+vim path/to/example.omg +123
+```
+Will open example.omg and your cursor will be on line 123
