@@ -1,4 +1,5 @@
 #!/bin/bash
+# TODO: bring up to date with https://github.com/mathiasbynens/dotfiles/commits/main/.macos
 echo "🥤   Executing OSX Settings. Please enter your system password"
 
 # Close any open System Preferences panes, to prevent them from overriding

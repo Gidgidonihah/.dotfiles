@@ -1,7 +1,5 @@
 # Helpful aliases
 alias tree="tree -I \"*pyc|__pycache__\""
-alias ggo="export BASE='/Users/jweir/Sites/owlet'; ~/.sh/multi-repo-search.sh"
-alias ggom="export BASE='/Users/jweir/Sites/owlet/mobile'; ~/.sh/multi-repo-search.sh"
 alias cdo='scd owlet'
 
 # Unit testing
@@ -26,17 +24,14 @@ alias owlet_pylint_global="pylint --rcfile=${OWLET_CONFIGURATION}/pylint_global.
 alias owlet_pylint_global_oas="pylint --rcfile=${OWLET_CONFIGURATION}/pylint_global.toml --ignore=app/models"
 alias owlet_pylint_models="pylint --rcfile=${OWLET_CONFIGURATION}/pylint_generated_models.toml"
 alias owlet_pylint_tests="pylint --rcfile=${OWLET_CONFIGURATION}/pylint_tests.toml"
-alias plg='owlet_pylint_global $(find . -iname "*.py" | grep -v "^./tests")'
-alias plm='owlet_pylint_global_oas app/ $(find . -iname "*.py" | grep -v "^./tests\|^./app/models")'
-alias plt='owlet_pylint_tests tests/ $(find . -iname "*.py" | grep "^./tests")'
+alias plg='owlet_pylint_global $(find . -iname "*.py" | grep -v "^./tests\|^./app/models")'
+alias plm='owlet_pylint_global_oas $(find app/ -iname "*.py" | grep -v "^./app/models")'
+alias plt='owlet_pylint_tests tests/'
+alias owlet_pylint="plg; plm; plt"
+alias pylint_owlet="owlet_pylint"
 
 # Multi repo search
-alias ggg="~/.sh/multi-repo-search.sh -b ~/Sites/owlet"
-alias ggo="ggg"
-
-
-
-
+alias ggo="~/.sh/multi-repo-search.sh -b ~/Sites/owlet"
 
 # NOTES:
 # # number of nodes in cluster

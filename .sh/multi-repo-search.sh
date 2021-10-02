@@ -3,7 +3,7 @@
 # TODO: hide repos that had no results
 
 CMD=$EDITOR
-# BASE=~/Sites/
+BASE=~/Sites
 while getopts "pb:" OPTION; do
     case $OPTION in
       p) CMD=$PAGER ;;

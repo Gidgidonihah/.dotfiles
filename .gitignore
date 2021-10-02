@@ -5,6 +5,9 @@
 # Ingore env stuff
 .env
 env
+.pyenv
+.rubies
+.nvm
 
 # Don't want everyone seeing my private keys, now do I?
 .ssh
@@ -30,12 +33,14 @@ env
 .babel.json
 .mypy_cache
 .swp
+*tmp*
 
 # or any of this stuff
 karabiner
 *.espressostorage
 *private*
 /.CFUserTextEncoding
+/.Codefresh/
 /.DS_Store
 /.MacOSX/
 /.Trash/
@@ -52,6 +57,7 @@ karabiner
 /.electron/
 /.fpp/
 /.gem/
+/.gemrc
 /.gnupg*
 /.grip
 /.gsutil
@@ -70,7 +76,6 @@ karabiner
 /.ngrok2/
 /.node-*
 /.npm*
-/.nvm/
 /.openvpn-connect.json
 /.oracle_jre_usage/
 /.owlet
@@ -87,3 +92,4 @@ karabiner
 /.zcompdump*
 /.zoomus/
 /.zsh-update
+/.zsh_sessions/

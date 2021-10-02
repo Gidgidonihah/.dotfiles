@@ -1098,7 +1098,7 @@
 			<key>Name</key>
 			<string>Gid Solarized</string>
 			<key>Non Ascii Font</key>
-			<string>NotoMonoForPowerline 17.5</string>
+			<string>MesloLGS-NF-Regular 17.5</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>
@@ -3653,7 +3653,7 @@
 			<key>Name</key>
 			<string>Molokai</string>
 			<key>Non Ascii Font</key>
-			<string>NotoMonoForPowerline 17.5</string>
+			<string>MesloLGS-NF-Regular 17.5</string>
 			<key>Non-ASCII Anti Aliased</key>
 			<true/>
 			<key>Normal Font</key>

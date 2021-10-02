@@ -316,7 +316,7 @@
     ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.   var_export($this, true));/* */<esc>vk<k3wvwh
     ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
     ab trycatch try{  EngineName::methodName();}catch(Exception $e){  Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-    ab pdb import pdb; pdb.set_trace()<esc>
+    ab pdb import bpdb  # Do you have pdbpp installed?bpdb.set_trace()<esc>
 
     " Expand iff
     autocmd FileType python     :iabbrev <buffer> iff if:<left>
@@ -472,6 +472,8 @@
     nmap <silent> t<C-s> :TestSuite<CR>
     nmap <silent> t<C-l> :TestLast<CR>
     nmap <silent> t<C-g> :TestVisit<CR>
+    let test#strategy = "basic" " TODO: try dispatch
+    let test#python#pytest#options = '-s'
 
     " <Home> and <End> go up and down the quickfix list and wrap around
     "nnoremap <silent> <Home> :call WrapCommandNextPrev('up', 'c')<CR>

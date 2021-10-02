@@ -11,6 +11,7 @@ adobe-creative-cloud
 aerial
 bartender
 base
+brave
 choosy
 dash
 docker
@@ -59,6 +60,6 @@ enter_to_continue "Please log into google chrome and start syncing your settings
 open /Applications/Google\ Chrome.app
 confirm_to_continue "Is google chrome syncing?"
 
-enter_to_continue "Please add your accounts to Fantastical (rata, cruxcconnect, gid-gmail)"
+enter_to_continue "Please add your accounts to Fantastical (private, personal, professional, work, etc.)"
 open /Applications/Fantastical\ 2.app
 confirm_to_continue "Is google chrome syncing?"
