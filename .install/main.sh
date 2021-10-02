@@ -5,7 +5,7 @@ DIR="${BASH_SOURCE%/*}"
 if [[ ! -d "$DIR" ]]; then DIR="$PWD"; fi
 
 # Source our helpful functions
-for f in "$DIR/lib/*.sh"; do source $f; done
+for f in $(ls $DIR/lib/*.sh); do source $f; done
 
 # Brew Install packages
 . "$DIR/brew.sh"

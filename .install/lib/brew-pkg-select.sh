@@ -1,6 +1,10 @@
 #!/bin/bash
 
 getInfo() {
+    # Not the most efficient of nor error-free logic, but should be relatively
+    # unused. Always search brew, then npm, then mas. This means if you're
+    # searching for mas, well, you're fruitlessly searching brew and npm first.
+    # So be it.
     local json desc url
 
     # Exit silently if an arg was not passed
@@ -25,6 +29,11 @@ getInfo() {
             desc=$(echo $json | jq -r '.description')
             url=$(echo $json | jq -r '.homepage')
         fi
+    fi
+
+    # If that fails, try searching MAS
+    if [[ ! "$json" ]]; then
+        mas info $1 && return 0
     fi
 
     if [[ "$desc" ]]; then

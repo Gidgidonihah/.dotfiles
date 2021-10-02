@@ -6,6 +6,14 @@ echo "🥤   Installing homebrew packages"
 # Tap the cask-versions repo
 brew tap homebrew/cask-versions
 
+# Required packages
+REQUIRED_PKGS=(
+    "mas"
+    "node"
+    "pinentry-mac"
+)
+brew install ${REQUIRED_PKGS[@]}
+
 BREW_PKGS=(
     "aerial"
     "awscli"
@@ -44,16 +52,13 @@ BREW_PKGS=(
     "lynx"
     "macdown"
     "macvim"
-    "mas"
     "muzzle"
     "mycli"
     "ngrok"
-    "node"
     "nodeenv"
     "nvm"
     "parallel"
     "pgcli"
-    "pinentry-mac"
     "pre-commit"
     "pv"
     "pyenv"
