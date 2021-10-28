@@ -1170,5 +1170,6 @@ echo "Done. Note that some of these changes will require a logout/restart to tak
 echo "🥤   Setting up Startup"
 
 for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender 3"; do
+    # TODO: don't prompt if not installed.
     confirm_to_continue "Please ensure that $APP is set to start at login"
 done

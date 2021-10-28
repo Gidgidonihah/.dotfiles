@@ -6,11 +6,6 @@ echo "🥤   Executing misc steps"
 # Instal virtualenvwrapper
 pip install virtualenvwrapper
 
-# Install delivery status widget
-enter_to_continue "Install (and log into) the Delivery Status widget"
-open https://junecloud.com/software/dashboard/delivery-status.html
-confirm_to_continue "Have you installed and logged into the Delivery Status widget?"
-
 # Install github tokens
 request_github_token() {
   TYPE=$1
@@ -32,16 +27,6 @@ request_github_token() {
 }
 confirm "Would you like to set up a homebrew github token?" && request_github_token 'Homebrew'
 confirm "Would you like to set up a gren (github-tools/github-release-notes) github token?" && request_github_token 'gren' 'repo'
-
-# Setup drone tokens
-setup_drone() {
-  SERVER=$(get_input 'Enter your drone server url')
-  TOKEN=$(get_input 'Enter your drone access token')
-
-  echo "DRONE_SERVER=${SERVER}" > ~/.profile.d/private.thanos-drone-token.sh
-  echo "DRONE_TOKEN=${TOKEN}" >> ~/.profile.d/private.thanos-drone-token.sh
-}
-confirm "Would you like to set up drone?" && setup_drone
 
 # Install fonts
 curl https://raw.githubusercontent.com/powerline/fonts/master/NotoMono/Noto%20Mono%20for%20Powerline.ttf -o ~/Library/Fonts/Noto\ Mono\ for\ Powerline.ttf
