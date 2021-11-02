@@ -48,7 +48,10 @@ plugins=(
   vi-mode
   virtualenvwrapper
   yarn
-  zsh-syntax-highlighting
+  zsh-autosuggestions
+  # Trying out a different syntax highlighter
+  # zsh-syntax-highlighting
+  fast-syntax-highlighting
 )
 
 source $ZSH/oh-my-zsh.sh

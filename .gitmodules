@@ -142,3 +142,9 @@
 [submodule "/Users/jweir/.oh-my-zsh-custom/themes/powerlevel10k"]
 	path = /Users/jweir/.oh-my-zsh-custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
+[submodule ".oh-my-zsh-custom/plugins/fast-syntax-highlighting"]
+	path = .oh-my-zsh-custom/plugins/fast-syntax-highlighting
+	url = git@github.com:zdharma-continuum/fast-syntax-highlighting.git
+[submodule ".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
+	path = .oh-my-zsh-custom/plugins/zsh-autosuggestions
+	url = git@github.com:zsh-users/zsh-autosuggestions.git

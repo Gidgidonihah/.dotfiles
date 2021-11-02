@@ -9,3 +9,6 @@ export EDITOR='/usr/local/bin/vim'
 # Pager
 export LESS="-SFXR -x2"
 export PAGER=less
+
+# zsh-autosuggestions configuration
+ZSH_AUTOSUGGEST_STRATEGY=(history completion)
