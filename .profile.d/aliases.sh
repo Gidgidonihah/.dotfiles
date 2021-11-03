@@ -12,6 +12,8 @@ alias dc='docker compose'
 alias xdg-open="open"
 alias tf=terraform
 alias copy="tr -d '\n' | pbcopy"
+alias cat="bat"
+alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 
 # Get my current IP address
 alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig.
