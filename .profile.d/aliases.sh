@@ -14,10 +14,12 @@ alias tf=terraform
 alias copy="tr -d '\n' | pbcopy"
 alias cat="bat"
 alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
+alias grep="grep --exclude-dir=node_modules" # I never want to grep node modules...
+alias m=music
 
 # Get my current IP address
-alias ip="ifconfig en0 | grep inet[^6] | awk  -F\"[: \t]+\" '{print $3}'" # Get your IPv4 IP address from ifconfig.
-alias ipv6="ifconfig en0 | grep inet[^6] | awk  -F\"[ \t]+\" '{print $3}'" # Get your IPv6 IP address from ifconfig.
+alias ip="ifconfig en0 | awk '$1 == "inet" {print $2}'" # Get your IPv4 IP address from ifconfig.
+alias ipv6="ifconfig en0 | awk '$1 == "inet6" {print $2}'" # Get your IPv6 IP address from ifconfig.
 alias myip='IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && echo "My WAN/Public IP address: ${IP}"'
 
 # Tail apache logs with human readable formatting

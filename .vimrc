@@ -85,9 +85,9 @@
     " Full stack indenting
     augroup frontendspacing
         autocmd!
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set tabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set softtabstop=2
-        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,ts,yaml set shiftwidth=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,tsx,ts,yaml set tabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,tsx,ts,yaml set softtabstop=2
+        autocmd FileType markdown,html,htmldjango,css,sass,javascript,js,jsx,json,typescript,tsx,ts,yaml set shiftwidth=2
     augroup END
 
     " Lines should be less than 80 chars. Show a helpful column
@@ -569,6 +569,8 @@
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint'],
+    \ 'typescript': ['eslint'],
+    \ 'typescriptreact': ['eslint'],
     \ 'python': ['black', 'isort'],
     \ }
     " TODO: get isort working properly (due to `cwd` in cmd), then add as a fixer

@@ -10,10 +10,12 @@ NPM_PKGS=(
     "@bigcommerce/stencil-cli"
     "caniuse-cli"
     "eslint-cli"
+    "gistup"
     "http-server"
     "import-js"
     "markdown-toc"
     "npms-cli"
+    "write-good"
 )
 
 multi_select_from_list "${NPM_PKGS[@]}"

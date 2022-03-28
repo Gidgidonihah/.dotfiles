@@ -31,7 +31,7 @@
     tool = vimdiff
     stat = true
 [push]
-    default = tracking
+    default = current # Also: nothing, current, upstream, simple, matching
 [branch]
     autosetuprebase = always
 [diff]
@@ -154,6 +154,7 @@
     excludesfile = ~/.gitignore_global
     quotepath = false
     whitespace = trailing-space,space-before-tab
+	pager = diff-so-fancy | less --tabs=4 -RFX
 [init]
     templatedir = ~/.gittemplate
 [grep]
@@ -200,3 +201,5 @@
     allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     patterns = private_key
     patterns = private_key_id
+[interactive]
+	diffFilter = diff-so-fancy --patch

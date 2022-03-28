@@ -8,6 +8,7 @@ LICENSED_PKGS=(
     "bartender"
     "choosy"
     "dash"
+    "devutils"
     "dropbox"
     "fantastical"
     "paw"

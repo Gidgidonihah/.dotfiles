@@ -1,7 +1,4 @@
 function pycover(){
-    # unset AUTH_TOKEN
-    # unset THANOS_API
-    # unset OUT_DIRECTORY
     LOCATION=${1:-discover}
     echo "Running tests against $LOCATION"
     find . -iname '*.py' | entr -c -s "hr; coverage run -m --omit='*test*' --source=. unittest $LOCATION && coverage html"
@@ -32,8 +29,7 @@ function page(){
 
 function ssh-id-copy(){
     SERVER=$1;
-    CMD="cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'"
-    eval $CMD;
+    cat ~/.ssh/id_rsa.pub | ssh $SERVER 'cat >> ~/.ssh/authorized_keys'
 }
 
 shrug(){
