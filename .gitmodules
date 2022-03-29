@@ -148,3 +148,9 @@
 [submodule ".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
 	path = .oh-my-zsh-custom/plugins/zsh-autosuggestions
 	url = git@github.com:zsh-users/zsh-autosuggestions.git
+[submodule ".vim/pack/git-plugins/start/vim-minimap"]
+	path = .vim/pack/git-plugins/start/vim-minimap
+	url = git@github.com:severin-lemaignan/vim-minimap.git
+[submodule ".vim/pack/git-plugins/start/vim-go"]
+	path = .vim/pack/git-plugins/start/vim-go
+	url = https://github.com/fatih/vim-go.git

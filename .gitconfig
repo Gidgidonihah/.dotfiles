@@ -56,22 +56,18 @@
     rm = rm --ignore-unmatch
 
     # Used by other aliases
-    remoterepo = "!f() { \
-        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
-        echo $repo; \
-    }; f"
     reponame = "!f() { \
         name=$(basename $(git remote get-url origin) .git); \
         echo $name; \
     }; f"
     # Open Repo in github
-    hub = "!f() { repo=$(git remoterepo); \
+    hub = "!f() { repo=$(git reponame); \
         url=https://github.com/$repo; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"
     # Github Pull Request
     prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-        repo=$(git remoterepo); \
+        repo=$(git reponame); \
         url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"
@@ -81,7 +77,7 @@
     }; f"
 
     # Open CircleCI: opens url https://circleci.com/gh/<ORG>/<REPO>
-    cci = "!f() { repo=$(git remoterepo); \
+    cci = "!f() { repo=$(git reponame); \
         url=https://circleci.com/gh/$repo; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"
@@ -203,3 +199,4 @@
     patterns = private_key_id
 [interactive]
 	diffFilter = diff-so-fancy --patch
+	textconv = sops -d
