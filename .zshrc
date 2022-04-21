@@ -12,7 +12,7 @@ export ZSH_CUSTOM=$HOME/.oh-my-zsh-custom
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
 # See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
-DEFAULT_USER="jweir"
+DEFAULT_USER="jason"
 export VIRTUAL_ENV_DISABLE_PROMPT=1 # Disable default virtualenv ps1 (replaced w/ agnoster)
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
