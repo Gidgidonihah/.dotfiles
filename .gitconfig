@@ -1,7 +1,7 @@
 [user]
     name = Jason Weir
-    email = jweir@owletcare.com
-    signingkey = 34057365
+    email = jason@rata.com
+	signingkey = C889DF5C
 [color]
     branch = auto
     diff = auto

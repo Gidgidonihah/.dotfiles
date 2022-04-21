@@ -139,8 +139,8 @@
 [submodule ".vim/pack/git-plugins/start/vim-grepper"]
 	path = .vim/pack/git-plugins/start/vim-grepper
 	url = https://github.com/mhinz/vim-grepper.git
-[submodule "/Users/jweir/.oh-my-zsh-custom/themes/powerlevel10k"]
-	path = /Users/jweir/.oh-my-zsh-custom/themes/powerlevel10k
+[submodule ".oh-my-zsh-custom/themes/powerlevel10k"]
+	path = .oh-my-zsh-custom/themes/powerlevel10k
 	url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".oh-my-zsh-custom/plugins/fast-syntax-highlighting"]
 	path = .oh-my-zsh-custom/plugins/fast-syntax-highlighting

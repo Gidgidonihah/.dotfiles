@@ -9,7 +9,7 @@ fi
 # just use homebrew's implementation. We do that right away anyway.
 # Install Homebrew
 echo "Installing HomeBrew (and Xcode CLI tools)"
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
 # Sparse clone of install scripts to /tmp
 # See https://stackoverflow.com/questions/600079/how-do-i-clone-a-subdirectory-only-of-a-git-repository/52269934#52269934

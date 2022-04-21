@@ -233,7 +233,7 @@ defaults write NSGlobalDomain AppleMetricUnits -bool false
 # Set the timezone; see `sudo systemsetup -listtimezones` for other values
 sudo systemsetup -settimezone "America/Denver" > /dev/null
 
-# Stop iTunes from responding to the keyboard media keys
+# Stop Music from responding to the keyboard media keys
 # launchctl unload -w /System/Library/LaunchAgents/com.apple.rcd.plist 2> /dev/null
 
 # Keyboard: remap caps lock to control
@@ -537,7 +537,7 @@ for APP in \
   'Firefox' \
   'SPACER' \
   'Spark' \
-  'iTunes' \
+  'Music' \
   'Pocket' \
   'Reeder' \
   'Tweetbot' \
@@ -687,11 +687,11 @@ defaults write com.apple.Safari ShowIconsInTabs -bool true
 defaults write com.apple.Safari AutoFillPasswords -bool false
 
 ###############################################################################
-# iTunes                                                                      #
+# Music                                                                      #
 ###############################################################################
-echo "🥤   Setting up iTunes"
+echo "🥤   Setting up Music"
 
-# Enable iTunes half stars
+# Enable Music half stars
 defaults write com.apple.music allow-half-stars -bool TRUE
 
 ###############################################################################
