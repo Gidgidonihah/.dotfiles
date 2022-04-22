@@ -3,7 +3,7 @@ export FPP_DISABLE_SPLIT=false
 
 # Editor
 alias vi=vim
-export EDITOR='/usr/local/bin/vim'
+export EDITOR="$HOMEBREW_PREFIX/bin/vim"
 
 
 # Pager

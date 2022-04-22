@@ -533,8 +533,8 @@
         \ }
     let g:ycm_autoclose_preview_window_after_completion = 1
     let g:ycm_autoclose_preview_window_after_insertion = 1
-    " let g:ycm_server_python_interpreter = '/usr/local/bin/python3' " Interpret YCM using default python (python 3)
-    " let g:ycm_python_binary_path = '/usr/local/bin/python3' " Autocomplete using default python (python 3)
+    " let g:ycm_server_python_interpreter = '$HOMEBREW_PREFIX/bin/python3' " Interpret YCM using default python (python 3)
+    " let g:ycm_python_binary_path = '$HOMEBREW_PREFIX/bin/python3' " Autocomplete using default python (python 3)
     map <leader>g  :YcmCompleter GoToDefinitionElseDeclaration<CR> " Goto definition
 
     "Remapping CtrlP to my muscle memory

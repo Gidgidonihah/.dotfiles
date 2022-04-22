@@ -1,16 +1,16 @@
 # Setup fzf
 # ---------
-if [[ ! "$PATH" == */usr/local/opt/fzf/bin* ]]; then
-  export PATH="$PATH:/usr/local/opt/fzf/bin"
+if [[ ! "$PATH" == *$HOMEBREW_PREFIX/opt/fzf/bin* ]]; then
+  export PATH="$PATH:$HOMEBREW_PREFIX/opt/fzf/bin"
 fi
 
 # Auto-completion
 # ---------------
-[[ $- == *i* ]] && source "/usr/local/opt/fzf/shell/completion.zsh" 2> /dev/null
+[[ $- == *i* ]] && source "$HOMEBREW_PREFIX/opt/fzf/shell/completion.zsh" 2> /dev/null
 
 # Key bindings
 # ------------
-source "/usr/local/opt/fzf/shell/key-bindings.zsh"
+source "$HOMEBREW_PREFIX/opt/fzf/shell/key-bindings.zsh"
 
 # TODO: put all this below in a shared config for both bash and zsh
 # rather than have to duplicate them.

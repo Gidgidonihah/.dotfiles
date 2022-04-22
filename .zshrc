@@ -56,6 +56,9 @@ plugins=(
   fast-syntax-highlighting
 )
 
+# Source homebrew before everything
+source ~/.profile.d/brew.sh
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration

@@ -1,1 +1,1 @@
-complete -C '/usr/local/bin/aws_completer' aws
+complete -C "$HOMEBREW_PREFIX/bin/aws_completer" aws

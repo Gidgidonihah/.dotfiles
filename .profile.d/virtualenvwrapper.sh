@@ -1,1 +1,2 @@
-/usr/local/bin/virtualenvwrapper.sh
+VIRTUALENVWRAPPER_PYTHON=python3
+source $HOMEBREW_PREFIX/bin/virtualenvwrapper.sh

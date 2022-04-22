@@ -1,7 +1,7 @@
 [user]
     name = Jason Weir
     email = jason@rata.com
-	signingkey = C889DF5C
+    signingkey = 8495D340
 [color]
     branch = auto
     diff = auto
@@ -171,7 +171,7 @@
 [commit]
     gpgsign = true
 [gpg]
-    program = /usr/local/bin/gpg
+    program = /opt/homebrew/bin/gpg
 [diff "sopsdiffer"]
     textconv = sops -d
 [url "ssh://git@github.com"]

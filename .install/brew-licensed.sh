@@ -25,7 +25,7 @@ brew install ${selected_packages[@]}
 
 if [[ " ${selected_packages[*]} " =~ " adobe-creative-cloud " ]]; then
     enter_to_continue "Please install Adobe Creative Cloud"
-    open /usr/local/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
+    open $HOMEBREW_PREFIX/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
     confirm_to_continue "Have you installed all Adobe CC apps?"
 fi
 
