@@ -1098,9 +1098,11 @@ defaults write com.kapeli.dashdoc shouldShowStatusIcon -bool false
 ###############################################################################
 
 # Point Joplin to the right location
-joplin config sync.interval 60
-joplin config sync.2.path ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/App\ Sync/Joplin/
-joplin config sync.target 2
+if command -v joplin &> /dev/null; then
+    joplin config sync.interval 60
+    joplin config sync.2.path ${HOME}/Library/Mobile\ Documents/com~apple~CloudDocs/App\ Sync/Joplin/
+    joplin config sync.target 2
+fi
 
 ###############################################################################
 # Icons                                                                    #

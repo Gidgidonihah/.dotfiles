@@ -8,10 +8,12 @@ brew tap homebrew/cask-versions
 
 # Required packages
 REQUIRED_PKGS=(
+    "cmake"
     "gnupg"
     "mas"
     "node"
     "pinentry-mac"
+    "python"
 )
 brew install ${REQUIRED_PKGS[@]}
 
@@ -21,11 +23,9 @@ BREW_PKGS=(
     "base"
     "bat"
     "brave"
-    "cmake"
     "colordiff"
     "ctags"
     "diff-so-fancy"
-    "docker"
     "entr"
     "fd"
     "firefox"
@@ -60,7 +60,6 @@ BREW_PKGS=(
     "litecli"
     "lynx"
     "macdown"
-    "macvim"
     "muzzle"
     "mycli"
     "ngrok"
@@ -71,10 +70,8 @@ BREW_PKGS=(
     "pre-commit"
     "pv"
     "pyenv"
-    "python"
     "python-yq"
     "redpen"
-    "reminders-cli"
     "ripgrep"
     "safari-technology-preview"
     "sequel-pro"
@@ -87,7 +84,6 @@ BREW_PKGS=(
     "tldr"
     "transmission"
     "tree"
-    "vim"
     "visual-studio-code"
     "watch"
     "wget"
@@ -96,6 +92,9 @@ BREW_PKGS=(
     "yamllint"
     "yarn"
     "zoom"
+    "homebrew/cask/macvim"
+    "homebrew/cask/docker"
+    "keith/formulae/reminders-cli"
 )
 
 multi_select_from_list "${BREW_PKGS[@]}"
