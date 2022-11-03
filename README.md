@@ -22,11 +22,17 @@ You may want to copy and use https if you don't have access.
 
 ### Vim tweaks, updates and things to try
 
-* Try replacing the pulse line function with https://github.com/inside/vim-search-pulse
-* Try a new line commenting function:
-    * https://github.com/tpope/vim-commentary
-    * https://github.com/tomtom/tcomment_vim
-* Take a look at incorporating parts of these
-    * https://github.com/L0stSoul/vim-config
-    * https://github.com/victorvoid/vim-frontend
-    * https://dougblack.io/words/a-good-vimrc.html
+- [ ] See .config/nvim/init.vim
+- [ ] Is there a better way?
+    * https://github.com/nicolashery/mac-dev-setup
+    * https://github.com/thoughtbot/laptop
+    * https://github.com/adamisntdead/DevMyMac
+- [ ] Be secure
+    * https://github.com/drduh/macOS-Security-and-Privacy-Guide
+- [ ] Find a clipboard manager you like at a good price point
+    * https://maccy.app
+    * https://pasteapp.io
+    * https://techpp.com/2022/01/11/best-clipboard-managers-for-mac/#1_Paste_-_Clipboard_Manager
+    * https://www.slant.co/topics/2622/~best-clipboard-managers-for-mac
+- [ ] Make things more awesome
+    * https://github.com/iCHAIT/awesome-macOS

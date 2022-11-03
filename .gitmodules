@@ -1,8 +1,5 @@
-[submodule ".vim/bundle/ctrlp.vim"]
-	path = .vim/pack/git-plugins/start/ctrlp.vim
-	url = https://github.com/ctrlpvim/ctrlp.vim.git
 [submodule ".vim/bundle/YouCompleteMe"]
-	path = .vim/pack/git-plugins/start/YouCompleteMe
+	path = .vim/pack/git-plugins/opt/YouCompleteMe
 	url = https://github.com/Valloric/YouCompleteMe.git
 [submodule ".vim/bundle/editorconfig-vim"]
 	path = .vim/pack/git-plugins/start/editorconfig-vim
@@ -70,9 +67,6 @@
 [submodule ".vim/bundle/dracula-theme"]
 	path = .vim/pack/git-plugins/start/dracula-theme
 	url = https://github.com/dracula/vim.git
-[submodule ".vim/bundle/vim-ctrlp-autoignore"]
-	path = .vim/bundle/vim-ctrlp-autoignore
-	url = https://github.com/ludovicchabant/vim-ctrlp-autoignore.git
 [submodule ".gittemplate"]
 	path = .gittemplate
 	url = https://github.com/CruxConnect/git_template.git
@@ -154,3 +148,15 @@
 [submodule ".vim/pack/git-plugins/start/vim-go"]
 	path = .vim/pack/git-plugins/start/vim-go
 	url = https://github.com/fatih/vim-go.git
+[submodule ".vim/pack/git-plugins/start/vim-plist"]
+	path = .vim/pack/git-plugins/start/vim-plist
+	url = https://github.com/darfink/vim-plist.git
+[submodule ".vim/pack/git-plugins/opt/coc.nvim"]
+	path = .vim/pack/git-plugins/opt/coc.nvim
+	url = https://github.com/neoclide/coc.nvim.git
+[submodule ".vim/pack/git-plugins/start/fzf.vim"]
+	path = .vim/pack/git-plugins/start/fzf.vim
+	url = https://github.com/junegunn/fzf.vim.git
+[submodule ".vim/pack/git-plugins/opt/toggleterm.nvim"]
+	path = .vim/pack/git-plugins/opt/toggleterm.nvim
+	url = https://github.com/akinsho/toggleterm.nvim
