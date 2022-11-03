@@ -20,7 +20,7 @@ function gi(){
     git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
 function vig(){
-    noglob vim `noglob git grep -il "$@" | tr "\n" " "`
+    noglob nvim `noglob git grep -il "$@" | tr "\n" " "`
 }
 
 function page(){

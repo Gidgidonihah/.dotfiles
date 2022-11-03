@@ -6,7 +6,7 @@ alias please='sudo'
 alias rm='rm -i'
 alias cp='cp -i'
 alias mv='mv -i'
-alias ls='ls -aG'
+alias ls='ls -AG'
 alias lh="ls -alh"
 alias dc='docker compose'
 alias xdg-open="open"
@@ -16,6 +16,7 @@ alias cat="bat"
 alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}'"
 alias grep="grep --exclude-dir=node_modules" # I never want to grep node modules...
 alias m=music
+alias fd="fd -H" # Always include searching for .hidden files
 
 # Get my current IP address
 alias ip="ifconfig en0 | awk '$1 == "inet" {print $2}'" # Get your IPv4 IP address from ifconfig.
@@ -28,13 +29,16 @@ alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
 # get image dimensions
 alias imgdim='sips -g pixelHeight -g pixelWidth $1'
 
-# # User specific aliases and functions
-alias gi='git'
-alias gti='git'
+# User specific aliases and functions
 alias grm='git rm'
-alias tgit='git'
 alias ping="ping -c4"
 alias stfp="git status | fpp"
+
+# Typo aliases
+alias gi='git'
+alias gti='git'
+alias tgit='git'
+alias rspect='rspec'
 
 # SSH to common servers
 alias sshm='ssh 192.168.1.50'
@@ -48,3 +52,13 @@ alias nonet="sandbox-exec -f ~/no-network.sandbox"
 
 # Multi repo search
 # alias ggg="~/.sh/multi-repo-search.sh ~/Sites/"
+
+# Facbook path picker is silly
+alias fpp="fpp --non-interactive"
+
+# Officially switching over to neovim
+alias vvim="/usr/local/bin/vim"
+alias vim="nvim"
+
+# Open vim without a user profile
+alias uvim="vi -u NONE"
