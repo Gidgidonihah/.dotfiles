@@ -160,3 +160,9 @@
 [submodule ".vim/pack/git-plugins/opt/toggleterm.nvim"]
 	path = .vim/pack/git-plugins/opt/toggleterm.nvim
 	url = https://github.com/akinsho/toggleterm.nvim
+[submodule ".vim/pack/git-plugins/start/vim-fold-rspec"]
+	path = .vim/pack/git-plugins/start/vim-fold-rspec
+	url = git@github.com:rlue/vim-fold-rspec.git
+[submodule "/Users/jason/.vim/pack/git-plugins/opt/copilot.nvim"]
+	path = /Users/jason/.vim/pack/git-plugins/opt/copilot.nvim
+	url = https://github.com/github/copilot.vim
