@@ -34,11 +34,13 @@ alias grm='git rm'
 alias ping="ping -c4"
 alias stfp="git status | fpp"
 
+# k8s aliases
+alias k=kubectl
+alias kx=kubectx
+alias kns=kubens
+
 # Typo aliases
-alias gi='git'
-alias gti='git'
-alias tgit='git'
-alias rspect='rspec'
+# See typos.sh
 
 # SSH to common servers
 alias sshm='ssh 192.168.1.50'
@@ -62,3 +64,9 @@ alias vim="nvim"
 
 # Open vim without a user profile
 alias uvim="vi -u NONE"
+
+# Give me a uuid quick and easy to my clipboard
+alias uuid='uuidgen | tr -d "\n" | tr "[:upper:]" "[:lower:]" | pbcopy'
+
+# Pylint should use my config by default
+alias pylint="pylint --rcfile=/Users/jason/pyproject.toml"

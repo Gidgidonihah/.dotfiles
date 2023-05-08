@@ -13,14 +13,15 @@ function retailcomic(){
 }
 
 function gitick(){
-    hr; git ick "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
+    # Ignoring db/ because it's often filled with loads of db data and often useless
+    hr; git ick "$@" -- ':(exclude)db/' | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
 alias gg='noglob gitick' # Overwrite a possible default alias for gg from the oh-my-zsh git plugin
 function gi(){
     git ack "$@" | sed -e "s/\(^[a-zA-Z].*\)/`echo -e '\033[1;34m'`\1`echo -e '\033[0m'`/" | $PAGER
 }
 function vig(){
-    noglob nvim `noglob git grep -il "$@" | tr "\n" " "`
+    noglob nvim `noglob git grep -Iil "$@" | tr "\n" " "`
 }
 
 function page(){
