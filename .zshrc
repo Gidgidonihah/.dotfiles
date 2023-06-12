@@ -33,27 +33,63 @@ DISABLE_UNTRACKED_FILES_DIRTY="true"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
+  # TODO:
+  fancy-ctrl-z  # TODO @jweir: why is this not working? I WANT it!
+  notify # TODO @jweir: perhaps try built in bgnotify instead?
+
+  # Trying out
+  frum # Ruby version manager
+
+  # Removed, but want a reference for now
+  # asdf # Man, ASDF sucks. I don't want to use it ever again.
+  # chruby Trying frum instead. All in 1 and whatnot
+  # pyenv
+
+  # Take a look at and maybe add?
+  # ssh-agent
+  # gpg-agent
+  # keychain
+  # jump
+  # jira
+  # systemadmin
+  # git-auto-fetch
+  # genpass
+  # branch
+  # bgnotify
+
+  # Installed and loving them
+  alias-finder
   aliases
+  aws
+  catimg
   colored-man-pages
+  command-not-found
+  copybuffer
+  cp
   docker
   docker-compose
   emoji
+  extract
+  fast-syntax-highlighting
   gcloud
   git
+  git-extras
+  httpie
+  isodate
+  kubectl
   kubectx
-  notify
-  poetry
+  last-working-dir
   macos
-  # pyenv
+  poetry
+  python
+  rsync
   scd
   thefuck
   vi-mode
   virtualenvwrapper
   yarn
   zsh-autosuggestions
-  # Trying out a different syntax highlighter
-  # zsh-syntax-highlighting
-  fast-syntax-highlighting
+
 )
 
 # Source homebrew before everything
