@@ -1,0 +1,15 @@
+// vim: filetype=jsonc
+{
+  "diagnostic": {
+    "displayByAle": true,
+  },
+  "pyright": {
+    "runLinting": false,
+    "disableDiagnostics": true,
+  },
+  "python": {
+    "linting": {
+      "enabled": false,
+    },
+  },
+}
