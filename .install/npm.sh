@@ -13,9 +13,10 @@ NPM_PKGS=(
     "gistup"
     "http-server"
     "import-js"
+    "localtunnel"
     "markdown-toc"
     "npms-cli"
-    "write-good"
+    # "write-good" It seems to be more annoying than anything. Especially in docs.
 )
 
 multi_select_from_list "${NPM_PKGS[@]}"

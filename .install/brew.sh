@@ -1,4 +1,6 @@
 #!/bin/bash
+source lib/functions.sh
+source lib/brew-pkg-select.sh
 
 # Brew Install packages
 echo "🥤   Installing homebrew packages"
@@ -9,6 +11,7 @@ brew tap homebrew/cask-versions
 # Required packages
 REQUIRED_PKGS=(
     "cmake"
+    "diff-so-fancy"
     "gnupg"
     "mas"
     "node"
@@ -18,6 +21,7 @@ REQUIRED_PKGS=(
 brew install ${REQUIRED_PKGS[@]}
 
 BREW_PKGS=(
+    # TODO @jweir: document what each is so I don't have to remember why I keep them around
     "aerial"
     "awscli"
     "base"
@@ -25,7 +29,6 @@ BREW_PKGS=(
     "brave"
     "colordiff"
     "ctags"
-    "diff-so-fancy"
     "entr"
     "fd"
     "firefox"
@@ -35,9 +38,10 @@ BREW_PKGS=(
     "gh"
     "git"
     "git-secrets"
+    "git-extras"
     "go"
     "google-chrome"
-    "google-chrome-canary"
+    # "google-chrome-canary"
     "google-cloud-sdk"
     "gping"
     "grip"
@@ -47,54 +51,56 @@ BREW_PKGS=(
     "hey"
     "hr"
     "httpie"
-    "imagealpha"
-    "imageoptim"
+    # "imagealpha"
+    # "imageoptim"
     "iredis"
     "iterm2"
-    "jid"
-    "joplin"
+    # "jid"
+    # "joplin"
     "jq"
     "jsonlint"
     "kubectx"
     "kubernetes-cli"
     "litecli"
-    "lynx"
+    # "lynx"
     "macdown"
-    "muzzle"
+    # "muzzle"
     "mycli"
-    "ngrok"
-    "nodeenv"
+    # "ngrok" # Replaced with localtunnel via npm
+    # "nodeenv"
+    "nvim"
     "nvm"
-    "parallel"
+    # "parallel"
     "pgcli"
-    "pre-commit"
+    # "pre-commit"
     "pv"
     "pyenv"
     "python-yq"
     "redpen"
     "ripgrep"
-    "safari-technology-preview"
+    # "safari-technology-preview"
     "sequel-pro"
-    "sip"
-    "sops"
+    # "sip"
+    # "sops"
     "svgo"
     "terminal-notifier"
     "thefuck"
     "tidy-html5"
     "tldr"
-    "transmission"
+    # "transmission"
     "tree"
+    "vimr"
     "visual-studio-code"
     "watch"
     "wget"
-    "wireguard-go"
-    "yadm"
+    # "wireguard-go"
+    # "yadm" Yet Another Dotfiles Manager. Should I use this?
     "yamllint"
     "yarn"
     "zoom"
-    "homebrew/cask/macvim"
+    "homebrew/cask/macvim" # Never installs properly. Also
     "homebrew/cask/docker"
-    "keith/formulae/reminders-cli"
+    "keith/formulae/reminders-cli" # Do I actually use this?
 )
 
 multi_select_from_list "${BREW_PKGS[@]}"

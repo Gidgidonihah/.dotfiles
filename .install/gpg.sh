@@ -2,6 +2,7 @@
 
 # Set up GPG
 echo "🥤   Setting up GPG"
+source lib/functions.sh
 
 EMAIL=$(get_input 'Email to use for GPG')
 NAME='Jason Weir'
