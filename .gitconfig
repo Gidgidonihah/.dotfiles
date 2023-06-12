@@ -55,9 +55,14 @@
     fp = push --force-with-lease
     rm = rm --ignore-unmatch
 
+    # Used to copy the last commit message because github reformats like a butt
+    cplm = "!f() { \
+        git log HEAD^.. | grep '^ ' | sed 's/^ *//' | pbcopy; \
+    }; f"
+
     # Used by other aliases
     remoterepo = "!f() { \
-        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com:\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com.\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
         echo $repo; \
     }; f"
     # Used by other aliases
@@ -163,6 +168,7 @@
     pager = diff-so-fancy | less --tabs=4 -RFX
 [init]
     templatedir = ~/.gittemplate
+	defaultBranch = main
 [grep]
     lineNumber = true
 [branch]
