@@ -11,6 +11,8 @@ env
 
 # Don't want everyone seeing my private keys, now do I?
 .ssh
+.copilot-cli-access-token
+.yarnrc.yml
 
 # I don't need to back up history files
 *history
@@ -18,6 +20,7 @@ env
 *hst
 .bash_sessions
 .scdalias.zsh
+.undodir*
 
 # or info files
 *shell
@@ -25,6 +28,9 @@ env
 
 # or vim spell files (don't remember saved words)
 .vim/spell/
+
+# And I don't use vscode
+.vscode
 
 # or cache files
 *.pyc
@@ -34,8 +40,11 @@ env
 .mypy_cache
 .swp
 *tmp*
+.solargraph/cache
+.yarn
 
 # or any of this stuff
+.wget-hsts
 karabiner
 *.espressostorage
 *private*
