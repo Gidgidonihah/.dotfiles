@@ -53,9 +53,9 @@ echo "Be sure to check the box to save the passphrase to your keychain or you wi
 open https://github.com/settings/keys
 
 # Set github to sign with gpg
-git config --global gpg.program $(which gpg)
-git config --global user.signingkey $KEY
-git config --global commit.gpgsign true
+git config --file ~/.gitconfig.local.inc gpg.program $(which gpg)
+git config --file ~/.gitconfig.local.inc user.signingkey $KEY
+git config --file ~/.gitconfig.local.inc commit.gpgsign true
 
 # clean up left over files
 rm -f /tmp/gpg-key-script*

@@ -1,7 +1,10 @@
+# NOTE: Some of these values are overriden, such as user.email, user.signingkey,
+# gpg.program, etc.
+# See the bottom of the file for those overrides
+
 [user]
     name = Jason Weir
     email = jason@rata.com
-    signingkey = 8495D340
 [color]
     branch = auto
     diff = auto
@@ -221,3 +224,11 @@
     smudge = git-lfs smudge -- %f
     process = git-lfs filter-process
     required = true
+
+# Include local uncommitted changes (signing key, gpg.program, etc.)
+[includeIf "gitdir:~/"]
+    path = ~/.gitconfig.local.inc
+
+# Include local overrides for termly (user)
+[includeIf "gitdir:~/Sites/termly/"]
+    path = ~/Sites/termly/.gitconfig.inc
