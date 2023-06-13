@@ -7,6 +7,7 @@
 env
 .pyenv
 .rubies
+.frum
 .nvm
 
 # I override some git config settings for each machine, so don't commit those
