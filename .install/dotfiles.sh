@@ -9,6 +9,6 @@ git clone --recurse-submodules -j8 git@github.com:Gidgidonihah/.dotfiles.git ~/.
 mv -f ~/.dotfiles/* ~/.dotfiles/.* ~/
 rmdir ~/.dotfiles
 
-cd ~/.vim/pack/git-plugins/start/YouCompleteMe
+cd ~/.vim/pack/git-plugins/opt/YouCompleteMe
 ./install.py
 cd -
