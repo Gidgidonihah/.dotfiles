@@ -1,0 +1,6 @@
+---
+UtilityFunction:
+  public_methods_only: true
+
+FeatureEnvy:
+  enabled: false
