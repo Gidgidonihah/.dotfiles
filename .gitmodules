@@ -97,9 +97,6 @@
 [submodule ".vim/bundle/typescript-vim"]
 	path = .vim/pack/git-plugins/start/typescript-vim
 	url = https://github.com/leafgarland/typescript-vim.git
-[submodule ".vim/bundle/vim-gdscript3"]
-	path = .vim/pack/git-plugins/start/vim-gdscript3
-	url = https://github.com/calviken/vim-gdscript3.git
 [submodule ".vim/bundle/vim-mustache-handlebars"]
 	path = .vim/bundle/vim-mustache-handlebars
 	url = https://github.com/mustache/vim-mustache-handlebars.git
