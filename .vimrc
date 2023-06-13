@@ -28,6 +28,10 @@
 "      Custom Mappings
 "      Plugin Settings
 "
+"   See Also:
+"      ~/.config/nvim/init.vim
+"
+"
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " ## Help {{{
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -89,7 +93,8 @@
     set encoding=utf-8  " utf8 ftw
     set foldlevel=99    " folds should be open by default
     set backupcopy=yes  " Fix for inotify seeing 2 changes
-    set textwidth=90    " Up from the default of 80. Be sure to adjust the colorcolumn as well
+    set textwidth=88    " Up from the default of 80. Be sure to adjust the colorcolumn as well
+    set mouse=          " Disable mouse mode by default
 
     " Full stack indenting
     augroup frontendspacing
@@ -110,7 +115,7 @@
 
     " Lines should be less than 90 chars. Show a helpful column
     if exists('+colorcolumn')
-      set colorcolumn=91
+      set colorcolumn=89
     endif
 
     " ### Searching
@@ -143,11 +148,8 @@
         " Git grep for the word under cursor
         nnoremap <leader>a :!gg<Space><c-r><c-W>
 
-        " Yank/paste to the OS clipboard with <leader>y and <leader>p
-        nnoremap <leader>y "+y
-        nnoremap <leader>Y "+yy
-        nnoremap <leader>p "+p
-        nnoremap <leader>P "+P
+        " Yank to the OS clipboard with <leader>y
+        map <leader>y "+y
 
         " Use <leader>d (or <leader>dd or <leader>dj or 20<leader>dd) to delete a line without adding it to the yanked stack
         nnoremap <silent> <leader>d "_d
@@ -202,7 +204,7 @@
 
         " Edit the vimrc file
         " nnoremap <silent> <leader>ev :e $MYVIMRC<CR>
-        nnoremap <silent> <leader>vre :e $MYVIMRC<CR>
+        nnoremap <silent> <leader>vre :e ~/.vimrc<CR>
         " Source the vimrc file
         " nnoremap <silent> <leader>sv :so $MYVIMRC<CR>
         nnoremap <silent> <leader>vrs :so $MYVIMRC<CR>
@@ -321,13 +323,14 @@
     set linebreak
 
     " Show trailing whitespace, but don't be annoying about it
-    highlight ExtraWhitespace ctermbg=red guibg=red
-    autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
-    match ExtraWhitespace /\s\+$/
-    autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
-    autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
-    autocmd InsertLeave * match ExtraWhitespace /\s\+$/
-    autocmd BufWinLeave * call clearmatches()
+    " Actually, don't show it because I clear it on save anyway
+    " highlight ExtraWhitespace ctermbg=red guibg=red
+    " autocmd ColorScheme * highlight ExtraWhitespace ctermbg=red guibg=red
+    " match ExtraWhitespace /\s\+$/
+    " autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+    " autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+    " autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+    " autocmd BufWinLeave * call clearmatches()
 
     " Hilight debugger blocks
     highlight jweir ctermfg=168 guifg=#d33682
@@ -352,8 +355,9 @@
     ab dbel /* TODO: @jweir Remove this dbel block */error_log('jweir: '.   var_export($this, true));/* */<esc>vk<k3wvwh
     ab elt error_log('jweir: '.__METHOD__.'   ·   ' . __FILE__.' +'.__LINE__); // TODO: @jweir remove this debug trace<esc>
     ab trycatch try{  EngineName::methodName();}catch(Exception $e){  Sat_Lib_ResponseMessage::getInstance()->addError($e->getMessage());}<esc>v<v2k<k6wvwh
-    ab pdb import pdb  # Do you have pdbpp installed?pdb.set_trace()<esc>
-    ab ppdb import bpdb  # Do you have pdbpp installed?bpdb.set_trace()<esc>
+    ab pdb import bpdb  # Do you have pdbpp installed?bpdb.set_trace()<esc>
+    ab vpdb import pdb  # Do you have pdbpp installed?pdb.set_trace()<esc>
+    autocmd FileType ruby,rb ab pdb binding.pry<esc>
     ab TODO: TODO @jweir:
 
     " Expand iff
@@ -589,6 +593,7 @@
     else
         packadd coc.nvim
         packadd toggleterm.nvim
+        " packadd copilot.nvim # Conflicts with airline
         lua require("user.toggleterm")
 
         " =====================================================
@@ -792,9 +797,11 @@
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
     let g:ale_fix_on_save = 1
+    let g:ale_fix_on_save = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s (%code%) [%severity%]'
+    let g:ale_writegood_options = '--no-adverb --no-tooWordy --no-passive --no-thereIs'
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
@@ -815,7 +822,7 @@
     let g:ale_python_black_options='--config=/Users/jason/pyproject.toml'
     let g:ale_python_pylint_options = '--rcfile=/Users/jason/pyproject.toml'
     let g:ale_python_pylint_change_directory=0
-    let g:ale_yaml_yamllint_options='-d "{extends: default, rules: {line-length: {max: 88}}}"'
+    let g:ale_yaml_yamllint_options='-c /Users/jason/.yamllint'
     let g:ale_python_mypy_options='--ignore-missing-imports'
     let g:ale_writegood_options='--no-passive'
 
