@@ -2,7 +2,7 @@
 line-length = 88
 safe = true
 target-version = ['py310']
-exclude = '/(\.git|protos)/'
+exclude = '/(\.git)/'
 
 [tool.isort]
 force_single_line = true
@@ -14,7 +14,6 @@ sections = [
     'FUTURE',
     'STDLIB',
     'THIRDPARTY',
-    'POWLET',
     'FIRSTPARTY',
     'LOCALFOLDER',
 ]
@@ -23,9 +22,18 @@ use_parentheses = true
 [tool.pylint.master]
 extension-pkg-allow-list = "dependency_injector"
 fail-on = "I"  # Fail on informational (e.g. useless-suppression).
-jobs = 4
 persistent = "no"
 init-hook='import sys; sys.path.append(".")'
+
+# Disabled because doesn't seem to be correctly working. Figure that out.
+# # load-plugins='pylint.extensions.docparams'
+# # [tool.pylint.basic]
+# # no-docstring-rgx='^(?!__init__$)_'
+
+[tool.pylint.typecheck]
+ignored-classes = [
+    "scoped_session" # SQLAlchemy false positives
+]
 
 [tool.pylint.format]
 good-names = [ "T", "d", "db", "df", "e", "i", "id", "logger", "ns", "tz" ]
@@ -35,10 +43,10 @@ ignore-long-lines='''
   ^\s*(from\s+\S+\s+)?import\s+.+$|
   ^\s*"\S+"$)
 '''
-# Note this is intentionally different than the black and isort settings. We
-# want a "soft" limit of 80. Let the tools try to get to within 80 where they
-# can, but don't let pylint complain where it can't.
-max-line-length = 88
+# Note this is intentionally different than the black and isort settings. We want a "soft"
+# limit of 100. Let black be in charge of managing line length until it gets out of hand
+# an pylint needs to complain.
+max-line-length = 100
 single-line-if-stmt = "yes"
 
 [tool.pylint.similarities]
@@ -56,3 +64,6 @@ disable = [
     "wrong-import-order",  # Leave it to isort.
     "wrong-import-position",  # Leave it to isort.
 ]
+
+[tool.bandit]
+exclude_dirs = ["tests"]
