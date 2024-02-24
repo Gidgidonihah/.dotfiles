@@ -1,7 +1,7 @@
 #!/bin/zsh
 # This hook is sourced after a new virtualenv is activated.
 
-pip install bpython pylint black isort pytest coverage bandit poetry pytest-only mypy pdbpp
+pip install bpython pylint black isort pytest coverage bandit poetry pytest-only pytest-dotenv mypy pdbpp changelogs
 # Removed flake8 as it doesn't seem needed when using black+pylint and doesn't support
 # pyproject.toml
 pip install -r requirements-dev.txt  || pip install -r requirements.txt || poetry install
