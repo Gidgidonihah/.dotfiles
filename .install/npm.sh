@@ -8,6 +8,7 @@ npm install -g typescript
 
 NPM_PKGS=(
     "@bigcommerce/stencil-cli"
+    "@microsoft/inshellisense"
     "caniuse-cli"
     "eslint-cli"
     "gistup"
