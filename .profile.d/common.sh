@@ -11,3 +11,6 @@ export PAGER=less
 
 # zsh-autosuggestions configuration
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
+
+# CRA defaults browser to chrome. Change that. Use *my* default.
+export BROWSER=open
