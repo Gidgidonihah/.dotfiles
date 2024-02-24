@@ -12,4 +12,9 @@
       "enabled": false,
     },
   },
+  "solargraph": {
+    // Disabled becase termly isn't compatible with the latest rubocop.
+    // Everything needs updating to re-enable this.
+    "checkGemVersion": false,
+  }
 }
