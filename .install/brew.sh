@@ -8,6 +8,9 @@ echo "🥤   Installing homebrew packages"
 # Tap the cask-versions repo
 brew tap homebrew/cask-versions
 
+# Tap the spacer keg to install spacer
+brew tap samwho/spacer
+
 # Required packages
 REQUIRED_PKGS=(
     "cmake"
@@ -26,6 +29,7 @@ BREW_PKGS=(
     "awscli"
     "base"
     "bat"
+    "bloop"
     "brave"
     "colordiff"
     "ctags"
@@ -64,6 +68,7 @@ BREW_PKGS=(
     "litecli"
     # "lynx"
     "macdown"
+    "markdownlint-cli"
     # "muzzle"
     "mycli"
     # "ngrok" # Replaced with localtunnel via npm
@@ -82,7 +87,9 @@ BREW_PKGS=(
     "sequel-pro"
     # "sip"
     # "sops"
+    "spacer"
     "svgo"
+    "tailspin" # Log colorizer
     "terminal-notifier"
     "thefuck"
     "tidy-html5"
