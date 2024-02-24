@@ -60,34 +60,47 @@
 
     # Used to copy the last commit message because github reformats like a butt
     cplm = "!f() { \
-        git log HEAD^.. | grep '^ ' | sed 's/^ *//' | pbcopy; \
+        git log HEAD^.. | grep '^ ' | sed 's/^ *//' | tail -n +3 | pbcopy; \
     }; f"
 
     # Used by other aliases
     remoterepo = "!f() { \
-        repo=$(git remote -v | grep -m 1 \"(push)\" | sed -e 's/.*github.com.\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
+        repo=$(git remote -v | grep origin | grep -m 1 \"(push)\" | sed -e 's/.*github.com.\\(.*\\) .*/\\1/g' | sed -e 's/\\.git//g' ); \
         echo $repo; \
     }; f"
-    # Used by other aliases
     reponame = "!f() { \
         name=$(basename $(git remote get-url origin) .git); \
         echo $name; \
     }; f"
+    defaultbranch = "!f() { \
+        git remote show origin | grep 'HEAD branch' | cut -d' ' -f5; \
+    }; f"
+
     # Open Repo in github
     hub = "!f() { repo=$(git remoterepo); \
         url=https://github.com/$repo; echo $url; echo ''; \
         open $url > /dev/null 2>&1; \
     }; f"
     # Github Pull Request
+    pr = "!f() { gh pr create --reviewer $(cat ~/.config/gh/reviewers | tr '\n' ',') ; }; f"
     prurl = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
         repo=$(git remoterepo); \
         url=https://github.com/$repo/pull/new/$branch; echo $url; echo ''; \
+        git cplm; \
         open $url > /dev/null 2>&1; \
     }; f"
-    pr = "!f() { branch=$(git rev-parse --abbrev-ref HEAD); \
-        git pull && git push && git prurl && echo '' && \
-        git co master && git br -d $branch; \
+    prurlcp = "!f() { \
+        url=$(BROWSER=echo gh pr view --web); \
+        echo $url | pbcopy; \
+        echo $url copied to clipboard; \
     }; f"
+    propen = "!f() { \
+        branch=$(git rev-parse --abbrev-ref HEAD); \
+        defaultbranch=$(git defaultbranch); \
+        git track && git pull && git push && git prurl && echo '' && \
+        git co $defaultbranch && git br -d $branch; \
+    }; f"
+    openpr=propen
 
     # Open CircleCI: opens url https://circleci.com/gh/<ORG>/<REPO>
     cci = "!f() { repo=$(git remoterepo); \
@@ -171,7 +184,7 @@
     pager = diff-so-fancy | less --tabs=4 -RFX
 [init]
     templatedir = ~/.gittemplate
-	defaultBranch = main
+    defaultBranch = main
 [grep]
     lineNumber = true
 [branch]
@@ -232,3 +245,7 @@
 # Include local overrides for termly (user)
 [includeIf "gitdir:~/Sites/termly/"]
     path = ~/Sites/termly/.gitconfig.inc
+[includeIf "gitdir:/tmp/"]
+    path = ~/Sites/termly/.gitconfig.inc
+[safe]
+    directory = *
