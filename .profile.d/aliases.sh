@@ -17,6 +17,7 @@ alias ff="fzf --preview 'bat --color=always --style=numbers --line-range=:500 {}
 alias grep="grep --exclude-dir=node_modules" # I never want to grep node modules...
 alias m=music
 alias fd="fd -H" # Always include searching for .hidden files
+alias tree="tree -I \"*pyc|__pycache__\""
 
 # Get my current IP address
 alias ip="ifconfig en0 | awk '$1 == "inet" {print $2}'" # Get your IPv4 IP address from ifconfig.
