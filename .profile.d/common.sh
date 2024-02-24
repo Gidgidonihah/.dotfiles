@@ -2,8 +2,7 @@
 export FPP_DISABLE_SPLIT=false
 
 # Editor
-alias vi=vim
-export EDITOR="$HOMEBREW_PREFIX/bin/vim"
+export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
 
 
 # Pager
