@@ -1,11 +1,23 @@
+# Work around the ruby fork problem - https://github.com/rails/rails/issues/38560
+export OBJC_DISABLE_INITIALIZE_FORK_SAFETY=YES
+
+# Aliases
 alias cdt="scd ~/Sites/termly"
-alias nohttp="http --verify=no"
+alias ,http="http --verify=no"
 
 # rspec opens Too Many Files when the whole suite is run.
 alias rspec_all="ulimit -n 1024; qspec"
+alias ,rspec_all=rspec_all
 
 # Multi repo search
 alias ggt="~/.sh/multi-repo-search.sh -b ~/Sites/termly"
+
+lintconfig=/Users/jason/Sites/termly/containers/termly/python-ci/pyproject.toml
+alias tpylint="pylint --rcfile=/Users/jason/Sites/termly/containers/termly/python-ci/pyproject.toml **/*.py"
+alias tisort="isort --sp $lintconfig --src ."
+alias tblack="black --config $lintconfig"
+alias termlint="echo 👓; tisort .; echo 🖤; tblack .; echo 🐍 ☁️ ; tpylint"
+alias ,termlint=termlint
 
 function specwatch(){
   TESTS=$1
@@ -56,3 +68,26 @@ function docker-aws-login() {
     aws sso login --profile ecr
     aws --profile ecr ecr get-login-password | docker login -u AWS --password-stdin 104448803897.dkr.ecr.us-west-2.amazonaws.com
 }
+alias ,dal=docker-aws-login
+
+function jfindopen() {
+  TEXT="$@"
+  jira issue list -q"text ~ '$TEXT'" -s~Closed -s~Cancelled
+}
+alias ,jfindopen=jfindopen
+
+function jfindall() {
+  TEXT="$@"
+  jira issue list -q"text ~ '$TEXT'"
+}
+alias ,jfindall=jfindall
+function jiraqa() {
+    jira issue list -q'project = TER AND status in ("QA Blocked", "QA Ready", "QA in progress", "Ready to Deploy")' --order-by=priority,updated --reverse
+}
+function ,jirareported() {
+    jira issue list -q'reporter in (currentUser())'
+}
+function ,jirareportedopen() {
+    jira issue list -q'reporter in (currentUser()) AND statusCategory not in (Done)'
+}
+alias ,jiraqa=jiraqa
