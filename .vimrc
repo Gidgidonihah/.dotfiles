@@ -68,6 +68,7 @@
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " First, remove ALL autocommands so they aren't defined multiple times when .vimrc is sourced again upon save
     autocmd!
+    let g:python3_host_prog = '/usr/local/bin/python3'
 
     " Enable FZF as a plugin. See https://github.com/junegunn/fzf/blob/master/README-VIM.md
     set rtp+=/usr/local/opt/fzf
@@ -302,7 +303,8 @@
         else
             set undodir=~/.undodir/
         endif
-        set undofile
+        " TODO @jweir: Disabling undofile to see if I like it
+        " set undofile
     endif
 " }}}
 "
@@ -379,7 +381,7 @@
         " Turn On Spell Checking ONLY for specific filetypes
         setlocal spell spelllang=en_us
         set nospell
-        autocmd FileType html,text,txt,smarty setlocal spell
+        autocmd FileType html,text,txt,smarty,markdown setlocal spell
 
         :iabbrev teh the
         :iabbrev seperate separate
@@ -515,7 +517,7 @@
     nmap <silent> t<C-l> :TestLast<CR>
     nmap <silent> t<C-g> :TestVisit<CR>
     let test#strategy = "toggleterm"
-    let test#python#pytest#options = '-s'
+    let test#python#pytest#options = '-s --disable-warnings'
 
     " <Home> and <End> go up and down the quickfix list and wrap around
     "nnoremap <silent> <Home> :call WrapCommandNextPrev('up', 'c')<CR>
@@ -796,12 +798,20 @@
     " ALE settings
     nmap <silent> <C-k> <Plug>(ale_previous_wrap)
     nmap <silent> <C-j> <Plug>(ale_next_wrap)
-    let g:ale_fix_on_save = 1
+
+    " TODO @jweir: test using the nvim diagnostics api: g:ale_use_neovim_diagnostics_api=1
+    " TODO @jweir: re-enable virtualtext using a very muted highlight
+    " let g:ale_virtualtext_cursor = 0
+    " highlight ALEWarning ctermbg=DarkMagenta
+    highlight ALEWarning ctermfg=168 guifg=#d33682
+    " TODO @jweir: See these settings https://github.com/dense-analysis/ale/blob/115ad17ace047cab20ccc67f79c943aaf3f0f291/doc/ale.txt#L124
+
     let g:ale_fix_on_save = 1
     let g:ale_echo_msg_error_str = 'E'
     let g:ale_echo_msg_warning_str = 'W'
     let g:ale_echo_msg_format = '[%linter%] %s (%code%) [%severity%]'
     let g:ale_writegood_options = '--no-adverb --no-tooWordy --no-passive --no-thereIs'
+    " # TODO @jweir: add ruff as a fixer if I start using it
     let g:ale_fixers = {
     \ '*': ['remove_trailing_lines', 'trim_whitespace'],
     \ 'javascript': ['eslint', 'remove_trailing_lines', 'trim_whitespace'],
@@ -810,6 +820,10 @@
     \ 'python': ['black', 'isort'],
     \ 'ruby': ['rubocop', 'remove_trailing_lines', 'trim_whitespace'],
     \ }
+    " ALE won't work with rubocop both inside/outside of a project. Setting it to
+    " `bundle` allows it to use the bundled rubocop, but then fails if not in a project.
+    " I've opted to allow it to run inside the project. See https://github.com/dense-analysis/ale/issues/1403
+    let g:ale_ruby_rubocop_executable = 'bundle'
     let g:ale_linters = {
     \ 'html': ['alex', 'angular', 'fecs', 'htmlhint', 'proselint', 'stylelint', 'tidy'],
     \ }
@@ -825,6 +839,7 @@
     let g:ale_yaml_yamllint_options='-c /Users/jason/.yamllint'
     let g:ale_python_mypy_options='--ignore-missing-imports'
     let g:ale_writegood_options='--no-passive'
+    let g:ale_markdown_markdownlint_options='--config /Users/jason/.config/markdownlint/config.jsonc'
 
     " vim-indent-guides settings
     let g:indent_guides_start_level = 2 "
