@@ -2,6 +2,10 @@
 /*
 !/.*
 
+# Codeium... Another tool that doesn't use .config/
+# Plus it stores the API key in the config file. Sure don't want that.
+.codeium/
+
 # Ingore env stuff
 .env
 env

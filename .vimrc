@@ -303,8 +303,7 @@
         else
             set undodir=~/.undodir/
         endif
-        " TODO @jweir: Disabling undofile to see if I like it
-        " set undofile
+        set undofile
     endif
 " }}}
 "
