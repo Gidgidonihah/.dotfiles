@@ -31,7 +31,6 @@ alias ,myip='IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && echo "M
 alias ,imgdim='sips -g pixelHeight -g pixelWidth $1'
 
 # User specific aliases and functions
-alias grm='git rm'
 alias ping="ping -c4"
 alias ,stfp="git status | fpp"
 
