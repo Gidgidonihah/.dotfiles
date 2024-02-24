@@ -1,6 +1,5 @@
 [tool.black]
 line-length = 88
-safe = true
 target-version = ['py310']
 exclude = '/(\.git)/'
 
@@ -22,17 +21,16 @@ use_parentheses = true
 [tool.pylint.master]
 extension-pkg-allow-list = "dependency_injector"
 fail-on = "I"  # Fail on informational (e.g. useless-suppression).
+jobs = 4
 persistent = "no"
 init-hook='import sys; sys.path.append(".")'
-
-# Disabled because doesn't seem to be correctly working. Figure that out.
-# # load-plugins='pylint.extensions.docparams'
-# # [tool.pylint.basic]
-# # no-docstring-rgx='^(?!__init__$)_'
+ignore-paths = ["alembic/versions"]
 
 [tool.pylint.typecheck]
 ignored-classes = [
-    "scoped_session" # SQLAlchemy false positives
+    # SQLAlchemy false positives
+    "sqlalchemy.orm.scoping.scoped_session",
+    "sqlalchemy.orm.session.sessionmaker"
 ]
 
 [tool.pylint.format]
@@ -57,6 +55,7 @@ enable = [
    "useless-suppression",
 ]
 disable = [
+    "duplicate-code", # Tends to be false positives in test code
     "fixme",  # We intentionally leave TODOs in the code.
     "missing-module-docstring",  # We don't require them.
     "too-few-public-methods", # Small classes are fine
