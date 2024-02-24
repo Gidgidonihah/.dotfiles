@@ -20,6 +20,7 @@ function specwatch(){
   | entr -cc qspec \
     $TESTS
 }
+alias ,specwatch=specwatch
 
 function remote-rails-console(){
     # Login to first aws if needed
@@ -49,6 +50,7 @@ function remote-rails-console(){
     fi
 }
 alias rrc=remote-rails-console
+alias ,rrc=remote-rails-console
 
 function docker-aws-login() {
     aws sso login --profile ecr

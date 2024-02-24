@@ -22,22 +22,25 @@ alias fd="fd -H" # Always include searching for .hidden files
 alias ip="ifconfig en0 | awk '$1 == "inet" {print $2}'" # Get your IPv4 IP address from ifconfig.
 alias ipv6="ifconfig en0 | awk '$1 == "inet6" {print $2}'" # Get your IPv6 IP address from ifconfig.
 alias myip='IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && echo "My WAN/Public IP address: ${IP}"'
-
-# Tail apache logs with human readable formatting
-alias elog="tail -f /var/log/apache2/error_log | sed 's/\\\\n/\\n/g'"
+alias ,ip="ifconfig en0 | awk '$1 == "inet" {print $2}'" # Get your IPv4 IP address from ifconfig.
+alias ,ipv6="ifconfig en0 | awk '$1 == "inet6" {print $2}'" # Get your IPv6 IP address from ifconfig.
+alias ,myip='IP=$(dig +short myip.opendns.com @resolver1.opendns.com) && echo "My WAN/Public IP address: ${IP}"'
 
 # get image dimensions
-alias imgdim='sips -g pixelHeight -g pixelWidth $1'
+alias ,imgdim='sips -g pixelHeight -g pixelWidth $1'
 
 # User specific aliases and functions
 alias grm='git rm'
 alias ping="ping -c4"
-alias stfp="git status | fpp"
+alias ,stfp="git status | fpp"
 
 # k8s aliases
 alias k=kubectl
+alias ,k=kubectl
 alias kx=kubectx
+alias ,kx=kubectx
 alias kns=kubens
+alias ,kns=kubens
 
 # Typo aliases
 # See typos.sh
@@ -50,7 +53,7 @@ alias sshg='ssh gidgidonihah.com'
 unalias y 2> /dev/null
 
 # Run command without network
-alias nonet="sandbox-exec -f ~/no-network.sandbox"
+alias ,nonet="sandbox-exec -f ~/no-network.sandbox"
 
 # Multi repo search
 # alias ggg="~/.sh/multi-repo-search.sh ~/Sites/"
@@ -61,12 +64,10 @@ alias fpp="fpp --non-interactive"
 # Officially switching over to neovim
 alias vvim="/usr/local/bin/vim"
 alias vim="nvim"
+alias vi="nvim"
 
 # Open vim without a user profile
-alias uvim="vi -u NONE"
+alias ,uvim="vi -u NONE"
 
 # Give me a uuid quick and easy to my clipboard
-alias uuid='uuidgen | tr -d "\n" | tr "[:upper:]" "[:lower:]" | pbcopy'
-
-# Pylint should use my config by default
-alias pylint="pylint --rcfile=/Users/jason/pyproject.toml"
+alias ,uuid='uuidgen | tr -d "\n" | tr "[:upper:]" "[:lower:]" | pbcopy'
