@@ -163,3 +163,6 @@
 [submodule "/Users/jason/.vim/pack/git-plugins/opt/copilot.nvim"]
 	path = /Users/jason/.vim/pack/git-plugins/opt/copilot.nvim
 	url = https://github.com/github/copilot.vim
+[submodule "/Users/jason/.vim/pack/Exafunction/start/codeium.vim"]
+	path = /Users/jason/.vim/pack/Exafunction/start/codeium.vim
+	url = https://github.com/Exafunction/codeium.vim
