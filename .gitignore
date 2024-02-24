@@ -11,7 +11,7 @@ env
 .nvm
 
 # I override some git config settings for each machine, so don't commit those
-~/.gitconfig.local.inc
+.gitconfig.local.inc
 
 # Don't want everyone seeing my private keys, now do I?
 .ssh
