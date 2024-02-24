@@ -95,6 +95,11 @@ plugins=(
 # Source homebrew before everything
 source ~/.profile.d/brew.sh
 
+# Virtuanenvwrapper started complaining suddenly on startup, but if I include this
+# config before running omz setup, then everything is happy. No idea what changed. I
+# went to lunch, came back and opened a terminal tab. Go figure.
+source ~/.profile.d/virtualenvwrapper.sh
+
 source $ZSH/oh-my-zsh.sh
 
 # User configuration
