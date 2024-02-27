@@ -91,3 +91,10 @@ function ,jirareportedopen() {
     jira issue list -q'reporter in (currentUser()) AND statusCategory not in (Done)'
 }
 alias ,jiraqa=jiraqa
+
+function ,jirame() {
+    jira sprint list --current -a$(jira me) -s"To Do" -s"In Progress" --order-by status --reverse
+}
+function ,jirameall() {
+    jira sprint list --current -a$(jira me) --order-by status --reverse
+}
