@@ -2,6 +2,8 @@
 # gpg.program, etc.
 # See the bottom of the file for those overrides
 
+# Some of the settings were updated from a blog post, but I haven't tried them yet
+# https://jvns.ca/blog/2024/02/16/popular-git-config-options/?utm_source=tldrdevops
 [user]
     name = Jason Weir
     email = jason@rata.com
@@ -31,15 +33,20 @@
 [color "sh"]
     branch = yellow
 [merge]
+    conflictstyle = zdiff3
     tool = vimdiff
     stat = true
 [push]
     default = current # Also: nothing, current, upstream, simple, matching
 [branch]
     autosetuprebase = always
+[rebase]
+    autosquash = true
+    autostash = true
 [diff]
     renames = copies
     mnemonicprefix = true
+    submodule = log
 [svn]
     r
 [alias]
@@ -181,6 +188,8 @@
     excludesfile = ~/.gitignore_global
     quotepath = false
     whitespace = trailing-space,space-before-tab
+    # TODO @jweir: try delta (https://github.com/dandavison/delta)
+    # pager = delta
     pager = diff-so-fancy | less --tabs=4 -RFX
 [init]
     templatedir = ~/.gittemplate
@@ -197,10 +206,13 @@
     rebase = false
 [commit]
     gpgsign = true
+    verbose = true
 [gpg]
-    program = /opt/homebrew/bin/gpg
+    program = /usr/local/bin/gpg
 [diff "sopsdiffer"]
     textconv = sops -d
+    # See https://luppeng.wordpress.com/2020/10/10/when-to-use-each-of-the-git-diff-algorithms/
+    algorithm = histogram
 [url "ssh://git@github.com"]
     insteadOf = https://github.com
 [credential]
@@ -229,6 +241,8 @@
     allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
     patterns = private_key
     patterns = private_key_id
+[status]
+    submoduleSummary = true
 [interactive]
     diffFilter = diff-so-fancy --patch
     textconv = sops -d
@@ -249,3 +263,5 @@
     path = ~/Sites/termly/.gitconfig.inc
 [safe]
     directory = *
+[submodule]
+    recurse = true
