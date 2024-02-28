@@ -528,6 +528,7 @@ defaults write com.apple.dock persistent-others -array-add '{tile-data={}; tile-
 defaults write com.apple.dock persistent-apps -array
 
 # Add my apps to the dock
+# TODO @jweir: this section doesn't work at all and instead jacks up my system
 for APP in \
   'Siri' \
   'App Store' \
@@ -539,9 +540,7 @@ for APP in \
   'SPACER' \
   'Spark' \
   'Music' \
-  'Pocket' \
   'Reeder' \
-  'Tweetbot' \
   'Slack' \
   'SPACER' \
   'iTerm' \
@@ -1061,14 +1060,6 @@ defaults write com.googlecode.iterm2 LoadPrefsFromCustomFolder -bool true
 defaults write com.googlecode.iterm2 PromptOnQuit -bool false
 
 ###############################################################################
-# Tweetbot.app                                                                #
-###############################################################################
-echo "🥤   Setting up Tweetbot"
-
-# Bypass the annoyingly slow t.co URL shortener
-defaults write com.tapbots.TweetbotMac OpenURLsDirectly -bool true
-
-###############################################################################
 # wipr.app                                                                    #
 ###############################################################################
 echo "🥤   Setting up wipr"
@@ -1149,18 +1140,14 @@ for app in "Activity Monitor" \
   "Dock" \
   "Fantastical 2" \
   "Finder" \
-  "Google Chrome Canary" \
   "Google Chrome" \
   "Mail" \
   "Messages" \
-  "Opera" \
   "Photos" \
   "Safari" \
   "SizeUp" \
   "Spectacle" \
   "SystemUIServer" \
-  "Transmission" \
-  "Tweetbot" \
   "Twitter" \
   "iCal"; do
     killall "$app" > /dev/null 2>&1
@@ -1172,7 +1159,9 @@ echo "Done. Note that some of these changes will require a logout/restart to tak
 ###############################################################################
 echo "🥤   Setting up Startup"
 
-for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender 3"; do
+for APP in "Choosy" "BarTunes" "Dash" "Muzzle" "Fantastical" "Rocket" "Moom" "Bartender"; do
     # TODO: don't prompt if not installed.
     confirm_to_continue "Please ensure that $APP is set to start at login"
 done
+
+# TODO @jweir: set capslock to control

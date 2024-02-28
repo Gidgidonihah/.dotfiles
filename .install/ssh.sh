@@ -14,7 +14,7 @@ ssh-keygen -t rsa -b 4096 -C "$EMAIL" -f $KEYFILE
 
 # Add that key to the ssh-agent
 eval "$(ssh-agent -s)"
-ssh-add -K $KEYFILE
+ssh-add --apple-use-keychain $KEYFILE
 open https://github.com/settings/keys
 enter_to_continue "Be sure to log into github before continuing so your clipboard won't be overwritten by 1password"
 

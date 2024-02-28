@@ -13,6 +13,12 @@ EXPIRED_APPS=(
   '413965349 - Soulver (2.6.8)'
   '415739978 - The Secret of Monkey Island: SE'
   '880001334 - Reeder (3.2.1)'
+  '407963104 - Pixelmator Classic (3.9.8)'
+  '568494494 - Pocket (1.8.1)'
+  '425955336 - Skitch - Snap. Mark up. Share. (2.9)'
+  '1384080005 - Tweetbot (3.1)'
+  '1054607607 - Helium (2.0)'
+  '1475897096 - Jira Cloud (139.0.0)'
 )
 
 echo """
@@ -26,6 +32,7 @@ confirm "Would you like to open the purchase history on the Mac App Store?" && o
 
 echo "Installing from Mac App Store"
 APPS=(
+    '1457744893' # EmojiFinder
     '1333542190' # 1Password (7.8.7)
     '444425546'  # BarTunes (1.2)
     '427475982'  # BreakTime (2.5.2)
@@ -33,8 +40,6 @@ APPS=(
     '411643860'  # DaisyDisk (4.6.5)
     '1438243180' # Dark Reader (1.4.4)
     '635124250'  # Delicious Library 3 (3.8.2)
-    '1054607607' # Helium (2.0)
-    '1475897096' # Jira Cloud (139.0.0)
     '1437130425' # Jolt of Caffeine (1.0)
     '409183694'  # Keynote (8.2)
     '405772121'  # LittleIpsum (2.0.6)
@@ -44,15 +49,11 @@ APPS=(
     '409203825'  # Numbers (5.2)
     '1540160809' # OneTab (1.48)
     '429449079'  # Patterns (1.1.2)
-    '407963104'  # Pixelmator Classic (3.9.8)
     '1289583905' # Pixelmator Pro (2.1.4)
-    '568494494'  # Pocket (1.8.1)
     '693112260'  # Sim Daltonism (2.0.2)
-    '425955336'  # Skitch - Snap. Mark up. Share. (2.9)
     '803453959'  # Slack (3.3.2)
     '1176895641' # Spark (2.0.13)
     '1153157709' # Speedtest (1.5)
-    '1384080005' # Tweetbot (3.1)
     '1320666476' # Wipr (1.4)
     '497799835'  # Xcode (10.0)
 )

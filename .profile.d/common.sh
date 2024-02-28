@@ -8,6 +8,8 @@ export EDITOR="$HOMEBREW_PREFIX/bin/nvim"
 # Pager
 export LESS="-SFXR -x2"
 export PAGER=less
+export JIRA_PAGER="less -SXR -x2"
+
 
 # zsh-autosuggestions configuration
 ZSH_AUTOSUGGEST_STRATEGY=(history completion)
