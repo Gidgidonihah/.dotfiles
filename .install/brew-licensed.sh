@@ -4,17 +4,14 @@
 echo "🥤   Installing licensed packages"
 
 LICENSED_PKGS=(
-    "adobe-creative-cloud"
-    "bartender"
-    "choosy"
-    "dash"
-    "devutils"
-    "dropbox"
-    "fantastical"
-    "paw"
-    "rocket"
-    "sketch"
-    "transmit4"
+    "homebrew/cask/bartender"
+    "homebrew/cask/choosy"
+    "homebrew/cask/dash" # TODO @jweir: needs to be installed with cask
+    "homebrew/cask/devutils"
+    "homebrew/cask/fantastical"
+    "homebrew/cask/paw"
+    "homebrew/cask/rocket"
+    "homebrew/cask/transmit4"
 )
 
 
@@ -22,12 +19,6 @@ multi_select_from_list "${LICENSED_PKGS[@]}"
 
 echo "🥤   Installing: ${selected_packages[@]}"
 brew install ${selected_packages[@]}
-
-if [[ " ${selected_packages[*]} " =~ " adobe-creative-cloud " ]]; then
-    enter_to_continue "Please install Adobe Creative Cloud"
-    open $HOMEBREW_PREFIX/Caskroom/adobe-creative-cloud/latest/Creative\ Cloud\ Installer.app
-    confirm_to_continue "Have you installed all Adobe CC apps?"
-fi
 
 for PKG in $CASK_PKGS; do
     confirm_to_continue "Have entered your license for and/or logged in to $PKG?"
