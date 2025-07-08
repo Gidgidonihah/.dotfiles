@@ -170,9 +170,6 @@
     url = https://github.com/altercation/vim-colors-solarized
 
 # If anything shows up below this, it hasn't been organized
-[submodule ".vim/bundle/editorconfig-vim"]
-    path = .vim/pack/git-plugins/start/editorconfig-vim
-    url = https://github.com/editorconfig/editorconfig-vim.git
 [submodule ".vim/bundle/vim-mustache-handlebars"]
     path = .vim/bundle/vim-mustache-handlebars
     url = https://github.com/mustache/vim-mustache-handlebars.git
