@@ -142,8 +142,8 @@
     path = .vim/pack/git-plugins/start/codeium.vim
     url = https://github.com/Exafunction/codeium.vim
 [submodule ".vim/pack/git-plugins/start/vim-lark-syntax"]
-	path = .vim/pack/git-plugins/start/vim-lark-syntax
-	url = https://github.com/lark-parser/vim-lark-syntax
+    path = .vim/pack/git-plugins/start/vim-lark-syntax
+    url = https://github.com/lark-parser/vim-lark-syntax
 
 # Vim-only plugins
 [submodule ".vim/bundle/YouCompleteMe"]
@@ -162,9 +162,9 @@
     url = https://github.com/akinsho/toggleterm.nvim
 
 # Vim/Nvim Colorschemes
-[submodule ".vim/bundle/dracula-theme"]
-    path = .vim/pack/git-plugins/start/dracula-theme
-    url = https://github.com/dracula/vim.git
+[submodule ".vim/pack/colorschemes/start/dracula.nvim.git"]
+    path = .vim/pack/colorschemes/start/dracula.nvim.git
+    url = https://github.com/Mofiqul/dracula.nvim.git
 [submodule ".vim/bundle/vim-colors-solarized"]
     path = .vim/pack/git-plugins/start/vim-colors-solarized
     url = https://github.com/altercation/vim-colors-solarized
