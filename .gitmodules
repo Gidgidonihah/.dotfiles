@@ -141,6 +141,9 @@
 [submodule ".vim/pack/git-plugins/start/codeium.vim"]
     path = .vim/pack/git-plugins/start/codeium.vim
     url = https://github.com/Exafunction/codeium.vim
+[submodule ".vim/pack/git-plugins/start/vim-lark-syntax"]
+	path = .vim/pack/git-plugins/start/vim-lark-syntax
+	url = https://github.com/lark-parser/vim-lark-syntax
 
 # Vim-only plugins
 [submodule ".vim/bundle/YouCompleteMe"]
