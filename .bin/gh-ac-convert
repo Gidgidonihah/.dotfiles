@@ -1,0 +1,138 @@
+#!/bin/bash
+
+# Fast WebM converter for GitHub comments (under 100MB)
+
+if [ $# -eq 0 ]; then
+    echo "Usage: $0 <input_file> [output_file]"
+    echo "Example: $0 recording.mov output.webm"
+    exit 1
+fi
+
+INPUT="$1"
+OUTPUT="${2:-${INPUT%.*}.webm}"
+TARGET_SIZE_MB=100
+TARGET_SIZE_BYTES=$((TARGET_SIZE_MB * 1024 * 1024))
+
+# Check if input file exists
+if [ ! -f "$INPUT" ]; then
+    echo "Error: Input file '$INPUT' not found"
+    exit 1
+fi
+
+# Function to get file size
+get_file_size() {
+    if [[ "$OSTYPE" == "darwin"* ]]; then
+        stat -f%z "$1"
+    else
+        stat -c%s "$1"
+    fi
+}
+
+echo "Fast converting '$INPUT' to WebM..."
+echo "Target size: ${TARGET_SIZE_MB}MB"
+
+# Strategy: Single-pass encoding with progressive CRF values
+# Start with moderate compression and increase if needed
+
+CRF_VALUES=(30 35 40 45)
+CURRENT_OUTPUT=""
+
+for CRF in "${CRF_VALUES[@]}"; do
+    echo "Trying CRF $CRF (single pass)..."
+
+    # Use faster encoding settings
+    ffmpeg -y -i "$INPUT" \
+        -c:v libvpx-vp9 \
+        -crf "$CRF" \
+        -b:v 0 \
+        -deadline realtime \
+        -cpu-used 8 \
+        -row-mt 1 \
+        -threads 0 \
+        -c:a libopus \
+        -b:a 128k \
+        "$OUTPUT" \
+        -loglevel error
+
+    if [ -f "$OUTPUT" ]; then
+        OUTPUT_SIZE=$(get_file_size "$OUTPUT")
+        OUTPUT_SIZE_MB=$(echo "scale=1; $OUTPUT_SIZE / 1024 / 1024" | bc -l)
+
+        echo "Result: ${OUTPUT_SIZE_MB}MB"
+
+        if (( $(echo "$OUTPUT_SIZE <= $TARGET_SIZE_BYTES" | bc -l) )); then
+            echo "✅ Success! File is under ${TARGET_SIZE_MB}MB"
+            echo "Output: $OUTPUT (${OUTPUT_SIZE_MB}MB)"
+            exit 0
+        else
+            echo "Still too large, trying higher compression..."
+        fi
+    else
+        echo "❌ Encoding failed at CRF $CRF"
+    fi
+done
+
+# If still too large, try with resolution scaling
+echo "Trying with reduced resolution..."
+RESOLUTIONS=("1280:720" "960:540")
+
+for RES in "${RESOLUTIONS[@]}"; do
+    echo "Trying resolution $RES with CRF 35..."
+
+    ffmpeg -y -i "$INPUT" \
+        -vf "scale=$RES" \
+        -c:v libvpx-vp9 \
+        -crf 35 \
+        -b:v 0 \
+        -deadline realtime \
+        -cpu-used 8 \
+        -row-mt 1 \
+        -threads 0 \
+        -c:a libopus \
+        -b:a 128k \
+        "$OUTPUT" \
+        -loglevel error
+
+    if [ -f "$OUTPUT" ]; then
+        OUTPUT_SIZE=$(get_file_size "$OUTPUT")
+        OUTPUT_SIZE_MB=$(echo "scale=1; $OUTPUT_SIZE / 1024 / 1024" | bc -l)
+
+        echo "Result: ${OUTPUT_SIZE_MB}MB at resolution $RES"
+
+        if (( $(echo "$OUTPUT_SIZE <= $TARGET_SIZE_BYTES" | bc -l) )); then
+            echo "✅ Success! File is under ${TARGET_SIZE_MB}MB"
+            echo "Output: $OUTPUT (${OUTPUT_SIZE_MB}MB) at resolution $RES"
+            exit 0
+        fi
+    fi
+done
+
+# Last resort: Very fast H.264 MP4 (GitHub supports this too)
+echo "Trying fast H.264 MP4 as fallback..."
+MP4_OUTPUT="${OUTPUT%.webm}.mp4"
+
+ffmpeg -y -i "$INPUT" \
+    -c:v libx264 \
+    -preset veryfast \
+    -crf 28 \
+    -c:a aac \
+    -b:a 128k \
+    "$MP4_OUTPUT" \
+    -loglevel error
+
+if [ -f "$MP4_OUTPUT" ]; then
+    OUTPUT_SIZE=$(get_file_size "$MP4_OUTPUT")
+    OUTPUT_SIZE_MB=$(echo "scale=1; $OUTPUT_SIZE / 1024 / 1024" | bc -l)
+
+    echo "H.264 result: ${OUTPUT_SIZE_MB}MB"
+
+    if (( $(echo "$OUTPUT_SIZE <= $TARGET_SIZE_BYTES" | bc -l) )); then
+        echo "✅ Success with H.264! File is under ${TARGET_SIZE_MB}MB"
+        echo "Output: $MP4_OUTPUT (${OUTPUT_SIZE_MB}MB)"
+        exit 0
+    fi
+fi
+
+echo "❌ Could not get file under ${TARGET_SIZE_MB}MB"
+echo "Try trimming your video or accepting a larger file size"
+exit 1

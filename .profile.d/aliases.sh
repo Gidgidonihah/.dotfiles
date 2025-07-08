@@ -71,3 +71,6 @@ alias ,uvim="vi -u NONE"
 
 # Give me a uuid quick and easy to my clipboard
 alias ,uuid='uuidgen | tr -d "\n" | tr "[:upper:]" "[:lower:]" | pbcopy'
+
+# Custom bin scripts
+alias ,ghacconvert="~/.bin/gh-ac-convert"
