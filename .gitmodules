@@ -69,7 +69,7 @@
 	url = https://github.com/dracula/vim.git
 [submodule ".gittemplate"]
 	path = .gittemplate
-	url = https://github.com/CruxConnect/git_template.git
+	url = https://github.com/Gidgidonihah/.gittemplate.git
 [submodule ".oh-my-zsh"]
 	path = .oh-my-zsh
 	url = https://github.com/robbyrussell/oh-my-zsh.git
