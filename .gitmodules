@@ -18,10 +18,10 @@
     url = https://github.com/romkatv/powerlevel10k.git
 [submodule ".oh-my-zsh-custom/plugins/fast-syntax-highlighting"]
     path = .oh-my-zsh-custom/plugins/fast-syntax-highlighting
-    url = git@github.com:zdharma-continuum/fast-syntax-highlighting.git
+    url = https://github.com/zdharma-continuum/fast-syntax-highlighting.git
 [submodule ".oh-my-zsh-custom/plugins/zsh-autosuggestions"]
     path = .oh-my-zsh-custom/plugins/zsh-autosuggestions
-    url = git@github.com:zsh-users/zsh-autosuggestions.git
+    url = https://github.com/zsh-users/zsh-autosuggestions.git
 
 # Vim+Nvim Shared Plugins
 [submodule ".vim/bundle/bufexplorer"]
@@ -137,7 +137,7 @@
     url = https://github.com/junegunn/fzf.vim.git
 [submodule ".vim/pack/git-plugins/start/vim-fold-rspec"]
     path = .vim/pack/git-plugins/start/vim-fold-rspec
-    url = git@github.com:rlue/vim-fold-rspec.git
+    url = https://github.com/rlue/vim-fold-rspec.git
 [submodule ".vim/pack/git-plugins/start/codeium.vim"]
     path = .vim/pack/git-plugins/start/codeium.vim
     url = https://github.com/Exafunction/codeium.vim
