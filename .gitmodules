@@ -144,6 +144,9 @@
 [submodule ".vim/pack/git-plugins/start/vim-lark-syntax"]
     path = .vim/pack/git-plugins/start/vim-lark-syntax
     url = https://github.com/lark-parser/vim-lark-syntax
+[submodule ".vim/pack/git-plugins/opt/tree-sitter-go-template"]
+    path = .vim/pack/git-plugins/opt/tree-sitter-go-template
+    url = https://github.com/ngalaiko/tree-sitter-go-template
 
 # Vim-only plugins
 [submodule ".vim/bundle/YouCompleteMe"]
@@ -160,6 +163,15 @@
 [submodule ".vim/pack/git-plugins/opt/toggleterm.nvim"]
     path = .vim/pack/git-plugins/opt/toggleterm.nvim
     url = https://github.com/akinsho/toggleterm.nvim
+[submodule ".vim/pack/git-plugins/opt/nvim-treesitter"]
+    path = .vim/pack/git-plugins/opt/nvim-treesitter
+    url = https://github.com/nvim-treesitter/nvim-treesitter
+[submodule ".vim/pack/git-plugins/opt/indent-blankline.nvim"]
+    path = .vim/pack/git-plugins/opt/indent-blankline.nvim
+    url = https://github.com/lukas-reineke/indent-blankline.nvim
+[submodule ".vim/pack/git-plugins/opt/mini.nvim"]
+    path = .vim/pack/git-plugins/opt/mini.nvim
+    url = https://github.com/echasnovski/mini.nvim
 
 # Vim/Nvim Colorschemes
 [submodule ".vim/pack/colorschemes/start/base16-nvim"]
