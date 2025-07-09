@@ -149,8 +149,8 @@
 [submodule ".vim/bundle/YouCompleteMe"]
     path = .vim/pack/git-plugins/opt/YouCompleteMe
     url = https://github.com/Valloric/YouCompleteMe.git
-[submodule ".vim/bundle/vim-indent-guides"]
-    path = .vim/pack/git-plugins/start/vim-indent-guides
+[submodule ".vim/pack/git-plugins/opt/vim-indent-guides"]
+    path = .vim/pack/git-plugins/opt/vim-indent-guides
     url = https://github.com/nathanaelkane/vim-indent-guides.git
 
 # Nvim-only plugins
@@ -165,8 +165,8 @@
 [submodule ".vim/pack/colorschemes/start/dracula.nvim.git"]
     path = .vim/pack/colorschemes/start/dracula.nvim.git
     url = https://github.com/Mofiqul/dracula.nvim.git
-[submodule ".vim/bundle/vim-colors-solarized"]
-    path = .vim/pack/git-plugins/start/vim-colors-solarized
+[submodule ".vim/pack/colorschemes/start/vim-colors-solarized"]
+    path = .vim/pack/colorschemes/start/vim-colors-solarized
     url = https://github.com/altercation/vim-colors-solarized
 
 # If anything shows up below this, it hasn't been organized
