@@ -165,8 +165,8 @@
 [submodule ".vim/pack/colorschemes/start/base16-nvim"]
     path = .vim/pack/colorschemes/start/base16-nvim
     url = https://github.com/RRethy/base16-nvim.git
-[submodule ".vim/pack/colorschemes/start/dracula.nvim.git"]
-    path = .vim/pack/colorschemes/start/dracula.nvim.git
+[submodule ".vim/pack/colorschemes/start/dracula.nvim"]
+	path = .vim/pack/colorschemes/start/dracula.nvim
     url = https://github.com/Mofiqul/dracula.nvim.git
 [submodule ".vim/pack/colorschemes/start/monokai.nvim"]
     path = .vim/pack/colorschemes/start/monokai.nvim
