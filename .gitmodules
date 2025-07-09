@@ -162,9 +162,24 @@
     url = https://github.com/akinsho/toggleterm.nvim
 
 # Vim/Nvim Colorschemes
+[submodule ".vim/pack/colorschemes/start/base16-nvim"]
+    path = .vim/pack/colorschemes/start/base16-nvim
+    url = https://github.com/RRethy/base16-nvim.git
 [submodule ".vim/pack/colorschemes/start/dracula.nvim.git"]
     path = .vim/pack/colorschemes/start/dracula.nvim.git
     url = https://github.com/Mofiqul/dracula.nvim.git
+[submodule ".vim/pack/colorschemes/start/monokai.nvim"]
+    path = .vim/pack/colorschemes/start/monokai.nvim
+    url = https://github.com/tanvirtin/monokai.nvim.git
+[submodule ".vim/pack/colorschemes/start/nebulous.nvim"]
+    path = .vim/pack/colorschemes/start/nebulous.nvim
+    url = https://github.com/Yagua/nebulous.nvim.git
+[submodule ".vim/pack/colorschemes/start/onedarkpro.nvim"]
+    path = .vim/pack/colorschemes/start/onedarkpro.nvim
+    url = https://github.com/olimorris/onedarkpro.nvim.git
+[submodule ".vim/pack/colorschemes/start/sonokai"]
+    path = .vim/pack/colorschemes/start/sonokai
+    url = https://github.com/sainnhe/sonokai.git
 [submodule ".vim/pack/colorschemes/start/vim-colors-solarized"]
     path = .vim/pack/colorschemes/start/vim-colors-solarized
     url = https://github.com/altercation/vim-colors-solarized
