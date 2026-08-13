@@ -1,5 +1,10 @@
 # CLAUDE.md
 
+## Modal usage
+
+Unless told otherwise, when planning implementation use Opus.
+When doing the actual implementation, use Sonnet.
+
 ## General rules
 
 <!--
@@ -14,3 +19,8 @@
 
 - Logging:
   * Emoji are welcome, but not required, in logs
+
+## Code comments
+
+When adding code above comments, keep the verbosity to a minimum. Retain only the
+necessary bits.
